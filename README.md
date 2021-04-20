@@ -57,7 +57,48 @@ rails s
 rails db:create
 ```
 
+```
+npm uninstall -g heroku-cli
+sudo snap install heroku --classic
+npm install -g heroku
 
+heroku login -i
+# login using your own heroku credentials
+heroku create
+
+git remote -v
+
+# deploy git:master to heroku:master
+git push heroku master
+
+# deploy git:HEAD (curent branch checked out) to heroku:master
+git push heroku +HEAD:master
+
+# now app should be on the the heroku endpoint
+
+```
+
+```
+# don't try below... just use for reference
+heroku create
+heroku buildpacks:add heroku/ruby
+git remote -v
+git push heroku master
+heroku run rake db:migrate
+
+# if you want to connect to an existing heroku app
+heroku git:remote -a yourappnamegoeshere
+
+# see logs
+heroku logs --tail
+# to run console activerecord commands
+heroku run rails c
+# restart
+heroku restart
+
+# log into heroku from console
+heroku login -i
+```
 
 
 
