@@ -28,13 +28,13 @@ default: &default
 
 development:
   <<: *default
-  database: RAD2021_s3717497_s3707189_development
+  database: RAD2021_s3707189_s3717497_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: RAD2021_s3717497_s3707189
+  #username: RAD2021_s3707189_s3717497
 
   # The password associated with the postgres role (username).
   #password:
@@ -62,7 +62,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: RAD2021_s3717497_s3707189_test
+  database: RAD2021_s3707189_s3717497_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: RAD2021_s3717497_s3707189_production
-  username: RAD2021_s3717497_s3707189
-  password: <%= ENV['RAD2021_S3717497_S3707189_DATABASE_PASSWORD'] %>
+  database: RAD2021_s3707189_s3717497_production
+  username: RAD2021_s3707189_s3717497
+  password: <%= ENV['RAD2021_s3707189_s3717497_DATABASE_PASSWORD'] %>
