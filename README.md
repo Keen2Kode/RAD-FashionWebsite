@@ -1,4 +1,4 @@
-# RAD2021_s3717497_s3707189
+# RAD2021_s3707189_s3717497
 
 ## Commands to run
 ```
@@ -13,7 +13,7 @@ gem install railties -v '5.2.5'
 ```
 
 ```
-rails new RAD2021_s3717497_s3707189 --database=postgresql
+rails new RAD2021_s3707189_s3717497 --database=postgresql
 
 # An error occurred while installing pg (1.2.3), and Bundler cannot continue.
 
