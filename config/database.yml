@@ -21,6 +21,11 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+  # Only jeff needs this for docker, comment this out
+  # host: db
+  # username: admin
+  # password: password
+
 development:
   <<: *default
   database: RAD2021_s3717497_s3707189_development
