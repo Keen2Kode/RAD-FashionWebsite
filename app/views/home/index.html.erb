@@ -1,2 +1,92 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+
+<%# should be a headER??? %>
+<%# add icons + links%>
+<div class="container">
+    <h1>Home</h1>
+    <nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Shopping Bag", '#' %></li>
+            <li><%= link_to "Search", '#' %></li>
+            <li><%= link_to "Menu bar", '#' %></li> 
+        </ul>
+    </nav>
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+<%# should be a partial??? to reload easily %>
+<%# convert to clickable icon, which adds to saved list and displays new item %>
+<div class="container">
+    <h3><%= @random_item.name%></h3>
+    <p> <%= @random_item.description%><p>
+    <p> <%= @random_item.price%><p>
+    <p><%= link_to "+ button", '#' %></li> 
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+<%# how to do the scroll right list effect %>
+<div class="container">
+    <h2>Popular</h2>
+    <%= link_to "See all", '#' %>
+    <%= render "popular" %>
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+
+<%# how to do the scroll right list effect %>
+<div class="container">
+    <h2>Collections</h2>
+    <%= link_to "See all", '#' %>
+    <div>
+        <%= link_to "men",  collections_men_path %>
+        <%= link_to "women", collections_women_path %>
+        <%= link_to "kids", collections_kids_path %>
+        <%= link_to "new-ins", collections_new_ins_path %>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="container">
+    <h2>Newsletter</h2>
+    <p>Sign up here:</p>
+    
+    <%# should be a partial??? to reload easily %>
+    <%= form_with do |form| %>
+        <div class="field">
+            <%= form.label :visitor_email %>
+            <%= form.text_area :visitor_email %>
+        </div>
+        
+        <div class="actions">
+            <%= form.submit %>
+        </div>
+    <% end %>
+</div>
+

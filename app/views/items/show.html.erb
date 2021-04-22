@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @item.size %>
+</p>
+
+<p>
+  <strong>Colour:</strong>
+  <%= @item.colour %>
+</p>
+
+<p>
+  <strong>Image link:</strong>
+  <%= @item.image_link %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Purchases count:</strong>
+  <%= @item.purchases_count %>
+</p>
+
+<p>
+  <strong>Stock count:</strong>
+  <%= @item.stock_count %>
+</p>
+
+<p>
+  <strong>Arrival date:</strong>
+  <%= @item.arrival_date %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
