@@ -4,6 +4,14 @@
 ```
 rails g scaffold Item name:string description:text size:integer colour:string image_link:text price:float purchases_count:integer stock_count:integer arrival_date:date
 rails g controller collections index men women kids new_ins
+rails g model visitor email:string
+
+```
+
+#Drop tables by
+```
+rails generate migration drop_table_xyz
+drop_table :tablename
 ```
 
 ## Commands to run
