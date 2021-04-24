@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'collections/new_ins'
   resources :items
   
-  # doesn't seem to work, want to post newsletter form submit in home/index to Home_Controller def create
-  post '/home/index', to: 'home#index'
+  # if you want to post from home/index
+  # first need to get 'home/index'
+  post '', to: 'home#create'
   root 'home#index'
 end
