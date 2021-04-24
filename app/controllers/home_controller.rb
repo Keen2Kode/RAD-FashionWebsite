@@ -8,7 +8,6 @@ class HomeController < ApplicationController
   end
   
   def create
-    # redirect_to collections_men_path
     if clicked_subscribe_button?
       @visitor = Visitor.new(visitor_params)
       Visitor.thongs if @visitor.save

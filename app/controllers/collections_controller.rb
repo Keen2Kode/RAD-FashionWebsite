@@ -4,16 +4,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @items = Item.all.select do |item| 
-      categories = item.collection_items.map(&:category)
-      categories.include? @category 
-    end
-    # Item.all.select do |item| 
-    #   item.collection_items.each do |ci| 
-    #     if ci.category == @category
-          
-    #     end
-    # end
+    @items = Item.all.select{|item| item.categories.include? @category}
   end
   
   private
