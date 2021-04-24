@@ -11,3 +11,9 @@ size: "extra_large", colour: "blue", image_link: "", price: 69.0, purchases_coun
 stock_count: 2, arrival_date: nil) 
 Item.create(name: "Reuben Shirt", description: "Brown for the indian vibes", size: "small", colour: "brown", 
 image_link: "", price: 33.0, purchases_count: 3, stock_count: 10, arrival_date: nil) 
+
+CollectionItem.create(item_id: 1, category: 0)
+CollectionItem.create(item_id: 1, category: 3)
+CollectionItem.create(item_id: 2, category: 1)
+CollectionItem.create(item_id: 2, category: 2)
+CollectionItem.create(item_id: 2, category: 0)

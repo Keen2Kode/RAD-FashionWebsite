@@ -58,10 +58,10 @@
     <h2>Collections</h2>
     <%= link_to "See all", '#' %>
     <div>
-        <%= link_to "men",  collections_men_path %>
-        <%= link_to "women", collections_women_path %>
-        <%= link_to "kids", collections_kids_path %>
-        <%= link_to "new-ins", collections_new_ins_path %>
+        <%# remember, big difference between <%= and <% %>
+        <% CollectionItem.categories.each do |name, value| %>
+            <%= link_to name, collection_path(name) %>
+        <% end %>
     </div>
 </div>
 
