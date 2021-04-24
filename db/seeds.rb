@@ -8,9 +8,9 @@
 
 Item.create(name: "Jeff Shirt", description: "Why does it have Channing Tatum's face all over it", 
 size: "extra_large", colour: "blue", image_link: "", price: 69.0, purchases_count: 2, 
-stock_count: 2, arrival_date: nil) 
+stock_count: 2, arrival_date: Date.new(2010,2,25)) 
 Item.create(name: "Reuben Shirt", description: "Brown for the indian vibes", size: "small", colour: "brown", 
-image_link: "", price: 33.0, purchases_count: 3, stock_count: 10, arrival_date: nil) 
+image_link: "", price: 33.0, purchases_count: 3, stock_count: 10, arrival_date: Date.new(2010,2,25)) 
 
 CollectionItem.create(item_id: 1, category: 0)
 CollectionItem.create(item_id: 1, category: 3)

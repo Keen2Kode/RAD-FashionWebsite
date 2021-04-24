@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     # validates :price
     # validates :purchases_count
     # validates :stock_count
-    validates :arrival_date     presence: true
+    validates :arrival_date,    presence: true
     #important for new_ins collection
     
     # rather than storing categories as an array, have another table collection_items
