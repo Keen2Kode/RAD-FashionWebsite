@@ -31,6 +31,7 @@ class Item < ApplicationRecord
     def collections
         @collections = collection_items.map(&:category)
         @collections << CollectionItem.new_ins if new_arrival
+        @collections << CollectionItem.everything
         @collections
     end
     

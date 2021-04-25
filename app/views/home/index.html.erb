@@ -56,10 +56,9 @@
 <%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Collections</h2>
-    <%= link_to "See all", '#' %>
+    <%= link_to "See all", collection_path(CollectionItem.everything.to_s) %>
     <div>
-        <%# remember, big difference between <%= and <% %>
-        <% CollectionItem.collections.each do |name| %>
+        <% @collections.each do |name| %>
             <%= link_to name, collection_path(name) %>
         <% end %>
     </div>

@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     @random_item = Item.order('RANDOM()').first
     @popular_items = Item.all.reverse.take(4)
     @visitor ||= Visitor.new
+    # [:men, :women, :kids, :new_ins]
+    @collections = CollectionItem.categories.keys + [CollectionItem.new_ins]
   end
   
   def create
