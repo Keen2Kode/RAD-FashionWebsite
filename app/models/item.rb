@@ -1,9 +1,8 @@
 class Item < ApplicationRecord
     enum size: [:small, :medium, :large, :extra_large]
     has_many :collection_items
-        
-    after_save :categories
     
+    after_save :collections, :new_arrival
     validates :name,            length: {maximum: 20},
                                 presence: true
     validates :description,     length: {maximum: 140}
@@ -13,12 +12,29 @@ class Item < ApplicationRecord
     # validates :purchases_count
     # validates :stock_count
     validates :arrival_date,    presence: true
+    validate :arrival_date_cannot_be_in_the_future
     #important for new_ins collection
     
-    # rather than storing categories as an array, have another table collection_items
-    # so categories is a helper method to "simulate" an array
-    def categories
-        @categories = collection_items.map(&:category)
-        # @categories << :new_ins
+    
+    
+    
+    
+    
+    
+    
+    
+    def arrival_date_cannot_be_in_the_future
+        errors.add(:arrival_date, "can't be in the future") if arrival_date > Date.today
+    end
+    
+    # collections is a helper method to "simulate" an array 
+    def collections
+        @collections = collection_items.map(&:category)
+        @collections << CollectionItem.new_ins if new_arrival
+        @collections
+    end
+    
+    def new_arrival
+        arrival_date > Date.today - 3.months
     end
 end

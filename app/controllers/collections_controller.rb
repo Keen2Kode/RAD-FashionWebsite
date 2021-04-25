@@ -4,13 +4,15 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @items = Item.all.select{|item| item.categories.include? @category}
+    @items = Item.all.select{|item| item.collections.include? @collection}
+    @rand = @collection
+    
   end
   
   private
   
   def set_collection
-    @category = params[:id]
+    @collection = params[:id]
     # @category_name = CollectionItem.find(params[:value])
   end
 end

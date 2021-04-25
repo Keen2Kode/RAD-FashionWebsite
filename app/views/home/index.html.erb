@@ -59,7 +59,7 @@
     <%= link_to "See all", '#' %>
     <div>
         <%# remember, big difference between <%= and <% %>
-        <% CollectionItem.categories.each do |name, value| %>
+        <% CollectionItem.collections.each do |name| %>
             <%= link_to name, collection_path(name) %>
         <% end %>
     </div>
