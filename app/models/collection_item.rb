@@ -5,6 +5,7 @@ class CollectionItem < ApplicationRecord
     validates_uniqueness_of :category, :scope => :item_id
     
     
+    # [:men, :women, :kids, :new_ins]
     def self.collections
         categories.keys << self.new_ins
     end
