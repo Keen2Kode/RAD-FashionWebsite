@@ -1,12 +1,19 @@
 class HomeController < ApplicationController
   before_action :set_subscribed #, only: %i[index]
   
+  
+  
+  
+  
+  
+  
   def index
     @random_item = Item.order('RANDOM()').first
     @popular_items = Item.all.reverse.take(4)
     @visitor ||= Visitor.new
     # [:men, :women, :kids, :new_ins]
     @collections = CollectionItem.categories.keys + [CollectionItem.new_ins]
+    
   end
   
   def create
@@ -17,10 +24,25 @@ class HomeController < ApplicationController
     end
   end
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   private
   
   def clicked_subscribe_button?
     params[:commit] == "Subscribe"
+  end
+
+  def item_params
+    params.require(:item)
   end
   
   def visitor_params

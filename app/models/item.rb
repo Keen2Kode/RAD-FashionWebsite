@@ -27,7 +27,7 @@ class Item < ApplicationRecord
         errors.add(:arrival_date, "can't be in the future") if arrival_date > Date.today
     end
     
-    # collections is a helper method to "simulate" an array 
+    # helper method to "simulate" an array of collections
     def collections
         @collections = collection_items.map(&:category)
         @collections << CollectionItem.new_ins if new_arrival
