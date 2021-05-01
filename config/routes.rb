@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # put 'edit_saved' => 'saved#edit'
   
   get 'path' => 'saved#index' 
-  post '' => 'home#create'
+  post 'newsletter' => 'home#newsletter'
   root 'home#index'
 end
