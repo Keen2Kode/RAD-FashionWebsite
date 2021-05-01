@@ -26,8 +26,27 @@
     <h3><%= @random_item.name%></h3>
     <p> <%= @random_item.description%><p>
     <p> <%= @random_item.price%><p>
-    <p><%= link_to "+ button", '#' %></li> 
+    <p>
+      <%= form_with model: @random_item, url: saved_path(@random_item.id), method: "patch" do |form| %>
+        <%= form.hidden_field :id, value: @random_item.id %>
+        <%= form.submit "Add to Saved list" %>
+      <% end %>
+    </p>
 </div>
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+<!--<div class="container">-->
+<!--    <h2>Saved</h2>-->
+<!--    <%# render "saved_list/saved" %>-->
+<!--</div>-->
 
 
 
@@ -56,12 +75,11 @@
 <%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Collections</h2>
-    <%= link_to "See all", '#' %>
+    <%= link_to "See all", collection_path(CollectionItem.everything.to_s) %>
     <div>
-        <%= link_to "men",  collections_men_path %>
-        <%= link_to "women", collections_women_path %>
-        <%= link_to "kids", collections_kids_path %>
-        <%= link_to "new-ins", collections_new_ins_path %>
+        <% @collections.each do |name| %>
+            <%= link_to name, collection_path(name) %>
+        <% end %>
     </div>
 </div>
 

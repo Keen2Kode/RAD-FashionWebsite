@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+  get 'saved/index'
   get 'collections/index'
-  get 'collections/men'
-  get 'collections/women'
-  get 'collections/kids'
-  get 'collections/new_ins'
+  resources :collections
   resources :items
+  resources :saved
   
-  # if you want to post from home/index
-  # first need to get 'home/index'
-  post '', to: 'home#create'
+  # get 'saved' => 'saved#index'
+  # put 'edit_saved' => 'saved#edit'
+  
+  get 'path' => 'saved#index' 
+  post '' => 'home#create'
   root 'home#index'
 end

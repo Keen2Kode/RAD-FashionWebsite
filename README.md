@@ -5,7 +5,8 @@
 rails g scaffold Item name:string description:text size:integer colour:string image_link:text price:float purchases_count:integer stock_count:integer arrival_date:date
 rails g controller collections index men women kids new_ins
 rails g model visitor email:string
-
+rails g model collection_item category:integer item:references
+rails g controller saved index
 ```
 
 #Drop tables by
