@@ -5,11 +5,11 @@ class HomeController < ApplicationController
     @random_item = Item.order('RANDOM()').first
     @popular_items = Item.all.reverse.take(4)
     @visitor ||= Visitor.new
-    
+    # [:men, :women, :kids, :new_ins]
+    @collections = CollectionItem.categories.keys + [CollectionItem.new_ins]
   end
   
   def create
-    # redirect_to collections_men_path
     if clicked_subscribe_button?
       @visitor = Visitor.new(visitor_params)
       render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
