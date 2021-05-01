@@ -1,16 +1,4 @@
 <%= form_with model: @visitor, url: root_path do |form| %>
-
-    <% if @visitor && @visitor.errors.any? %>
-        <div id="error_explanation">
-            <h2>This visitor wasn't saved due to the following errors:</h2>
-        
-            <ul>
-                <% @visitor.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
     
     <div class="field">
         <%= form.label :email %>
