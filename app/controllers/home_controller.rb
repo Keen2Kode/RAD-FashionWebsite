@@ -12,8 +12,8 @@ class HomeController < ApplicationController
   def create
     if clicked_subscribe_button?
       @visitor = Visitor.new(visitor_params)
-      Visitor.thongs if @visitor.save
-      redirect_to root_path
+      render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
+      logger.info @visitor.errors.full_messages.to_sentence
     end
   end
   
