@@ -7,6 +7,7 @@ rails g controller collections index men women kids new_ins
 rails g model visitor email:string
 rails g model collection_item category:integer item:references
 rails g controller saved index
+rails g model user name:string email:string password_digest:string // needs bcrypt and put has_secure_password in user class
 ```
 
 #Drop tables by
