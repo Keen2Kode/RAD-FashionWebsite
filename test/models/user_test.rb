@@ -2,11 +2,18 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   
+  # tests inferred from RAD tute 7
+  
   def setup
-    @user = User.new(name: "Test User", email: "user@myapp.com",
+    @user = User.new(name: "RAD", email: "rad2021rmit@gmail.com",
     #8-20 non special (\w) characters
-    password: "test123d", password_confirmation: "test123d")
+    password: "Rails2021", password_confirmation: "Rails2021")
   end
+  
+  
+  
+  
+  
   
   test "should be valid" do
     assert @user.valid?
