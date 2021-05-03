@@ -1,47 +1,8 @@
 <p><%= @subscribed %> <%= flash[:error] %></p>
-<%# should be a headER??? %>
-<%# add icons + links%>
+
 <div class="container">
-    <h1>Home</h1>
-    <nav>
-        <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Shopping Bag", '#' %></li>
-            <li><%= link_to "Search", '#' %></li>
-            <li><%= link_to "Menu bar", '#' %></li> 
-        </ul>
-    </nav>
+    <%= render "random" %>
 </div>
-
-
-
-<br>
-<br>
-<br>
-
-
-
-<%# should be a partial??? to reload easily %>
-<%# convert to clickable icon, which adds to saved list and displays new item %>
-<div class="container">
-    <h3><%= @random_item.name%></h3>
-    <p> <%= @random_item.description%><p>
-    <p> <%= @random_item.price%><p>
-    <p>
-      <%= form_with model: @random_item, url: saved_path(@random_item.id), method: "patch" do |form| %>
-        <%= form.hidden_field :id, value: @random_item.id %>
-        <%= form.submit "Add to Saved list" %>
-      <% end %>
-    </p>
-</div>
-
-
-
-<br>
-<br>
-<br>
-
-
-
 
 <!--<div class="container">-->
 <!--    <h2>Saved</h2>-->
