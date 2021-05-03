@@ -16,11 +16,7 @@
         <td><%= item.description %></td>
         <td><%= item.image_link %></td>
         <td><%= item.price %></td>
-        <td>
-          <%= form_with model: item, url: saved_path(item.id), method: "patch" do |form| %>
-            <%= form.hidden_field :id, value: item.id %>
-            <%= form.submit "Add to Saved list" %>
-          <% end %>
+        <td><%= link_to 'Add to saved list', saved_path(item), method: :patch %>
         </td>
       </tr>
     <% end %>

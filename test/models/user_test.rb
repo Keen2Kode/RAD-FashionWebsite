@@ -24,7 +24,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
   
-  
+  test "name should be unique" do
+    clone = @user.dup
+    @user.save
+    assert_not clone.valid?
+  end
   
   
   
