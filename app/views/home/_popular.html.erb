@@ -7,10 +7,7 @@
           <%= item.name %>
           <%= item.image_link %>
           <%= item.price %>
-          <%= form_with model: item, url: saved_path(item.id), method: "patch" do |form| %>
-            <%= form.hidden_field :id, value: item.id %>
-            <%= form.submit "+" %>
-          <% end %>
+          <%= link_to '+', saved_path(item), method: :patch %>
         </div>
       </div>
     <% end %>

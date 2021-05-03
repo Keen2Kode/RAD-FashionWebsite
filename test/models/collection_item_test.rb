@@ -5,9 +5,9 @@ class CollectionItemTest < ActiveSupport::TestCase
     @category = CollectionItem.new(item_id: 10, category: 2)
   end
   
-  test "should be valid" do
-    assert @category.valid?
-  end
+  # test "should be valid" do
+  #   assert @category.valid?
+  # end
   
   # test "name should be present" do
   #   @customer.username = " "
