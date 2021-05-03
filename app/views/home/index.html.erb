@@ -16,16 +16,11 @@
     <%= render "popular" %>
 </div>
 
-
 <%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Collections</h2>
     <%= link_to "See all", collection_path(CollectionItem.everything.to_s) %>
-    <div>
-        <% @collections.each do |name| %>
-            <%= link_to name, collection_path(name) %>
-        <% end %>
-    </div>
+    <%= render "collection" %>
 </div>
 
 <div class="container">
