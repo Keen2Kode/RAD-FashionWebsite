@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  get 'saved/index'
+
   get 'collections/index'
   resources :collections
   resources :items
   resources :saved
   
+  get '/prompt'   => 'users#prompt'
+  get  '/signup'  => 'users#signup'
+  post '/signup'  => 'users#signed'
+  get '/login'    => 'users#login'
+  post '/login'   => 'users#logged'
+  delete '/logout'=> 'users#logout'
+  resources :users, only: [:show]
+  
+  get 'saved/index'
   # get 'saved' => 'saved#index'
   # put 'edit_saved' => 'saved#edit'
   

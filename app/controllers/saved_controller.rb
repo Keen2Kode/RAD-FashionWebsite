@@ -12,7 +12,7 @@ class SavedController < ApplicationController
   # aka url: saved_path(1), method: put)
   # when eg: you click on a popular item button (submitting a form)
   def update
-    item_id = params.require(:item).require(:id)
+    item_id = params[:id]
     
     if saved.include? item_id
       session[:saved_list].delete(item_id)
