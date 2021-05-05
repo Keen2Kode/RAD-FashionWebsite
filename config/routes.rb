@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'bag_items/index'
   get 'collections/index'
   resources :collections
   resources :items
   resources :saved
+  resources :bag_items
   
   get '/prompt'   => 'users#prompt'
   get  '/signup'  => 'users#signup'

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :bag_items
+    
     validates :name,        presence: true,
                             uniqueness: true
     validates :password,    presence: true, 

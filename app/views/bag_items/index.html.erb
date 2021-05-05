@@ -1,0 +1,36 @@
+<h1>Bag Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image link</th>
+      <th>Price</th>
+      <th>colour</th>
+      <th>Size</th>
+      <th>Quantity</th>
+      <th>User id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bag_items.each do |bag_item| %>
+      <tr>
+        <td><%= bag_item.item.name %></td>
+        <td><%= bag_item.item.description %></td>
+        <td><%= bag_item.item.image_link %></td>
+        <td><%= bag_item.item.price %></td>
+        <td><%= bag_item.colour %></td>
+        <td><%= bag_item.size %></td>
+        <td><%= bag_item.quantity %></td>
+        <td><%= bag_item.user_id %></td>
+        <td><%= link_to 'Show Item', bag_item.item %></td>
+        <td><%= link_to 'Destroy', bag_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

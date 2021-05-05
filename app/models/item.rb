@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-    # enum size: [:small, :medium, :large, :extra_large]
-    has_many :collection_items
+    has_many :collection_items, dependent: :destroy
+    has_many :bag_items, dependent: :destroy
     
     after_save :collections, :new_arrival
     validates :name,            length: {maximum: 20},
