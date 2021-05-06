@@ -1,16 +1,11 @@
 class Item < ApplicationRecord
-    # enum size: [:small, :medium, :large, :extra_large]
-    has_many :collection_items
+    has_many :collection_items, dependent: :destroy
+    has_many :bag_items, dependent: :destroy
     
     after_save :collections, :new_arrival
     validates :name,            length: {maximum: 20},
                                 presence: true
     validates :description,     length: {maximum: 140}
-    # validates :colour
-    # validates :image_link
-    # validates :price
-    # validates :purchases_count
-    # validates :stock_count
     validates :arrival_date,    presence: true
     validate :arrival_date_cannot_be_in_the_future
     #important for new_ins collection

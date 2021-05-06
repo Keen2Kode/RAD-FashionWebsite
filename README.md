@@ -2,12 +2,14 @@
 
 ## Assignment commands
 ```
-rails g scaffold Item name:string description:text size:integer colour:string image_link:text price:float purchases_count:integer stock_count:integer arrival_date:date
+rails g scaffold Item name:string description:text image_link:text price:float arrival_date:date
 rails g controller collections index men women kids new_ins
 rails g model visitor email:string
 rails g model collection_item category:integer item:references
 rails g controller saved index
 rails g model user name:string email:string password_digest:string // needs bcrypt and put has_secure_password in user class
+rails g model bag_items colour:integer size:integer quantity:integer item:references user:references
+rails g model bag_items colour:integer size:integer quantity:integer item:references user:references
 ```
 
 Can drop tables now, with `rails db:reset`. It also does the job of seeding data, and means migration files can be edited directly

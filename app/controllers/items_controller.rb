@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1 or /items/1.json
   def show
+    @bag_item = BagItem.new
   end
 
   # GET /items/new
@@ -57,7 +58,7 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_item
       @item = Item.find(params[:id])
     end

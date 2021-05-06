@@ -45,7 +45,6 @@ class UsersController < ApplicationController
   end
   
   def logout
-    logger.info "LOGED OUT"
     log_out current_user
     redirect_to root_path
   end
@@ -54,8 +53,8 @@ class UsersController < ApplicationController
   
   
   def show
-    @user = User.find(params[:id])
-    unless logged_in? @user
+    @user = User.find_by(id: params[:id])
+    unless @user and logged_in? @user
       redirect_to current_user || prompt_path
     end
   end
