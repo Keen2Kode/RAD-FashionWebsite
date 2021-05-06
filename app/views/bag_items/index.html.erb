@@ -1,4 +1,4 @@
-<h1>Bag Items</h1>
+<h1>Bag Items: <%= @bag_items.size %> </h1>
 
 <table>
   <thead>
@@ -34,3 +34,10 @@
 </table>
 
 <br>
+
+<p>
+  <%= form_with url: destroy_all_bag_items_path, method: "delete" do |form| %>
+    <%= form.submit "Checkout $#{@total_price}" %>
+  <% end %>
+</p>
+

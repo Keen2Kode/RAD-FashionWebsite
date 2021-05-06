@@ -20,6 +20,8 @@ User.create(name: "jeff", email: "b@g.com", password: "Rails2023")
 BagItem.create(item_id: 1, user_id: 1, size: "extra_large", colour: "blue", quantity: 3)
 BagItem.create(item_id: 2, user_id: 2, size: "small", colour: "brown", quantity: 15)
 BagItem.create(item_id: 3, user_id: 3, size: "large", colour: "blue", quantity: 2)
+# a copy with different quantity will still work, but only one record
+BagItem.create(item_id: 2, user_id: 2, size: "small", colour: "brown", quantity: 200)
 
 
 CollectionItem.create(item_id: 1, category: 0)

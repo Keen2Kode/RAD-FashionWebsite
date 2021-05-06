@@ -7,7 +7,7 @@
           <%= item.name %>
           <%= item.image_link %>
           <%= item.price %>
-          <%= link_to '+', saved_path(item), method: :patch %>
+          <%= link_to '+', saved_path(item), method: "put" %>
         </div>
       </div>
     <% end %>

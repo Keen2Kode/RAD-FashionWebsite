@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'bag_items/index'
-  get 'collections/index'
-  resources :collections
+  resources :collections, only: [:show, :index]
   resources :items
-  resources :saved
-  resources :bag_items
+  resources :saved, only: [:index, :update]
+  resources :bag_items do
+    # like bag_items#destroy, but for ALL bag_items
+    delete :destroy_all, on: :collection
+  end
   
   get '/prompt'   => 'users#prompt'
   get  '/signup'  => 'users#signup'
@@ -15,11 +16,6 @@ Rails.application.routes.draw do
   delete '/logout'=> 'users#logout'
   resources :users, only: [:show]
   
-  get 'saved/index'
-  # get 'saved' => 'saved#index'
-  # put 'edit_saved' => 'saved#edit'
-  
-  get 'path' => 'saved#index' 
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
 end
