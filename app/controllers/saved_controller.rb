@@ -12,13 +12,17 @@ class SavedController < ApplicationController
   # aka url: saved_path(1), method: put)
   # when eg: you click on a popular item button (submitting a form)
   def update
-    item_id = params[:id]
+    item = Item.find(params[:id])
     
-    if saved.include? item_id
-      session[:saved_list].delete(item_id)
+    if saved.include? item.id
+      session[:saved_list].delete(item.id)
+      item.popularity -= 1
     else
-      session[:saved_list] << item_id
+      session[:saved_list] << item.id
+      item.popularity += 1
     end
+    
+    item.save
   end
   
   

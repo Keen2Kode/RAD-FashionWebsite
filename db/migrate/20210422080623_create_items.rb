@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.text :image_link
       t.float :price
       t.date :arrival_date
+      t.integer :popularity
 
       t.timestamps
     end
