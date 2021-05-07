@@ -12,5 +12,9 @@ class CollectionItem < ApplicationRecord
         "all"
     end
     
+    # [:men, :women, :kids, :new_ins]
+    def self.collections
+        self.categories.keys + [self.new_ins]
+    end
   
 end
