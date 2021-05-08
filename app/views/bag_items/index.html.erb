@@ -18,7 +18,21 @@
   </div>
   <% end %>
 
+  <%# TODO fix decimal places %>
+  <div>
+    <span>taxes (10%)</span> <%# left-aligned %>
+    <span><%= @total_price * 0.1 %></span> <%# right-aligned %>
+  </div>
+  <div>
+    <span>sub-total</span><%# left-aligned %>
+    <span><%= @total_price * 0.9 %></span><%# right-aligned %>
+  </div>
+  <div>
+    <span>Total</span><%# left-aligned %>
+    <span><%= @total_price %></span><%# right-aligned %>
+  </div>
+
   <%= form_with url: destroy_all_bag_items_path, method: "delete" do |form| %>
-    <%= form.submit "Checkout $#{@total_price}" %>
+  <%= form.submit "Checkout" %>
   <% end %>
 </div>
