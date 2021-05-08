@@ -6,10 +6,11 @@
   <% ((even_numbered_items ? @items.size : @items.size+1 )/2).times do |i| %>
     <% current_item = @items_enumerable.next %>
     
-    <% on_last_row = i == @items.size-2 %>
+    <% on_last_row = i == @items.size/2 %>
+    
     <%# an even number of items will always have 2 in each rows %>
     <%# if there are odd numbers, then we don't iterate to the next item because "current_item" is already the last item %>
-    <% if even_numbered_items || !(on_last_row) %>       
+    <% if even_numbered_items || !(on_last_row) %>
       <% next_item = @items_enumerable.next %>
     <% end %>
 
