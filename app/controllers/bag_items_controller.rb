@@ -1,6 +1,7 @@
 class BagItemsController < ApplicationController
-  before_action :prompt_login, only: [:index, :create]
-  # after_action :refresh_bag_items, only: [:create, :destroy]
+  before_action :persist_bag_item, only: [:create]
+  before_action :pathing_and_create_bag_item, only: [:index, :create]
+  # after_action :refresh_bag_items, only: [:create, :destroy, :destroy_all]
   
   
   
@@ -12,8 +13,6 @@ class BagItemsController < ApplicationController
   
   
   def create
-    @bag_item = BagItem.new(bag_item_params)
-    @bag_item.save
     redirect_to bag_items_path
   end
   
@@ -34,17 +33,29 @@ class BagItemsController < ApplicationController
   
   private
   
-  def prompt_login
-    redirect_to prompt_path unless logged_in?
-  end
-  
   # def refresh_bag_items
+  #   puts "CALLED REFREHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
   #   redirect_to bag_items_path
   # end
   
+  # if user is not logged in, the bag item params are saved until after login
+  def persist_bag_item
+    session[:bag_item] = params.require(:bag_item).permit(:item_id, :colour, :quantity, :size)
+  end
   
-  def bag_item_params
-    params.require(:bag_item).permit(:item_id, :colour, :quantity, :size).merge(user_id: current_user.id)
+  def pathing_and_create_bag_item
+    set_back_path bag_items_path
+    redirect_to prompt_path and return unless logged_in?
+    
+    create_bag_item
+  end
+  
+  def create_bag_item
+    return unless session[:bag_item]
+    @bag_item = BagItem.new(session[:bag_item])
+    @bag_item.user_id = current_user.id
+    @bag_item.save
+    session.delete(:bag_item)
   end
   
 end
