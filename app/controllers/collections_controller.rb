@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
 
   def show
     @items = Item.all.select{|item| item.collections.include? @collection}
+    @items_enumerable = @items.each
   end
   
   private
