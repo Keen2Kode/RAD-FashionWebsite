@@ -49,6 +49,13 @@ item6 = Item.create(
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set.jpeg",
     price: 25.00,
     arrival_date: Date.new(2010, 2, 25))
+# https://www.myer.com.au/p/jack-jones-globe-parka-763941880-1
+item7 = Item.create(
+    name: "Globe Parka",
+    description: "Jack & Jones Globe Parka. Black colour.",
+    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka.jpeg",
+    price: 169.95,
+    arrival_date: Date.new(2010, 2, 25))
 # Item.create(
 #     name: "Jeff Shirt",
 #     description: "Why does it have Channing Tatum's face all over it",
@@ -104,3 +111,4 @@ CollectionItem.create(item_id: item3.id, category: 0)
 CollectionItem.create(item_id: item4.id, category: 1)
 CollectionItem.create(item_id: item5.id, category: 2)
 CollectionItem.create(item_id: item6.id, category: 2)
+CollectionItem.create(item_id: item7.id, category: 0)
