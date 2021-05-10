@@ -85,7 +85,12 @@
     width: 100%;
 }
 
-.nopadding {
+.smallpadding {
     padding: 3px !important;
+    margin: 0 !important;
+}
+
+.nopadding {
+    padding: 0px !important;
     margin: 0 !important;
 }
