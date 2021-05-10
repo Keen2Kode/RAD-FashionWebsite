@@ -1,4 +1,4 @@
-<p><%= @subscribed %> <%= flash[:error] %></p>
+<p><%= @subscribed %> </p>
 
 <div class="container">
     <%= render "random" %>
@@ -19,13 +19,13 @@
 <%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Collections</h2>
-    <%= link_to "See all", collection_path(CollectionItem.everything.to_s) %>
+    <%= link_to "See all", collection_path(CollectionItem.everything) %>
     <%= render "collection" %>
 </div>
 
 <div class="container">
     <h2>Newsletter</h2>
     <p>Sign up here:</p>
-    <%= render "newsletter_form" %>
+    <%= render "newsletter_form", visitor: @visitor %>
 </div>
 

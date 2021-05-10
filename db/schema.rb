@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_222333) do
+ActiveRecord::Schema.define(version: 2021_05_05_180207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bag_items", force: :cascade do |t|
+    t.integer "colour"
+    t.integer "size"
+    t.integer "quantity"
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_bag_items_on_item_id"
+    t.index ["user_id"], name: "index_bag_items_on_user_id"
+  end
 
   create_table "collection_items", force: :cascade do |t|
     t.integer "category"
@@ -26,13 +38,10 @@ ActiveRecord::Schema.define(version: 2021_05_01_222333) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "size"
-    t.string "colour"
     t.text "image_link"
     t.float "price"
-    t.integer "purchases_count"
-    t.integer "stock_count"
     t.date "arrival_date"
+    t.integer "popularity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,5 +60,7 @@ ActiveRecord::Schema.define(version: 2021_05_01_222333) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bag_items", "items"
+  add_foreign_key "bag_items", "users"
   add_foreign_key "collection_items", "items"
 end

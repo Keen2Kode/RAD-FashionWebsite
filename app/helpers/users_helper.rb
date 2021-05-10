@@ -9,15 +9,14 @@ module UsersHelper
         session[:user_id] = user.id
     end
     
-    def logged_in?(user)
-        # logger.info "the current user has an id of #{current_user ? "nothing." : current_user.id}"
-        user && current_user && current_user.id == user.id
+    def logged_in?(user = nil)
+        current_user && (user ? current_user.id == user.id : true)
     end
     
     def current_user
         if session[:user_id]
-            # @current_user ||= User.find_by(id: session[:user_id])
-            @current_user ||= User.find(session[:user_id])
+            # don't throw exception so use find_by
+            @current_user ||= User.find_by(id: session[:user_id])
         end
     end
     
