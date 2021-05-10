@@ -16,6 +16,12 @@
 @import "bootstrap";
 
 
+.container {
+    // width: 30em;
+    overflow-x: auto; // makes inner .container scroll horizontally
+    // white-space: normal; // makes text extend horizontally
+}
+
 // .navbar-collapse.collapse {
 //     display: block!important;
 // }
@@ -53,41 +59,11 @@
 //     border-right-width: 1px;
 // }
 
-// https://www.codeply.com/go/FQus5XTzNI/bootstrap-3-horizontal-scrolling-layout
 // .row > .col-xs-3 {
 //     display:flex;
 //     flex: 0 0 25%;
 //     max-width: 25%
 // }
-
-// .flex-nowrap {
-//     -webkit-flex-wrap: nowrap!important;
-//     -ms-flex-wrap: nowrap!important;
-//     flex-wrap: nowrap!important;
-// }
-
-// .flex-row {
-//     display:flex;
-//     -webkit-box-orient: horizontal!important;
-//     -webkit-box-direction: normal!important;
-//     -webkit-flex-direction: row!important;
-//     -ms-flex-direction: row!important;
-//     flex-direction: row!important;
-// }
-
-// .well {
-//     min-height: 300px;
-//     width: 100%;
-// }
-
-// https://stackoverflow.com/questions/41962898/bootstrap-horizontal-scrolling
-
-
-.row > .col-xs-3 {
-    display:flex;
-    flex: 0 0 25%;
-    max-width: 25%
-}
 
 .flex-nowrap {
     -webkit-flex-wrap: nowrap!important;
@@ -104,6 +80,12 @@
 }
 
 .well {
-    min-height: 300px;
+    min-height: 200px;
+    min-width: 150px;
     width: 100%;
+}
+
+.nopadding {
+    padding: 3px !important;
+    margin: 0 !important;
 }
