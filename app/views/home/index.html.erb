@@ -9,14 +9,12 @@
 <!--    <%# render "saved_list/saved", url:  %>-->
 <!--</div>-->
 
-<%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Popular</h2>
     <%= link_to "See all", '#' %>
     <%= render "popular" %>
 </div>
 
-<%# how to do the scroll right list effect %>
 <div class="container">
     <h2>Collections</h2>
     <%= link_to "See all", collection_path(CollectionItem.everything) %>
@@ -25,7 +23,6 @@
 
 <div class="container">
     <h2>Newsletter</h2>
-    <p>Sign up here:</p>
     <%= render "newsletter_form", visitor: @visitor %>
 </div>
 
