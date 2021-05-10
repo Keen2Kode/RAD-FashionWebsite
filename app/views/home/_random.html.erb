@@ -1,12 +1,14 @@
 <%# convert to clickable icon, which adds to saved list and displays new item %>
-<div class="container">
+<%= link_to saved_path(@random_item), method: "put" do %>
+
+<div
+  style="background-image:url('<%= @random_item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+  <div>
     <h3><%= @random_item.name%></h3>
-    <p> <%= @random_item.description%><p>
-    <p> <%= @random_item.price%><p>
-    <p>
-      <%= form_with model: @random_item, url: saved_path(@random_item.id), method: "patch" do |form| %>
-        <%= form.hidden_field :id, value: @random_item.id %>
-        <%= form.submit "Add to Saved list" %>
-      <% end %>
-    </p>
+    <%= @random_item.description%>
+    <br />
+    $<%= @random_item.price%>
+  </div>
 </div>
+
+<% end %>
