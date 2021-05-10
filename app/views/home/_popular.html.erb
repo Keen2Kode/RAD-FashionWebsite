@@ -6,6 +6,7 @@
         <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
         <div>
           <%= item.name %>
+          <br/>
           $<%= item.price %>
           <%= link_to '+', saved_path(item), method: "put" %>
         </div>
