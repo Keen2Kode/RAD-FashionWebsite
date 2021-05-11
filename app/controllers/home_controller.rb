@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   
   def index
     @random_item = Item.order(Arel.sql('RANDOM()')).first
-    @popular_items = Item.all.reverse.take(8)
+    @popular_items = Item.all.sort_by(&:popularity).reverse
     @visitor = Visitor.new
     @collections = CollectionItem.collections
   end
