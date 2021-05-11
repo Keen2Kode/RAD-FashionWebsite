@@ -1,6 +1,7 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
   before_action :set_item, only: %i[ show edit update]
+  before_action :redirect_to_correct_user, only: %i[show edit]
 
 
 
@@ -71,20 +72,7 @@ class UsersController < ApplicationController
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   def show
-    unless @user and logged_in? @user
-      redirect_to current_user || prompt_path
-    end
   end
   
   
@@ -106,5 +94,11 @@ class UsersController < ApplicationController
   
   def login_params
     params.require(:user).permit(:name, :password)
+  end
+  
+  def redirect_to_correct_user
+    unless @user and logged_in? @user
+      redirect_to current_user || prompt_path
+    end
   end
 end
