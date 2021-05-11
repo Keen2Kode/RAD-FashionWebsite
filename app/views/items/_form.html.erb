@@ -1,15 +1,5 @@
 <%= form_with(model: item, local: true) do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
-
-      <ul>
-      <% item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', model: item %>
 
   <div class="field">
     <%= form.label :name %>
@@ -21,15 +11,6 @@
     <%= form.text_area :description %>
   </div>
 
-  <!--<div class="field">-->
-  <!--  <%# form.label :size %>-->
-  <!--  <%# form.select :size, Item.sizes.keys %>-->
-  <!--</div>-->
-
-  <!--<div class="field">-->
-  <!--  <%# form.label :colour %>-->
-  <!--  <%# form.text_field :colour %>-->
-  <!--</div>-->
 
   <div class="field">
     <%= form.label :image_link %>
@@ -41,10 +22,6 @@
     <%= form.text_field :price %>
   </div>
 
-  <!--<div class="field">-->
-  <!--  <%# form.label :purchases_count %>-->
-  <!--  <%# form.number_field :purchases_count %>-->
-  <!--</div>-->
 
   <div class="field">
     <%= form.label :arrival_date %>
