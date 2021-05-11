@@ -13,6 +13,7 @@ item1 = Item.create(
     description: "Solid Business Shirt. Navy colour",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-blue-shirt.jpeg",
     price: 89.95,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/piper-short-puff-sleve-broderie-dress-white?istCompanyId=84873db0-394f-434b-8958-29526fe5f03c&istFeedId=3dd6959f-3482-45a5-8a47-313fef9bbe16&istItemId=imlampaiq&istBid=t&gclid=Cj0KCQjwytOEBhD5ARIsANnRjVjQ4taZtemegIWQh5tkspsiziAcmbhmyUA3j2RufCbVBs4Ostpv2AAaAgJGEALw_wcB&gclsrc=aw.ds
 item2 = Item.create(
@@ -20,6 +21,7 @@ item2 = Item.create(
     description: "Piper Short Puff Sleeve Broderie Dress White",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-white-dress.jpeg",
     price: 120.00,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/tommy-hilfiger-denton-straight-chino-631205380-1
 item3 = Item.create(
@@ -27,6 +29,7 @@ item3 = Item.create(
     description: "Tommy Hilfiger Denton Straight Chino",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino.jpeg",
     price: 149.00,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/tommy-jeans-tommy-flag-cropped-sweatshirt
 item4 = Item.create(
@@ -34,6 +37,7 @@ item4 = Item.create(
     description: "Tommy Jeans Tommy Flag Cropped Sweatshirt. Black Iris",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-tommy-flag-cropped-sweatshirt.jpeg",
     price: 125.30,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/jack-milly-issac-organic-sherpa-lined-hodie
 item5 = Item.create(
@@ -41,6 +45,7 @@ item5 = Item.create(
     description: "Jack & Milly Issac Organic Sherpa Lined Hoodie",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-jack-milly-issac-organic-sherpa-lined-hodie.jpeg",
     price: 34.95,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/milkshake-roars-before-snores-pyjama-set
 item6 = Item.create(
@@ -48,6 +53,7 @@ item6 = Item.create(
     description: "Milkshake Roars Before Snores Pyjama Set. Crimson colour.",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set.jpeg",
     price: 25.00,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # https://www.myer.com.au/p/jack-jones-globe-parka-763941880-1
 item7 = Item.create(
@@ -55,6 +61,7 @@ item7 = Item.create(
     description: "Jack & Jones Globe Parka. Black colour.",
     image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka.jpeg",
     price: 169.95,
+    popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
 # Item.create(
 #     name: "Jeff Shirt",
