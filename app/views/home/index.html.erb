@@ -9,20 +9,13 @@
 <!--    <%# render "saved_list/saved", url:  %>-->
 <!--</div>-->
 
-<div class="container">
-    <h2>Popular</h2>
-    <%= link_to "See all", '#' %>
-    <%= render "popular" %>
-</div>
+<h2 class="sub-header">Popular</h2>
+<%= link_to "See all", '#' %>
+<%= render "popular" %>
 
-<div class="container">
-    <h2>Collections</h2>
-    <%= link_to "See all", collection_path(CollectionItem.everything) %>
-    <%= render "collection" %>
-</div>
+<h2 class="sub-header">Collections</h2>
+<%= link_to "See all", collection_path(CollectionItem.everything) %>
+<%= render "collection" %>
 
-<div class="container">
-    <h2>Newsletter</h2>
-    <%= render "newsletter_form", visitor: @visitor %>
-</div>
-
+<h2 class="sub-header">Newsletter</h2>
+<%= render "newsletter_form", visitor: @visitor %>
