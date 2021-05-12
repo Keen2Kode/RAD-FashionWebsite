@@ -1,26 +1,49 @@
-<div class="container">
+<%# TODO fill in images dynamically %>
+<div class="container nopadding">
   <div class="row">
     <div class="col-xs-12">
-      <div class="well"><%= link_to "women", collection_path("women") %></div>
-    </div>
-  </div>  
-  <div class="row">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="well"><%= link_to "men", collection_path("men") %></div>
+      <%= link_to collection_path("women") do %>
+      <div class="well"
+        style="background-image:url('https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-tommy-flag-cropped-sweatshirt.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <h4>women</h4>
       </div>
-      <div class="col-xs-6">
-        <div class="well"><%= link_to "new_ins", collection_path("new_ins") %>
-          <br/>
-          <br/>
-          <br/>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= link_to collection_path("men") do %>
+          <div class="well"
+            style="background-image:url('https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+
+            <h4>men</h4>
+          </div>
+          <% end %>
+        </div>
+        <div class="col-xs-12">
+          <%= link_to collection_path("kids") do %>
+          <div class="well"
+            style="background-image:url('https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-jack-milly-issac-organic-sherpa-lined-hodie.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+            <h4>kids</h4>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="well"><%= link_to "kids", collection_path("kids") %></div>
+    <div class="col-xs-6">
+      <%= link_to collection_path("new_ins") do %>
+      <div class="well well-double-size"
+        style="background-image:url('https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <h4>new arrivals</h4>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
+      <% end %>
     </div>
   </div>
 </div>

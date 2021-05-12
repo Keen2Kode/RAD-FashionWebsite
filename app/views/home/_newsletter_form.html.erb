@@ -1,12 +1,14 @@
-<%= form_with model: @visitor, url: 'newsletter' do |form| %>
-    
-    <div class="field">
-        <%= form.label :email %>
-        <%= form.text_area :email %>
-    </div>
-    
-    <div class="actions">
-        <%= form.submit "Subscribe" %>
-    </div>
-<% end %>
+<div class="container-fluid">
 
+  <div class="row">
+    <%= form_with model: visitor, url: 'newsletter' do |form| %>
+    <div class="col-xs-9 nopadding">
+      <%= form.text_field :email, type: 'email', class: 'form-control', placeholder: "email@example.com" %>
+    </div>
+    <div class="col-xs-3 nopadding">
+      <%= form.submit "Subscribe", class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
+
+</div>

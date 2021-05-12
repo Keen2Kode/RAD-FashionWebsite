@@ -1,47 +1,81 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+<%# https://codepen.io/thiagobraga/pen/xevGJJ %>
+<div class="container">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="<%= @item.image_link %>">
+      </div>
 
-<p>
-  <strong>Image link:</strong>
-  <%= @item.image_link %>
-</p>
+      <div class="item">
+        <img src="<%= @item.image_link %>">
+        <div class="carousel-caption">
+          <h4>Bootstrap caption example</h4>
+          <p>Bootstrap 3.4.1 is not so old, but you can use Bootstrap 4 already.</p>
+        </div>
+      </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-
-<p>
-  <%= form_with model: @bag_item, url: bag_items_path do |form| %>
-  
-    <div class="field">
-      <%= form.label :colour %>
-      <%= form.select :colour, BagItem.colours.keys  %>
+      <div class="item">
+        <img src="<%= @item.image_link %>">
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :size %>
-      <%= form.select :size, BagItem.sizes.keys  %>
-    </div>
-    
-    <div class="field">
-      <%= form.label :quantity %>
-      <%= form.number_field :quantity, value: 1, min: 1, max: 100  %>
-    </div>
-    
-    <%= form.hidden_field :item_id, value: @item.id %>
-    <%= form.submit "Add to Bag" %>
-  <% end %>
-</p>
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div>
+    <h2><%= @item.name %></h2>
+    <p>$<%= @item.price %></p>
+    <p><%= @item.description %></p>
+
+    <div>
+      <%= form_with model: @bag_item, url: bag_items_path do |form| %>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <div>
+            <%= form.label :size %>
+            <%= form.select :size, BagItem.sizes.keys  %>
+          </div>
+        </div>        
+        <div class="col-xs-4">
+          <div>
+            <%= form.label :colour %>
+            <%= form.select :colour, BagItem.colours.keys  %>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div>
+            <%= form.label :quantity %>
+            <%= form.number_field :quantity, value: 1, min: 1, max: 100  %>
+          </div>
+        </div>
+
+        <%= form.hidden_field :item_id, value: @item.id %>
+        <%= form.submit "Add to Bag" %>
+        <% end %>
+      </div>
+
+    <%= link_to 'Edit', edit_item_path(@item) %> |
+    <%= link_to 'Back', items_path %>
+  </div>
+
+</div>

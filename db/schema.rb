@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_05_05_180207) do
     t.text "image_link"
     t.float "price"
     t.date "arrival_date"
+    t.integer "popularity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

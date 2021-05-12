@@ -1,12 +1,14 @@
 <%# still need to make this scroll on its own, and not the whole page.. %>
-<div class="container-fluid">
+<div class="container">
   <div class="row flex-row flex-nowrap">
     <% @popular_items.each do |item| %>
-      <div class="col-xs-3">
-        <div class="well">
+      <div class="col-xs-6 smallpadding">
+        <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+        <div>
           <%= item.name %>
-          <%= item.image_link %>
-          <%= item.price %>
+          <br/>
+          $<%= item.price %>
+          <%= item.popularity %>
           <%= link_to '+', saved_path(item), method: "put" %>
         </div>
       </div>

@@ -26,7 +26,9 @@ class BagItemsController < ApplicationController
   
   
   def destroy_all
-    BagItem.where(user_id: current_user).destroy_all
+    @bag_items = BagItem.where(user_id: current_user)
+    add_to_popularity(@bag_items)
+    @bag_items.destroy_all
     redirect_to bag_items_path
   end
   
@@ -56,6 +58,16 @@ class BagItemsController < ApplicationController
     @bag_item.user_id = current_user.id
     @bag_item.save
     session.delete(:bag_item)
+  end
+  
+  
+  # popularity: an item is counted as "appeared in shopping bag" when it is checked out
+  # prevents spam of user constantly adding and removing the same item to "inflate" popularity
+  def add_to_popularity(bag_items)
+    bag_items.each do |bag_item|
+      bag_item.item.popularity += bag_item.quantity
+      bag_item.item.save
+    end
   end
   
 end

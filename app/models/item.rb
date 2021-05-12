@@ -2,22 +2,25 @@ class Item < ApplicationRecord
     has_many :collection_items, dependent: :destroy
     has_many :bag_items, dependent: :destroy
     
+    # Popularity feature: the sum of appearances in saved list and shopping bag
+    before_validation { self.popularity = 0 unless self.popularity }
     after_save :collections, :new_arrival
     validates :name,            length: {maximum: 20},
                                 presence: true
+    validates :popularity,      presence: true, 
+                                numericality: {greater_than_or_equal_to: 0}
     validates :description,     length: {maximum: 140}
     validates :arrival_date,    presence: true
     validate :arrival_date_cannot_be_in_the_future
+    
+    
+    
+    
+    
+    
+    
+    
     #important for new_ins collection
-    
-    
-    
-    
-    
-    
-    
-    
-    
     def arrival_date_cannot_be_in_the_future
         errors.add(:arrival_date, "can't be in the future") if arrival_date > Date.today
     end
