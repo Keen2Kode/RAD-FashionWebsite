@@ -1,6 +1,6 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-  before_action :set_item, only: %i[ show edit update]
+  before_action :set_user, only: %i[ show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
 
 
@@ -73,7 +73,6 @@ class UsersController < ApplicationController
   
   
   def show
-    @user = User.find_by(id: params[:id])
     unless @user and logged_in? @user
       set_back_path user_path(@user)
       redirect_to current_user || prompt_path
@@ -86,10 +85,27 @@ class UsersController < ApplicationController
   
   
   
+  def subscription
+    
+    if @user.visitor
+      @user.visitor.destroy
+      render js: "alert('Your subscription has been revoked.')"
+    else
+      new_visitor = Visitor.new(email: @user.email)
+      new_visitor.save
+      render js: "alert('You are subscribed to R&J newsletter!')"
+    end
+  end
+  
+  
+  
+  
+  
+  
   
   private
  
-  def set_item
+  def set_user
     @user = User.find_by(id: params[:id])
   end
  
@@ -106,4 +122,5 @@ class UsersController < ApplicationController
       redirect_to current_user || prompt_path
     end
   end
+  
 end

@@ -10,10 +10,11 @@
     <%= link_to 'Update login details', edit_user_path(@user) %>
 </div>
 
-<%# gotta be honest, i still got no clue what this is about, need a teams sess %>
-<div>
-    <%= link_to 'Subscription (TODO)', '#' %>
-</div>
+<%= form_with url: subscription_user_path(@user) do |f| %>
+    <div class="actions">
+        <%= f.submit "Subscription" %>
+    </div>
+<% end %>
 
 <div>
     <%= link_to 'Log out', logout_path, method: :delete %>
