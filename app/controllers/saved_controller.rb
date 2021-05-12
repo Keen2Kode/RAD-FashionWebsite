@@ -6,8 +6,7 @@ class SavedController < ApplicationController
   
   
   def index
-    @saved_list = [] #saved.map{|id| Item.find(id)}
-    # puts "SAVEDLIST #{saved}"
+    @saved_list = saved.map{|id| Item.find(id)}
   end
   
   # PUT saved/1 
