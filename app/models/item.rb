@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
     has_many :collection_items, dependent: :destroy
     has_many :bag_items, dependent: :destroy
+    has_many :tag_items, dependent: :destroy
+    
     
     # Popularity feature: the sum of appearances in saved list and shopping bag
     before_validation { self.popularity = 0 unless self.popularity }

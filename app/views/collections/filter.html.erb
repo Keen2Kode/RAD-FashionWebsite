@@ -1,8 +1,27 @@
 <%# The header window bit %>
 <h1>Filters</h1>
-<%= link_to "x", bag_items_path %>
+<%= link_to "x", collections_path %>
 
-<% form_with model: @bag_item, url: bag_items_path do |f| %> 
-  <%= f.select :category, options_for_select(CollectionItem.categories.keys), multiple: true  %>
-  <%= f.submit "Filter" %>
+<%= form_with url: search_collections_path, method: "get" do |f| %> 
+  
+  <%# add jquery functionality for "all" checkbox, deselect/select other checkboxes %>
+  
+  <%# havent figured out how to track each check box for a search param, these are wrong, but they do get passed into search!%>
+  <div class="field">
+    <% TagItem.tags.each do |key, value| %>
+      <%= f.label key, key %>
+      <%= f.check_box key %>
+    <% end %>
+  </div>
+  
+  <div class="field">
+    <% @colours.each do |tag| %>
+      <%= f.label :colour, tag %>
+      <%= f.check_box :colour %>
+    <% end %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Filter" %>
+  </div>
 <% end %>

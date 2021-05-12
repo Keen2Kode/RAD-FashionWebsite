@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :collections, only: [:show, :index]
-    resources :saved, only: [:index, :update]
-  resources :items do
-    get :filter, on: :member
-  end
+  resources :saved, only: [:index, :update]
+  resources :items
   resources :bag_items do
     # like bag_items#destroy, but for ALL bag_items
     delete :destroy_all, on: :collection
+  end
+  resources :collections, only: [:show, :index] do 
+    get :filter, on: :collection
+    get :search, on: :collection
   end
   
   get '/prompt'   => 'users#prompt'

@@ -9,7 +9,7 @@ rails g model collection_item category:integer item:references
 rails g controller saved index
 rails g model user name:string email:string password_digest:string // needs bcrypt and put has_secure_password in user class
 rails g model bag_items colour:integer size:integer quantity:integer item:references user:references
-rails g model bag_items colour:integer size:integer quantity:integer item:references user:references
+rails g model tag_item tag:integer item:references
 ```
 
 Can drop tables now, with `rails db:reset`. It also does the job of seeding data, and means migration files can be edited directly

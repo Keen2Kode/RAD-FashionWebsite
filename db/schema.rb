@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_180207) do
+ActiveRecord::Schema.define(version: 2021_05_12_123251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 2021_05_05_180207) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tag_items", force: :cascade do |t|
+    t.integer "tag"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_tag_items_on_item_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -63,4 +71,5 @@ ActiveRecord::Schema.define(version: 2021_05_05_180207) do
   add_foreign_key "bag_items", "items"
   add_foreign_key "bag_items", "users"
   add_foreign_key "collection_items", "items"
+  add_foreign_key "tag_items", "items"
 end
