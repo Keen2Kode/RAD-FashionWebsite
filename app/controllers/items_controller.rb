@@ -9,6 +9,12 @@ class ItemsController < ApplicationController
   # GET /items/1 or /items/1.json
   def show
     @bag_item = BagItem.new
+    # for multiple images in carousel
+    @item = Item.find(params[:id])
+    @item_images = ItemImage.where(item_id: @item)
+
+    @total_images_size = 1 + @item_images.size
+
   end
 
   # GET /items/new
