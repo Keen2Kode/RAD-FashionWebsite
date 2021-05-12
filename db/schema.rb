@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_180207) do
+ActiveRecord::Schema.define(version: 2021_05_12_141925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2021_05_05_180207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_collection_items_on_item_id"
+  end
+
+  create_table "item_images", force: :cascade do |t|
+    t.bigint "item_id"
+    t.string "image_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -63,4 +71,5 @@ ActiveRecord::Schema.define(version: 2021_05_05_180207) do
   add_foreign_key "bag_items", "items"
   add_foreign_key "bag_items", "users"
   add_foreign_key "collection_items", "items"
+  add_foreign_key "item_images", "items"
 end
