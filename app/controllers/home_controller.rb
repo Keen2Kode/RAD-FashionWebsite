@@ -14,7 +14,6 @@ class HomeController < ApplicationController
   end
   
   def newsletter
-    # no need for button check eg: params[:commit] == "Subscribe"
     @visitor = Visitor.new(visitor_params)
     render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
   end

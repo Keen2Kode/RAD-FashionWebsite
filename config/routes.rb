@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   resources :collections, only: [:show, :index]
-    resources :saved, only: [:index, :update]
+  
+  resources :saved, only: [:index, :update]
+    
   resources :items do
     get :filter, on: :member
   end
+  
   resources :bag_items do
-    # like bag_items#destroy, but for ALL bag_items
     delete :destroy_all, on: :collection
   end
   
@@ -16,7 +18,9 @@ Rails.application.routes.draw do
   get '/login'    => 'users#login'
   post '/login'   => 'users#logged'
   delete '/logout'=> 'users#logout'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    post :subscription, on: :member
+  end
   
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
