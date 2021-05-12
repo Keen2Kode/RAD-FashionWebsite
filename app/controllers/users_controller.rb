@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     
     if @user.save
       log_in @user
-      redirect_to @user
+      redirect_to back_path
     else
       # render since we want to retain the user.errors
       render 'signup'
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(password)
       # user helper method (accessible since included module in ApplicationController)
       log_in user
-      redirect_to user
+      redirect_to back_path
     else
       @user = User.new
       @user.login_errors(name, password)
@@ -73,6 +73,11 @@ class UsersController < ApplicationController
   
   
   def show
+    @user = User.find_by(id: params[:id])
+    unless @user and logged_in? @user
+      set_back_path user_path(@user)
+      redirect_to current_user || prompt_path
+    end
   end
   
   
