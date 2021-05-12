@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/login'    => 'users#login'
   post '/login'   => 'users#logged'
   delete '/logout'=> 'users#logout'
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
   
   post 'newsletter' => 'home#newsletter'
   root 'home#index'

@@ -1,6 +1,7 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-
+  before_action :set_item, only: %i[ show edit update]
+  before_action :redirect_to_correct_user, only: %i[show edit]
 
 
 
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
   end
   
   def signed
-    @user = User.new(user_params)
+    @user = User.new(signup_params)
     
     if @user.save
       log_in @user
@@ -19,6 +20,9 @@ class UsersController < ApplicationController
       render 'signup'
     end
   end
+  
+  
+  
   
   
   
@@ -49,6 +53,22 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
   
+  # editing user login details 
+  
+  def edit
+  end
+  
+  def update
+    if @user.update(login_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  
+  
+  
+  
   
   
   
@@ -63,9 +83,27 @@ class UsersController < ApplicationController
   
   
   
+  
+  
+  
+  
   private
  
-  def user_params
+  def set_item
+    @user = User.find_by(id: params[:id])
+  end
+ 
+  def signup_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def login_params
+    params.require(:user).permit(:name, :password)
+  end
+  
+  def redirect_to_correct_user
+    unless @user and logged_in? @user
+      redirect_to current_user || prompt_path
+    end
   end
 end
