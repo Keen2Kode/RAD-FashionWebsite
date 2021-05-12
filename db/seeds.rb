@@ -47,6 +47,8 @@ item5 = Item.create(
     price: 34.95,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item5.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-jack-milly-issac-organic-sherpa-lined-hodie-2.jpeg")
+ItemImage.create(item_id: item5.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-jack-milly-issac-organic-sherpa-lined-hodie-3.jpeg")
 # https://www.myer.com.au/p/milkshake-roars-before-snores-pyjama-set
 item6 = Item.create(
     name: "Kids Pyjama Set",
@@ -55,6 +57,8 @@ item6 = Item.create(
     price: 25.00,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item6.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set-2.jpeg")
+ItemImage.create(item_id: item6.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set-3.jpeg")
 # https://www.myer.com.au/p/jack-jones-globe-parka-763941880-1
 item7 = Item.create(
     name: "Globe Parka",
@@ -63,6 +67,8 @@ item7 = Item.create(
     price: 169.95,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item7.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka-2.jpeg")
+ItemImage.create(item_id: item7.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka-3.jpeg")
 # Item.create(
 #     name: "Jeff Shirt",
 #     description: "Why does it have Channing Tatum's face all over it",
