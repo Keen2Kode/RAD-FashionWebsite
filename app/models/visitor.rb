@@ -1,14 +1,8 @@
 class Visitor < ApplicationRecord
-    validates :email,   length: {maximum: 25},
-                        presence: true,
-                        format: { with: /\A\w+@\w+\.com\z/},
-                        uniqueness: true
-                        
-    @@subscribed = false
-    def self.things
-        @@subscribed
-    end
-    def self.thongs
-        @@subscribed = true
-    end
+    validates :email,       presence: true,
+                            format:  { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i},
+                            uniqueness: { case_sensitive: false }
+    before_save { email.downcase! }
+    
+
 end

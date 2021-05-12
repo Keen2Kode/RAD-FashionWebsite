@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1 or /items/1.json
   def show
+    @bag_item = BagItem.new
   end
 
   # GET /items/new
@@ -57,13 +58,14 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_item
       @item = Item.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :description, :size, :colour, :image_link, :price, :purchases_count, :stock_count, :arrival_date)
+      # params.require(:item).permit(:name, :description, :size, :colour, :image_link, :price, :purchases_count, :stock_count, :arrival_date)
+      params.require(:item).permit(:name, :description, :image_link, :price, :arrival_date)
     end
 end

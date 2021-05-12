@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.container {
+    // width: 30em;
+    overflow-x: auto; // makes inner .container scroll horizontally
+    // white-space: normal; // makes text extend horizontally
+}
+
+// .navbar-collapse.collapse {
+//     display: block!important;
+// }
+
+// .navbar-nav>li, .navbar-nav {
+//     float: left !important;
+// }
+
+// .navbar-nav.navbar-right:last-child {
+//     margin-right: -15px !important;
+// }
+
+// .navbar-right {
+//     float: right!important;
+// }
+
+
+
+// .list-group-horizontal .list-group-item {
+//     display: inline-block;
+// }
+// .list-group-horizontal .list-group-item {
+//     margin-bottom: 0;
+//     margin-left:-4px;
+//     margin-right: 0;
+//     border-right-width: 0;
+// }
+// .list-group-horizontal .list-group-item:first-child {
+//     border-top-right-radius:0;
+//     border-bottom-left-radius:4px;
+// }
+// .list-group-horizontal .list-group-item:last-child {
+//     border-top-right-radius:4px;
+//     border-bottom-left-radius:0;
+//     border-right-width: 1px;
+// }
+
+// .row > .col-xs-3 {
+//     display:flex;
+//     flex: 0 0 25%;
+//     max-width: 25%
+// }
+
+.flex-nowrap {
+    -webkit-flex-wrap: nowrap!important;
+    -ms-flex-wrap: nowrap!important;
+    flex-wrap: nowrap!important;
+}
+.flex-row {
+    display:flex;
+    -webkit-box-orient: horizontal!important;
+    -webkit-box-direction: normal!important;
+    -webkit-flex-direction: row!important;
+    -ms-flex-direction: row!important;
+    flex-direction: row!important;
+}
+
+.well {
+    min-height: 200px;
+    min-width: 150px;
+    width: 100%;
+}
+
+.well-double-size {
+    min-height: 400px;
+    min-width: 150px;
+    width: 100%;
+}
+
+.smallpadding {
+    padding: 3px !important;
+    margin: 0 !important;
+}
+
+.nopadding {
+    padding: 0px !important;
+    margin: 0 !important;
+}
+
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+body {
+    padding-top: 50px;
+    background-color: #f5f5f5;
+}
+
+footer {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #fff;
+}
+
+/*
+   * Off Canvas
+   * --------------------------------------------------
+   */
+@media screen and (max-width: 768px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
+
+    .row-offcanvas-left .sidebar-offcanvas {
+        left: -33%;
+    }
+
+    .row-offcanvas-left.active {
+        left: 33%;
+    }
+
+    .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 33%;
+        margin-left: 10px;
+    }
+}
+
+
+/* Sidebar navigation */
+.nav-sidebar {
+    background-color: #f5f5f5;
+    margin-right: -15px;
+    margin-bottom: 20px;
+    margin-left: -15px;
+}
+
+.nav-sidebar>li>a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.nav-sidebar>.active>a {
+    color: #fff;
+    background-color: #428bca;
+}
+
+/*
+   * Main content
+   */
+
+.main {
+    padding: 20px;
+    background-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main .page-header {
+    margin-top: 0;
+}

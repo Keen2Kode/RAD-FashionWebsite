@@ -1,33 +1,31 @@
 class Item < ApplicationRecord
-    enum size: [:small, :medium, :large, :extra_large]
-    has_many :collection_items
+    has_many :collection_items, dependent: :destroy
+    has_many :bag_items, dependent: :destroy
     
+    # Popularity feature: the sum of appearances in saved list and shopping bag
+    before_validation { self.popularity = 0 unless self.popularity }
     after_save :collections, :new_arrival
     validates :name,            length: {maximum: 20},
                                 presence: true
+    validates :popularity,      presence: true, 
+                                numericality: {greater_than_or_equal_to: 0}
     validates :description,     length: {maximum: 140}
-    # validates :colour
-    # validates :image_link
-    # validates :price
-    # validates :purchases_count
-    # validates :stock_count
     validates :arrival_date,    presence: true
     validate :arrival_date_cannot_be_in_the_future
+    
+    
+    
+    
+    
+    
+    
+    
     #important for new_ins collection
-    
-    
-    
-    
-    
-    
-    
-    
-    
     def arrival_date_cannot_be_in_the_future
         errors.add(:arrival_date, "can't be in the future") if arrival_date > Date.today
     end
     
-    # collections is a helper method to "simulate" an array 
+    # helper method to "simulate" an array of collections
     def collections
         @collections = collection_items.map(&:category)
         @collections << CollectionItem.new_ins if new_arrival

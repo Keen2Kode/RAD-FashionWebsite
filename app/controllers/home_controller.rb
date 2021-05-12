@@ -1,34 +1,43 @@
 class HomeController < ApplicationController
-  before_action :set_subscribed #, only: %i[index]
+  
+  
+  
+  
+  
+  
   
   def index
-    @random_item = Item.order('RANDOM()').first
-    @popular_items = Item.all.reverse.take(4)
-    @visitor ||= Visitor.new
-    # [:men, :women, :kids, :new_ins]
-    @collections = CollectionItem.categories.keys + [CollectionItem.new_ins]
+    @random_item = Item.order(Arel.sql('RANDOM()')).first
+    @popular_items = Item.all.sort_by(&:popularity).reverse
+    @visitor = Visitor.new
+    @collections = CollectionItem.collections
   end
   
-  def create
-    if clicked_subscribe_button?
-      @visitor = Visitor.new(visitor_params)
-      render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
-      logger.info @visitor.errors.full_messages.to_sentence
-    end
+  def newsletter
+    # no need for button check eg: params[:commit] == "Subscribe"
+    @visitor = Visitor.new(visitor_params)
+    render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
   end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   private
-  
-  def clicked_subscribe_button?
-    params[:commit] == "Subscribe"
+
+  def item_params
+    params.require(:item)
   end
   
   def visitor_params
     params.require(:visitor).permit(:email)
   end
   
-  # Use callbacks to share common setup or constraints between actions.
-  def set_subscribed
-    @subscribed = Visitor.things
-  end
 end

@@ -1,0 +1,10 @@
+<h1>Fashion</h1>
+<h2>It's not a lifestyle, it's a choice. Or is it the other way around....</h2>
+
+<div>
+  <%= form_with(url: "/login", method: "get", local: true) { |form| form.submit "Login" } %>
+</div>
+
+<div>
+  <%= form_with { |form| form.submit "Login with twitter" } %>
+</div>

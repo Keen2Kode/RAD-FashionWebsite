@@ -1,22 +1,17 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image link</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<%# still need to make this scroll on its own, and not the whole page.. %>
+<div class="container">
+  <div class="row flex-row flex-nowrap">
     <% @popular_items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= item.image_link %></td>
-        <td><%= item.price %></td>
-      </tr>
+      <div class="col-xs-6 smallpadding">
+        <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+        <div>
+          <%= item.name %>
+          <br/>
+          $<%= item.price %>
+          <%= item.popularity %>
+          <%= link_to '+', saved_path(item), method: "put" %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

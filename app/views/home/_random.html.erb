@@ -1,0 +1,14 @@
+<%# convert to clickable icon, which adds to saved list and displays new item %>
+<%= link_to saved_path(@random_item), method: "put" do %>
+
+<div
+  style="background-image:url('<%= @random_item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+  <div>
+    <h3><%= @random_item.name%></h3>
+    <%= @random_item.description%>
+    <br />
+    $<%= @random_item.price%>
+  </div>
+</div>
+
+<% end %>

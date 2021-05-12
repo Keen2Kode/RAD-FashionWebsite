@@ -1,15 +1,26 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>RAD2021S3707189S3717497</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <%# <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> %>
+
+    <title>RAD2021_S3707189_S3717497</title>
+  </head>
   <body>
-    <%= yield %>
+
+  
+    <%= render 'layouts/navigation_and_body' %>
+    
+    <footer>
+      <p class="pull-right">©2021 Company</p>
+    </footer>
   </body>
 </html>
