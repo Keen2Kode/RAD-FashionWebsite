@@ -32,10 +32,11 @@ module UsersHelper
     # Since we need to redirect back two pages, redirect_back isn't useful here
     # additionally request.referer isn't set if you redirect without landing on the page eg: bag_items#create 
     def back_path
-        session[:back_path] || current_user || root_path
+        session[:back_path] || user_path(current_user) || root_path
     end
     
     def set_back_path(path)
+        
         session[:back_path] = path
     end
 end
