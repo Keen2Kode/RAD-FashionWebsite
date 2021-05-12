@@ -36,9 +36,9 @@ item3 = Item.create(
     price: 149.00,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
-ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-2.jpeg")
-ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-3.jpeg")
-ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-4.jpeg")
+ItemImage.create(item_id: item3.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-2.jpeg")
+ItemImage.create(item_id: item3.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-3.jpeg")
+ItemImage.create(item_id: item3.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-4.jpeg")
 # https://www.myer.com.au/p/tommy-jeans-tommy-flag-cropped-sweatshirt
 item4 = Item.create(
     name: "Cropped Sweatshirt",
