@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   resources :collections, only: [:show, :index]
-  resources :items
-  resources :saved, only: [:index, :update]
+    resources :saved, only: [:index, :update]
+  resources :items do
+    get :filter, on: :member
+  end
   resources :bag_items do
     # like bag_items#destroy, but for ALL bag_items
     delete :destroy_all, on: :collection

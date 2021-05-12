@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     unless @user and logged_in? @user
-      set_back_path users_path
+      set_back_path user_path(@user)
       redirect_to current_user || prompt_path
     end
   end
