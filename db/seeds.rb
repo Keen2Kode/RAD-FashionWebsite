@@ -11,18 +11,23 @@
 item1 = Item.create(
     name: "Navy Business Shirt",
     description: "Solid Business Shirt. Navy colour",
-    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-blue-shirt.jpeg",
+    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-calvin-klein-solid-business-shirt.jpeg",
     price: 89.95,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item1.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-calvin-klein-solid-business-shirt-2.jpeg")
+ItemImage.create(item_id: item1.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-calvin-klein-solid-business-shirt-3.jpeg")
 # https://www.myer.com.au/p/piper-short-puff-sleve-broderie-dress-white?istCompanyId=84873db0-394f-434b-8958-29526fe5f03c&istFeedId=3dd6959f-3482-45a5-8a47-313fef9bbe16&istItemId=imlampaiq&istBid=t&gclid=Cj0KCQjwytOEBhD5ARIsANnRjVjQ4taZtemegIWQh5tkspsiziAcmbhmyUA3j2RufCbVBs4Ostpv2AAaAgJGEALw_wcB&gclsrc=aw.ds
 item2 = Item.create(
     name: "Broderie Dress",
     description: "Piper Short Puff Sleeve Broderie Dress White",
-    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-white-dress.jpeg",
+    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-piper-short-puff-sleeve-broderie-dress-white.jpeg",
     price: 120.00,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-piper-short-puff-sleeve-broderie-dress-white-2.jpeg")
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-piper-short-puff-sleeve-broderie-dress-white-3.jpeg")
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-piper-short-puff-sleeve-broderie-dress-white-4.jpeg")
 # https://www.myer.com.au/p/tommy-hilfiger-denton-straight-chino-631205380-1
 item3 = Item.create(
     name: "Straight Chino",
@@ -31,6 +36,9 @@ item3 = Item.create(
     price: 149.00,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-2.jpeg")
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-3.jpeg")
+ItemImage.create(item_id: item2.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-denton-straight-chino-4.jpeg")
 # https://www.myer.com.au/p/tommy-jeans-tommy-flag-cropped-sweatshirt
 item4 = Item.create(
     name: "Cropped Sweatshirt",
@@ -39,6 +47,7 @@ item4 = Item.create(
     price: 125.30,
     popularity: rand(0...10),
     arrival_date: Date.new(2010, 2, 25))
+ItemImage.create(item_id: item4.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-tommy-flag-cropped-sweatshirt-2.jpeg")
 # https://www.myer.com.au/p/jack-milly-issac-organic-sherpa-lined-hodie
 item5 = Item.create(
     name: "Kids Lined Hoodie",
