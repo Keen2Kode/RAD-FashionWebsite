@@ -72,12 +72,18 @@ class UsersController < ApplicationController
   
   
   
+  
+  
+  
   def show
     unless @user and logged_in? @user
       set_back_path user_path(@user)
       redirect_to current_user || prompt_path
     end
   end
+  
+  
+  
   
   
   
@@ -96,6 +102,29 @@ class UsersController < ApplicationController
       render js: "alert('You are subscribed to R&J newsletter!')"
     end
   end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  def forgot_password
+    
+  end
+  
+  def reset_password
+    
+  end
+  
+  
+  
+  
+  
+  
   
   
   
