@@ -1,13 +1,6 @@
-<p><%= @subscribed %> </p>
-
 <div class="container">
     <%= render "random" %>
 </div>
-
-<!--<div class="container">-->
-<!--    <h2>Saved</h2>-->
-<!--    <%# render "saved_list/saved", url:  %>-->
-<!--</div>-->
 
 <h2 class="sub-header">Popular</h2>
 <%= link_to "See all", '#' %>
@@ -18,4 +11,7 @@
 <%= render "collection" %>
 
 <h2 class="sub-header">Newsletter</h2>
+<% if logged_in? %>
+    <%= current_user.visitor ? "You're subscribed at #{current_user.visitor.email}, that's rad!" : "You're not subscribed, join us!" %>
+<% end %>
 <%= render "newsletter_form", visitor: @visitor %>

@@ -1,0 +1,8 @@
+<%# The header window bit %>
+<h1>Filters</h1>
+<%= link_to "x", bag_items_path %>
+
+<% form_with model: @bag_item, url: bag_items_path do |f| %> 
+  <%= f.select :category, options_for_select(CollectionItem.categories.keys), multiple: true  %>
+  <%= f.submit "Filter" %>
+<% end %>

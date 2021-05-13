@@ -3,8 +3,8 @@
 <div class="container">
 
   <% if @bag_items.size == 0 %>
-  <h2>It's lonely here</h2>
-  <p>Start shopping and add more items to the bag, and then there will be joy here...</p>
+    <h2>It's lonely here</h2>
+    <p>Start shopping and add more items to the bag, and then there will be joy here...</p>
   <% end %>
 
   <% @bag_items.each do |bag_item| %>
@@ -25,21 +25,21 @@
   <% end %>
 
   <% if @bag_items.size > 0 %>
-  <div>
-    <span>taxes (10%)</span> <%# left-aligned %>
-    <span><%= @total_price * 0.1 %></span> <%# right-aligned %>
-  </div>
-  <div>
-    <span>sub-total</span><%# left-aligned %>
-    <span><%= @total_price * 0.9 %></span><%# right-aligned %>
-  </div>
-  <div>
-    <span>Total</span><%# left-aligned %>
-    <span><%= @total_price %></span><%# right-aligned %>
-  </div>
-
-  <%= form_with url: destroy_all_bag_items_path, method: "delete" do |form| %>
-  <%= form.submit "Checkout" %>
-  <% end %>
+    <div>
+      <span>taxes (10%)</span> <%# left-aligned %>
+      <span><%= @total_price * 0.1 %></span> <%# right-aligned %>
+    </div>
+    <div>
+      <span>sub-total</span><%# left-aligned %>
+      <span><%= @total_price * 0.9 %></span><%# right-aligned %>
+    </div>
+    <div>
+      <span>Total</span><%# left-aligned %>
+      <span><%= @total_price %></span><%# right-aligned %>
+    </div>
+  
+    <%= form_with url: destroy_all_bag_items_path, method: "delete" do |form| %>
+      <%= form.submit "Checkout" %>
+    <% end %>
   <% end %>
 </div>
