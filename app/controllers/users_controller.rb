@@ -42,8 +42,8 @@ class UsersController < ApplicationController
       log_in user
       redirect_to back_path
     else
-      @user = User.new
-      @user.login_errors(name, password)
+      @user = User.new(name: name, password: password)
+      @user.login_errors
       render 'login'
     end
   end
@@ -113,13 +113,39 @@ class UsersController < ApplicationController
   
   
   def forgot_password
-    
+    @user = User.new
   end
+  
+  def forgot_password_create
+    email = params[:user][:email]
+    @user = User.find_by(email: email)
+    if @user
+      # pass as params[:user] so UserMailer can send an email
+      @user.reset_password_mail
+      redirect_to login_path, notice: "A link was sent to #{email} to reset your password"
+    else 
+      @user = User.new(email: email)
+      @user.forgot_password_errors
+      render 'forgot_password'
+    end
+  end
+  
+  
   
   def reset_password
+    @user = User.find_by_signed_id(params[:token])
+    redirect_to login_path, notice: "Your token expired, login again" unless @user
     
   end
   
+  def reset_password_create
+    @user = User.find_by_signed_id(params[:token])
+    if @user.update(reset_password_params)
+      redirect_to login_path, notice: "Your password is updated! Complete login to continue"
+    else
+      render 'reset_password'
+    end
+  end
   
   
   
@@ -144,6 +170,10 @@ class UsersController < ApplicationController
   
   def login_params
     params.require(:user).permit(:name, :password)
+  end
+  
+  def reset_password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
   
   def redirect_to_correct_user

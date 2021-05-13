@@ -14,8 +14,13 @@ class User < ApplicationRecord
     has_secure_password
     
     
+    
+    
+    
+    
+    
     # generates login errors with a dummy user object
-    def login_errors(name, password)
+    def login_errors
         user = User.find_by(name: name)
         if not user
             errors.add(:name, "#{name} not found")
@@ -24,10 +29,27 @@ class User < ApplicationRecord
         end
     end
     
+    def forgot_password_errors
+        user = User.find_by(email: email)
+        errors.add(:email, "#{email} not found") unless user
+    end
+    
+    
+    
+    
+    
+    
     #subscribed to newsletter
     def visitor
-        puts "emaillllllllllllllllllll: #{email}"
-        puts "is A VISTORR? #{Visitor.find_by(email: email)}"
         Visitor.find_by(email: email)
+    end
+    
+    
+    def reset_password_mail
+        UserMailer.with(user: self).reset_password.deliver_now
+    end
+    
+    def self.find_by_signed_id(token)
+        GlobalID::Locator.locate_signed(token)
     end
 end

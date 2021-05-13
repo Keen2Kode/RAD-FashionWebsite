@@ -1,4 +1,10 @@
+<%= notice %>
+
 <h1>Log in</h1>
+
+
+
 <%= render 'login_form', user: @user, path: login_path  %>
 
-<%= link_to 'New to us?', signup_path %>
+<%= link_to 'New to us?', signup_path %> |
+<%= link_to 'Forgot password?', forgot_password_path %>
