@@ -14,7 +14,7 @@ rails g model item_image item:references image_link
 rails g mailer User reset_password
 ```
 
-Can drop tables now, with `rails db:reset`. It also does the job of seeding data, and means migration files can be edited directly
+Can reset/drop tables now, with `rails db:migrate` `rails db:reset`. It also does the job of seeding data, and means migration files can be edited directly
 
 ## Commands to run
 ```
