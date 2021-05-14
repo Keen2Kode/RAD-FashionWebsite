@@ -13,6 +13,17 @@ class HomeController < ApplicationController
     @collections = CollectionItem.collections
   end
   
+  
+  def search_post
+    redirect_to search_path(query: params[:query])
+  end
+  
+  def search
+    @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
+  end
+  
+  
+  
   def newsletter
     @visitor = Visitor.new(visitor_params)
     render js: "alert('#{@visitor.save ? "Email successfully added!" : "Your email is invalid."}');"
