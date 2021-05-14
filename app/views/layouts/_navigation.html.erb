@@ -13,17 +13,19 @@
       <%= link_to root_path, method: "get", class:"navbar-brand" do %>
       J&R Clothing
       <% end %>
-      <button type="button" class="navbar-brand btn pull-right" style="border-radius: 0px; border: none; background: none;">
+      
+      <%# Potential TODO: Buttons are selectable and stay selected%>
+      <button type="button" class="navbar-brand btn pull-right">
         <%= link_to saved_index_path, method: "get" do %>
         <span class="glyphicon glyphicon-heart"></span>
         <% end %>
       </button>
-      <button type="button" class="navbar-brand btn pull-right" style="border-radius: 0px; border: none; background: none;">
+      <button type="button" class="navbar-brand btn pull-right">
         <%= link_to bag_items_path, method: "get" do %>
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <% end %>
       </button>
-      <button type="button" class="navbar-brand btn pull-right" style="border-radius: 0px; border: none; background: none;">
+      <button type="button" class="navbar-brand btn pull-right">
         <%= link_to root_path, method: "get" do %>
         <span class="glyphicon glyphicon-search"></span>
         <% end %>
@@ -40,35 +42,3 @@
     </div>
   </div>
 </nav>
-
-<div class="container-fluid">
-  <div class="row row-offcanvas row-offcanvas-left">
-    <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-      <ul class="nav nav-sidebar">
-        <li><%= link_to "Home", root_path, method: "get" %></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><%= link_to "Shop", collections_path%></li>
-        <% CollectionItem.collections.each do |collection| %>
-        <li><%= link_to collection, collection_path(collection), method: "get" %></li>
-        <% end %>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><%= link_to "Saved", saved_index_path, method: "get" %></li>
-        <li><%= link_to "Shopping Cart", bag_items_path, method: "get" %></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><%= link_to "Help and Support", "#", method: "get" %></li>
-      </ul>
-
-    </div>
-
-    <div class="col-sm-9 col-md-10 main">
-
-      <%= yield %>
-
-      <hr>
-
-    </div>
-  </div>
-</div>
