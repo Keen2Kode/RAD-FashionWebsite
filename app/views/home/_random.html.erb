@@ -10,11 +10,13 @@
     <span class="glyphicon glyphicon-plus"></span>
     <% end %>
   </button>
+  <%= link_to @random_item, method: "get" do %>
   <div style="width: 270px; position: absolute; top: 185px; background-color: rgba(255, 255, 255, 0.5);">
     <h3><%= @random_item.name%></h3>
     <h5><%= @random_item.description%></h5>
     <h4>$<%= @random_item.price%></h4>
   </div>
+  <% end %>
 </div>
 
 <% end %>
