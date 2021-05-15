@@ -7,7 +7,7 @@
 <%= render "popular" %>
 
 <h2 class="sub-header">Collections</h2>
-<%= link_to "See all", collection_path(CollectionItem.everything) %>
+<%= link_to "See all", collection_path(CollectionItem.everything), method: 'get' %>
 <%= render "collection" %>
 
 <h2 class="sub-header">Newsletter</h2>
