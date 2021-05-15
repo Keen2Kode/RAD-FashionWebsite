@@ -1,7 +1,7 @@
 
 <div class="container">
     <% @items.each_with_index do |item, i| %>
-        <% if i % 2 != 0 %><div class="row"><% end %>
+        <% if i % 2 == 0 %><div class="row"><% end %>
             <div class="col-xs-6" >
                 <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: 
                 no-repeat; background-size: cover; background-position: center;"></div>
