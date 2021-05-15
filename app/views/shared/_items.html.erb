@@ -1,17 +1,18 @@
-
 <div class="container">
     <% @items.each_with_index do |item, i| %>
         <% if i % 2 == 0 %><div class="row"><% end %>
             <div class="col-xs-6" >
-                <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: 
+                <%= link_to item do %>
+                <div class="well nopadding" style="background-image:url('<%= item.image_link %>'); background-repeat: 
                 no-repeat; background-size: cover; background-position: center;"></div>
+                <% end %>
                 <div>
-                    <%= item.name %>
+                    <%= link_to item do %><%= item.name %><% end %>
+                    <br/>
                     $<%= item.price %>
-                    <%= item.collections %>
                     <%= link_to 'Show', item %>
                 </div>
             </div>
-        <% if i % 2 != 0 %></div><% end %>
+        <% if i % 2 != 0 %></div><br><% end %>
     <% end %>
 </div>
