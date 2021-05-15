@@ -68,6 +68,7 @@ item6 = Item.create(
     arrival_date: Date.new(2010, 2, 25))
 ItemImage.create(item_id: item6.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set-2.jpeg")
 ItemImage.create(item_id: item6.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set-3.jpeg")
+ItemImage.create(item_id: item6.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-milkshake-roars-before-snores-pyjama-set-4.jpeg")
 # https://www.myer.com.au/p/jack-jones-globe-parka-763941880-1
 item7 = Item.create(
     name: "Globe Parka",
@@ -78,6 +79,19 @@ item7 = Item.create(
     arrival_date: Date.new(2010, 2, 25))
 ItemImage.create(item_id: item7.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka-2.jpeg")
 ItemImage.create(item_id: item7.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/men-jack-jones-globe-parka-3.jpeg")
+# https://www.myer.com.au/p/grab-olivia-high-rise-skinny-jean-805903930-1
+item8 = Item.create(
+    name: "High Rise Skinny Jean",
+    description: "Grab Denim Olivia High Rise Skinny Jean. Dark Wash colour.",
+    image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-grab-denim-olivia-high-rise-skinny-jean.jpeg",
+    price: 169.95,
+    popularity: rand(0...10),
+    arrival_date: Date.new(2020, 5, 12))
+ItemImage.create(item_id: item8.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-grab-denim-olivia-high-rise-skinny-jean-2.jpeg")
+ItemImage.create(item_id: item8.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-grab-denim-olivia-high-rise-skinny-jean-3.jpeg")
+ItemImage.create(item_id: item8.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-grab-denim-olivia-high-rise-skinny-jean-4.jpeg")
+ItemImage.create(item_id: item8.id, image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/women-grab-denim-olivia-high-rise-skinny-jean-5.jpeg")
+
 # Item.create(
 #     name: "Jeff Shirt",
 #     description: "Why does it have Channing Tatum's face all over it",
@@ -134,3 +148,4 @@ CollectionItem.create(item_id: item4.id, category: 1)
 CollectionItem.create(item_id: item5.id, category: 2)
 CollectionItem.create(item_id: item6.id, category: 2)
 CollectionItem.create(item_id: item7.id, category: 0)
+CollectionItem.create(item_id: item8.id, category: 1)
