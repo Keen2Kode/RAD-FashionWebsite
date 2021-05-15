@@ -1,24 +1,22 @@
-<div class="container">
-    <% @items.each_with_index do |item, i| %>
-    <% if i % 2 == 0 %><div class="row"><% end %>
-        <div class="col-xs-6">
-            <%= link_to item do %>
-            <div class="well nopadding" style="background-image:url('<%= item.image_link %>'); background-repeat: 
-                no-repeat; background-size: cover; background-position: center;">
-                <%# add condition if already in saved items then use glyphicon-minus %>
-                <button type="button" class="btn btn-xs">
-                    <%= link_to saved_path(item), method: "put" do %>
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <% end %>
-                </button>
-            </div>
-            <% end %>
-            <div>
-                <%= link_to item do %><%= item.name %><% end %>
-                <br />
-                $<%= item.price %>
-            </div>
+<% @items.each_with_index do |item, i| %>
+<% if i % 2 == 0 %><div class="row"><% end %>
+    <div class="col-xs-6">
+        <%= link_to item do %>
+        <div class="well nopadding" style="background-image:url('<%= item.image_link %>'); background-repeat: 
+            no-repeat; background-size: cover; background-position: center;">
+            <%# add condition if already in saved items then use glyphicon-minus %>
+            <button type="button" class="btn btn-xs">
+                <%= link_to saved_path(item), method: "put" do %>
+                <span class="glyphicon glyphicon-plus"></span>
+                <% end %>
+            </button>
         </div>
-        <% if i % 2 != 0 %></div><br><% end %>
-    <% end %>
-</div>
+        <% end %>
+        <div>
+            <%= link_to item do %><%= item.name %><% end %>
+            <br />
+            $<%= item.price %>
+        </div>
+    </div>
+    <% if i % 2 != 0 %></div><br><% end %>
+<% end %>
