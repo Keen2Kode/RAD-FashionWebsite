@@ -10,9 +10,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> %>
-      <%= link_to root_path, method: "get", class:"navbar-brand" do %>
-      J&R Clothing
-      <% end %>
+      
+      <span class="navbar-brand"><%= yield(:title) %></span>
       
       <button type="button" class="navbar-brand btn pull-right">
         <%= link_to saved_index_path, method: "get" do %>
