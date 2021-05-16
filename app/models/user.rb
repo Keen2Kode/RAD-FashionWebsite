@@ -21,9 +21,9 @@ class User < ApplicationRecord
     
     # generates login errors with a dummy user object
     def login_errors
-        user = User.find_by(name: name)
+        user = User.find_by(email: email)
         if not user
-            errors.add(:name, "#{name} not found")
+            errors.add(:email, "#{email} not found")
         elsif not user.authenticate(password)
             errors.add(:password, "incorrect")
         end

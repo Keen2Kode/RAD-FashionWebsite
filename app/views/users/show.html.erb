@@ -11,9 +11,7 @@
 </div>
 
 <%= form_with url: subscription_user_path(@user) do |f| %>
-    <div class="actions">
-        <%= f.submit "Subscription" %>
-    </div>
+    <%= f.submit "Subscription", class: "actions" %>
 <% end %>
 
 <div>
