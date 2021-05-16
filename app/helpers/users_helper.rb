@@ -36,7 +36,6 @@ module UsersHelper
     end
     
     def set_back_path(path)
-        
         session[:back_path] = path
     end
 end

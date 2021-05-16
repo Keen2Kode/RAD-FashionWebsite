@@ -1,6 +1,19 @@
 <h1>
     <%= gravatar_for @user %>
-    <%= @user.name %>
 </h1>
 
-<%= link_to 'Log out', logout_path, method: :delete %>
+<div>
+    <%= link_to 'Pending orders', bag_items_path %>
+</div>
+
+<div>
+    <%= link_to 'Update login details', edit_user_path(@user) %>
+</div>
+
+<%= form_with url: subscription_user_path(@user) do |f| %>
+    <%= f.submit "Subscription", class: "actions" %>
+<% end %>
+
+<div>
+    <%= link_to 'Log out', logout_path, method: :delete %>
+</div>
