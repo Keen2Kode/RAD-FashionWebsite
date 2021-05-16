@@ -33,16 +33,16 @@ class UsersController < ApplicationController
   end
   
   def logged
-    name = params[:user][:name]
+    email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(name: name)
+    user = User.find_by(email: email)
     
     if user && user.authenticate(password)
       # user helper method (accessible since included module in ApplicationController)
       log_in user
       redirect_to back_path
     else
-      @user = User.new(name: name, password: password)
+      @user = User.new(email: email, password: password)
       @user.login_errors
       render 'login'
     end
@@ -76,10 +76,6 @@ class UsersController < ApplicationController
   
   
   def show
-    unless @user and logged_in? @user
-      set_back_path user_path(@user)
-      redirect_to current_user || prompt_path
-    end
   end
   
   
@@ -95,11 +91,11 @@ class UsersController < ApplicationController
     
     if @user.visitor
       @user.visitor.destroy
-      render js: "alert('Your subscription has been revoked.')"
+      render js: "alert('Your subscription has been revoked. (See newsletter in root to verify)')"
     else
       new_visitor = Visitor.new(email: @user.email)
       new_visitor.save
-      render js: "alert('You are subscribed to R&J newsletter!')"
+      render js: "alert('You are subscribed to R&J newsletter! (See newsletter in root to verify)')"
     end
   end
   
@@ -169,7 +165,7 @@ class UsersController < ApplicationController
   end
   
   def login_params
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:email, :password)
   end
   
   def reset_password_params
@@ -177,6 +173,7 @@ class UsersController < ApplicationController
   end
   
   def redirect_to_correct_user
+    set_back_path @user ? user_path(@user) : request.path
     unless @user and logged_in? @user
       redirect_to current_user || prompt_path
     end
