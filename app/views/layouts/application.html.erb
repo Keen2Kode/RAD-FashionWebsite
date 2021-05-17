@@ -14,13 +14,27 @@
 
     <title>RAD2021_S3707189_S3717497</title>
   </head>
-  <body>
-
   
-    <%= render 'layouts/navigation_and_body' %>
+  
+  
+  <body>
     
-    <footer>
-      <p class="pull-right">©2021 Company</p>
-    </footer>
+    <%= render 'layouts/navigation' %>    
+    
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <%= render 'layouts/sidebar' %>
+        
+        <div class="col-sm-9 col-md-10 main">
+          <%= yield %>
+          <hr>
+        </div>
+        
+      </div>
+    </div>
+    
   </body>
+  
+    <%= render 'layouts/footer' %> 
 </html>

@@ -1,4 +1,5 @@
 Rails.application.configure do
+  # config.action_mailer.default_url_options = { host: "https://257e557ba36343949ed1801d78c2d064.vfs.cloud9.us-east-2.amazonaws.com"}
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -54,7 +55,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
+  
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker

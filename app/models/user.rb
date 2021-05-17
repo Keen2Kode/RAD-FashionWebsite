@@ -9,26 +9,47 @@ class User < ApplicationRecord
     validates :email,       presence: true,
                             format:  { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i},
                             uniqueness: { case_sensitive: false }
-    # validate :password_correct_length
     before_save { email.downcase! }
     # using bcrypt
     has_secure_password
     
     
-    def password_correct_length
-        non_special_chars = password.scan(/\w/).count
-        if non_special_chars < 8 || non_special_chars > 20 
-            errors.add(:password, "Does not have 8-20 non-special characters")
-        end
-    end
+    
+    
+    
+    
     
     # generates login errors with a dummy user object
-    def login_errors(name, password)
-        user = User.find_by(name: name)
+    def login_errors
+        user = User.find_by(email: email)
         if not user
-            errors.add(:name, "#{name} not found")
+            errors.add(:email, "#{email} not found")
         elsif not user.authenticate(password)
             errors.add(:password, "incorrect")
         end
+    end
+    
+    def forgot_password_errors
+        user = User.find_by(email: email)
+        errors.add(:email, "#{email} not found") unless user
+    end
+    
+    
+    
+    
+    
+    
+    #subscribed to newsletter
+    def visitor
+        Visitor.find_by(email: email)
+    end
+    
+    
+    def reset_password_mail
+        UserMailer.with(user: self).reset_password.deliver_now
+    end
+    
+    def self.find_by_signed_id(token)
+        GlobalID::Locator.locate_signed(token)
     end
 end

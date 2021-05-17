@@ -1,37 +1,9 @@
-<%# needs a window like header %>
 
-<h1>Collections for <%= @collection %>: <%= @items.size%> </h1>
+<%# needs a window like header %>
 <%= link_to "Filters", filter_collections_path %>
 
+<% provide(:title, "for " + @collection.titleize + " (" + @items.size.to_s + ")") %>
 
-<div class="container">
+<h2 class="sub-header text-center"><%= @collection %> collection</h2>
 
-      <% @items.each do |item| %>       
-        <div class="col-xs-6">
-          <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
-          <div>
-            <%= item.name %>
-            $<%= item.price %>
-            <%= item.collections %>
-            <%= link_to 'Show', item %>
-          </div>
-        </div>
-      <% end %>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%= render 'shared/items' %>

@@ -1,21 +1,17 @@
-<p><%= @subscribed %> </p>
+<% provide(:title, "Home") %>
 
-<div class="container">
-    <%= render "random" %>
-</div>
-
-<!--<div class="container">-->
-<!--    <h2>Saved</h2>-->
-<!--    <%# render "saved_list/saved", url:  %>-->
-<!--</div>-->
+<%= render "random" %>
 
 <h2 class="sub-header">Popular</h2>
 <%= link_to "See all", '#' %>
 <%= render "popular" %>
 
 <h2 class="sub-header">Collections</h2>
-<%= link_to "See all", collection_path(CollectionItem.everything) %>
+<%= link_to "See all", collection_path(CollectionItem.everything), method: 'get' %>
 <%= render "collection" %>
 
 <h2 class="sub-header">Newsletter</h2>
+<% if logged_in? %>
+    <%= current_user.visitor ? "You're subscribed at #{current_user.visitor.email}, that's rad!" : "You're not subscribed, join us!" %>
+<% end %>
 <%= render "newsletter_form", visitor: @visitor %>
