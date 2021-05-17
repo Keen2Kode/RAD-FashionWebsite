@@ -1,3 +1,7 @@
+
+<%# needs a window like header %>
+<%= link_to "Filters", filter_collections_path %>
+
 <% provide(:title, "for " + @collection.titleize + " (" + @items.size.to_s + ")") %>
 
 <h2 class="sub-header text-center"><%= @collection %> collection</h2>

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :bag_items do
     delete :destroy_all, on: :collection
   end
+  resources :collections, only: [:show, :index] do 
+    get :filter, on: :collection
+    get :search, on: :collection
+  end
   
   get '/prompt'               => 'users#prompt'
   get  '/signup'              => 'users#signup'
