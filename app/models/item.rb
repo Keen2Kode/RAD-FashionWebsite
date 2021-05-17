@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
     has_many :collection_items, dependent: :destroy
-    has_many :bag_items, dependent: :destroy
+    # has_many :bag_items, dependent: :destroy
     has_many :item_images, dependent: :destroy
+    has_many :item_variants, dependent: :destroy
     
     # Popularity feature: the sum of appearances in saved list and shopping bag
     before_validation { self.popularity = 0 unless self.popularity }
     after_save :collections, :new_arrival
-    validates :name,            length: {maximum: 20},
-                                presence: true
+    validates :name,            presence: true
     validates :popularity,      presence: true, 
                                 numericality: {greater_than_or_equal_to: 0}
     validates :description,     length: {maximum: 140}
@@ -36,5 +36,9 @@ class Item < ApplicationRecord
     
     def new_arrival
         arrival_date > Date.today - 3.months
+    end
+    
+    def variants_of(attribute)
+        item_variants.map(&attribute).uniq
     end
 end
