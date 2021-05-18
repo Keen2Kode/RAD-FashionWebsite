@@ -9,8 +9,9 @@ class ItemVariant < ApplicationRecord
     enum colour: [:blue, :green, :black, :brown, :red]
     
     def no_matching_variant
-        !item.item_variants.find_by(item_id: item.id, colour: colour, size: size)
+        if item.item_variants.find_by(item_id: item.id, colour: colour, size: size)
+            errors.add(:size, "Variant already exists")
+        end
     end
 
-# validates unique colour size
 end

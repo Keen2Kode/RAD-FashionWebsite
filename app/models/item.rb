@@ -8,13 +8,13 @@ class Item < ApplicationRecord
     # Popularity feature: the sum of appearances in saved list and shopping bag
     before_validation { self.popularity = 0 unless self.popularity }
     after_save :collections, :new_arrival
-    validates :name,            presence: true
+    validates :name,            presence: true,
+                                uniqueness: {case_sensitive: false}
     validates :popularity,      presence: true, 
                                 numericality: {greater_than_or_equal_to: 0}
     validates :description,     length: {maximum: 140}
     validates :arrival_date,    presence: true
     validate :arrival_date_cannot_be_in_the_future
-    
     
     
     

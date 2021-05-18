@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# ActiveRecord::Schema.define(version: 2021_05_12_123251) do
 ActiveRecord::Schema.define(version: 2021_05_16_211113) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +86,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_211113) do
   add_foreign_key "bag_items", "item_variants"
   add_foreign_key "bag_items", "users"
   add_foreign_key "collection_items", "items"
-  add_foreign_key "tag_items", "items"
   add_foreign_key "item_images", "items"
   add_foreign_key "item_variants", "items"
+  add_foreign_key "tag_items", "items"
 end

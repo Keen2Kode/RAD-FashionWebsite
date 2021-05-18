@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     delete :destroy_all, on: :collection
   end
   resources :collections, only: [:show, :index] do 
-    get :filter, on: :collection
-    get :search, on: :collection
+    get :filter, on: :member
+    get :search, on: :member
   end
   
   get '/prompt'               => 'users#prompt'
@@ -30,7 +30,6 @@ Rails.application.routes.draw do
     post :subscription, on: :member
   end
   
-  post 'search'      => 'home#search_post'
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
