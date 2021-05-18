@@ -42,8 +42,16 @@ class BagItemsController < ApplicationController
   
   # if user is not logged in, the bag item params are saved until after login
   def persist_bag_item
-    session[:bag_item] = params.require(:bag_item).permit(:item_id, :colour, :quantity, :size)
+    colour = params[:bag_item][:colour]
+    size = params[:bag_item][:size]
+    item_id = params[:bag_item][:item_id]
+    variant = ItemVariant.find_by(colour: colour, size: size, item_id: item_id)
+    
+    session[:bag_item] = params.require(:bag_item).permit(:quantity).merge(item_variant: variant)
   end
+  
+  
+  
   
   def pathing_and_create_bag_item
     set_back_path bag_items_path
@@ -52,8 +60,12 @@ class BagItemsController < ApplicationController
     create_bag_item
   end
   
+  
+  
+  
   def create_bag_item
     return unless session[:bag_item]
+    
     @bag_item = BagItem.new(session[:bag_item])
     @bag_item.user_id = current_user.id
     @bag_item.save

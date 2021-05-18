@@ -38,38 +38,52 @@
     </a>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
   <div>
     <h2><%= @item.name %></h2>
+    <p><%= @tags.join(" | ") %></p>
     <p>$<%= @item.price %></p>
     <p><%= @item.description %></p>
 
     <div>
-      <%= form_with model: @bag_item, url: bag_items_path do |form| %>
-
-      <div class="row">
-        <div class="col-xs-4">
-          <div>
-            <%= form.label :size %>
-            <%= form.select :size, BagItem.sizes.keys  %>
+      
+      
+      
+      <% if @item.item_variants.present? %>
+        <%= form_with model: @bag_item, url: bag_items_path do |form| %>
+          <div class="row">
+            <div class="col-xs-4">
+              <%= form.label :size %>
+              <%= form.select :size,  @item.variants_of(:size)  %>
+            </div>
+            <div class="col-xs-4">
+              <%= form.label :colour %>
+              <%= form.select :colour,  @item.variants_of(:colour)  %>
+            </div>
+            <div class="col-xs-4">
+              <%= form.label :quantity %>
+              <%= form.number_field :quantity, value: 1, min: 1, max: 100  %>
+            </div>
+            <%= form.hidden_field :item_id, value: @item.id %>
+            <%= form.submit "Add to Bag" %>
           </div>
-        </div>
-        <div class="col-xs-4">
-          <div>
-            <%= form.label :colour %>
-            <%= form.select :colour, BagItem.colours.keys  %>
-          </div>
-        </div>
-        <div class="col-xs-4">
-          <div>
-            <%= form.label :quantity %>
-            <%= form.number_field :quantity, value: 1, min: 1, max: 100  %>
-          </div>
-        </div>
-
-        <%= form.hidden_field :item_id, value: @item.id %>
-        <%= form.submit "Add to Bag" %>
         <% end %>
-      </div>
+      <% end %>
+
+
+
+
+
 
       <%= link_to 'Edit', edit_item_path(@item) %> |
       <%= link_to 'Back', items_path %>

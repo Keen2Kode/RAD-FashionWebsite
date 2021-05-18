@@ -1,3 +1,5 @@
-<h1>Collections for <%= @collection %>: <%= @items.size%> </h1>
 
+<%# needs a window like header %>
+<%= link_to "Filters", filter_collection_path(@collection) %>
+<% provide(:title, "for #{@collection.titleize} (#{ @items.size})") %>
 <%= render 'shared/items' %>

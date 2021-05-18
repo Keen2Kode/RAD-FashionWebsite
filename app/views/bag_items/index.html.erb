@@ -1,3 +1,5 @@
+<% provide(:title, "Shopping Cart (" + @bag_items.size.to_s + ")") %>
+
 <h1>Bag Items: <%= @bag_items.size %> </h1>
 
 <div class="container">
@@ -8,20 +10,24 @@
   <% end %>
 
   <% @bag_items.each do |bag_item| %>
-  <div class="row">
-    <div class="col-xs-5">
-      <div><img src="<%= bag_item.item.image_link %>" style="height: 100%; width: 100%; object-fit: contain"></div>
-    </div>
-    <div class="col-xs-7">
-      <div>
-        <p><%= bag_item.item.name %></p>
-        <p>$<%= bag_item.item.price %></p>
-        <p>COLOUR: <%= bag_item.colour %>, SIZE: <%= bag_item.size %>, QUANTITY: <%= bag_item.quantity %></p>
-        <%= link_to 'Show Item', bag_item.item %>
-        <%= link_to 'Destroy', bag_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <div class="row">
+      <div class="col-xs-5">
+        <div><img src="<%= bag_item.item.image_link %>" style="height: 100%; width: 100%; object-fit: contain"></div>
+      </div>
+      <div class="col-xs-7">
+        <div>
+          <p><%= bag_item.item.name %></p>
+          <p>$<%= bag_item.item.price %></p>
+          <p>
+            COLOUR: <%= bag_item.item_variant.colour %>, 
+            SIZE: <%= bag_item.item_variant.size %>, 
+            QUANTITY: <%= bag_item.quantity %>
+          </p>
+          <%= link_to 'Show Item', bag_item.item %>
+          <%= link_to 'Destroy', bag_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 
   <% if @bag_items.size > 0 %>

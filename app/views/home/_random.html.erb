@@ -1,14 +1,25 @@
 <%# convert to clickable icon, which adds to saved list and displays new item %>
-<%= link_to saved_path(@random_item), method: "put" do %>
-
-<div
-  style="background-image:url('<%= @random_item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-  <div>
-    <h3><%= @random_item.name%></h3>
-    <%= @random_item.description%>
-    <br />
-    $<%= @random_item.price%>
-  </div>
-</div>
-
+<% if @random_item %>
+  <%= link_to @random_item do %>
+  
+    <%# move styling to css later %>
+    <div style="background-image:url('<%= @random_item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center; height: 300px">
+      
+      <%# use minus if item already in saved items %>
+      <button type="button" class="btn btn-xs">
+        <%= link_to saved_path(@random_item), method: :put do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
+      </button>
+      
+      <%= link_to @random_item do %>
+        <div style="width: 270px; position: absolute; top: 185px; background-color: rgba(255, 255, 255, 0.5);">
+          <h3><%= @random_item.name%></h3>
+          <h5><%= @random_item.description%></h5>
+          <h4>$<%= @random_item.price%></h4>
+        </div>
+      <% end %>
+      
+    </div>
+  <% end %>
 <% end %>

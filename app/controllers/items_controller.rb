@@ -12,8 +12,8 @@ class ItemsController < ApplicationController
     # for multiple images in carousel
     @item = Item.find(params[:id])
     @item_images = ItemImage.where(item_id: @item)
-
     @total_images_size = 1 + @item_images.size
+    @tags = @item.tag_items.map(&:tag)
 
   end
 

@@ -14,9 +14,9 @@
   <!--    </button>  -->
   <!--</form>-->  
   
-    <%= form_with url: search_path,  class: "navbar-form navbar-right" do |form| %>
+    <%= form_with url: search_path,  class: "navbar-form navbar-right", data: {remote: false}, method: :get do |form| %>
       <%= form.search_field :query, placeholder: "Search...", class: 'form-control' %>
-      <%= form.button :button, class: "navbar-brand btn pull-right" do %>
+      <%= form.button type: "submit", class: "navbar-brand btn pull-right" do %>
         <span class="glyphicon glyphicon-search"></span>
       <% end %>
     <% end %>
