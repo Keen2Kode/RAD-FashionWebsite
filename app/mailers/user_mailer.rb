@@ -1,10 +1,10 @@
 class UserMailer < ApplicationMailer
 
 
-  # TODO: complete so host url works on other systems AND all environment
-  def default_url_options
-    { host: "https://257e557ba36343949ed1801d78c2d064.vfs.cloud9.us-east-2.amazonaws.com" }
-  end
+  # # TODO: complete so host url works on other systems AND all environment
+  # def default_url_options
+  #   { host: "https://257e557ba36343949ed1801d78c2d064.vfs.cloud9.us-east-2.amazonaws.com" }
+  # end
   
   def reset_password
     @user = params[:user]

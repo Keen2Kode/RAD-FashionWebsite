@@ -115,30 +115,6 @@ ItemImage.create(item: item8, image_link: "https://rmit-rad.s3-ap-southeast-2.am
 
 
 
-user1 = User.create(name: "RAD", email: "rad2021rmit@gmail.com", password: "Rails2021")
-user2 = User.create(name: "reuben", email: "r@e.com", password: "Rails2022")
-user3 = User.create(name: "jeff", email: "b@g.com", password: "Rails2023")
-
-# BagItem.create(item: item1, user: user1, size: "extra_large", colour: "blue", quantity: 3)
-# BagItem.create(item: item2, user: user2, size: "small", colour: "brown", quantity: 15)
-# BagItem.create(item: item3, user: user3, size: "large", colour: "blue", quantity: 2)
-# # a copy with different quantity will still work, but only one record
-# # BagItem.create(item: item2, user: user2, size: "small", colour: "brown", quantity: 200)
-
-variant1 = ItemVariant.create(item: item1, size: "extra_large", colour: "blue")
-variant2 = ItemVariant.create(item: item2, size: "small", colour: "brown")
-variant3 = ItemVariant.create(item: item3, size: "large", colour: "blue")
-
-variant1a = ItemVariant.create(item: item1, size: "extra_large", colour: "green")
-variant1b = ItemVariant.create(item: item1, size: "extra_large", colour: "green")
-variant1c = ItemVariant.create(item: item1, size: "small", colour: "red")
-variant1d = ItemVariant.create(item: item1, size: "small", colour: "green")
-
-BagItem.create(item_variant: variant1, user: user1, quantity: 3)
-BagItem.create(item_variant: variant2, user: user2, quantity: 15)
-BagItem.create(item_variant: variant3, user: user3, quantity: 2)
-# a copy with different quantity will still work, but only one record
-# BagItem.create(item_variant: variant2, user: user2, quantity: 200)
 
 CollectionItem.create(item: item1, category: :men)
 CollectionItem.create(item: item2, category: :women)
@@ -148,3 +124,85 @@ CollectionItem.create(item: item5, category: :kids)
 CollectionItem.create(item: item6, category: :kids)
 CollectionItem.create(item: item7, category: :men)
 CollectionItem.create(item: item8, category: :women)
+
+
+TagItem.create(item: item1, tag: :shirts)
+
+TagItem.create(item: item2, tag: :dresses)
+
+TagItem.create(item: item3, tag: :pants)
+
+TagItem.create(item: item4, tag: :shirts)
+TagItem.create(item: item4, tag: :jackets)
+
+TagItem.create(item: item5, tag: :jackets)
+
+TagItem.create(item: item6, tag: :jackets)
+TagItem.create(item: item6, tag: :pyjamas)
+TagItem.create(item: item6, tag: :shirts)
+TagItem.create(item: item6, tag: :pants)
+
+TagItem.create(item: item7, tag: :jackets)
+
+TagItem.create(item: item8, tag: :pants)
+
+
+
+
+
+
+
+
+variant1 = ItemVariant.create(item: item1, size: "extra_large", colour: "blue")
+variant2 = ItemVariant.create(item: item2, size: "small", colour: "brown")
+variant3 = ItemVariant.create(item: item3, size: "large", colour: "blue")
+
+ItemVariant.create(item: item1, size: "extra_large", colour: "green")
+ItemVariant.create(item: item1, size: "extra_large", colour: "green")
+ItemVariant.create(item: item1, size: "small", colour: "red")
+ItemVariant.create(item: item1, size: "small", colour: "green")
+ItemVariant.create(item: item1, size: "small", colour: "blue")
+
+ItemVariant.create(item: item2, size: "extra_small", colour: "blue")
+ItemVariant.create(item: item2, size: "extra_small", colour: "red")
+ItemVariant.create(item: item2, size: "medium", colour: "black")
+ItemVariant.create(item: item2, size: "medium", colour: "brown")
+
+ItemVariant.create(item: item3, size: "large", colour: "blue")
+
+ItemVariant.create(item: item4, size: "extra_large", colour: "blue")
+ItemVariant.create(item: item4, size: "extra_large", colour: "red")
+ItemVariant.create(item: item4, size: "small", colour: "black")
+
+ItemVariant.create(item: item5, size: "large", colour: "blue")
+
+ItemVariant.create(item: item6, size: "large", colour: "blue")
+
+ItemVariant.create(item: item7, size: "large", colour: "blue")
+
+
+# item 5 has all variations of colour and size
+colours = ItemVariant.colours.keys
+sizes = ItemVariant.sizes.keys
+variant = sizes.product(colours)
+variant.each {|v| ItemVariant.create(item: item5, size: v[0], colour: v[1])}
+
+
+
+
+
+
+
+
+
+
+
+user1 = User.create(name: "RAD", email: "rad2021rmit@gmail.com", password: "Rails2021")
+user2 = User.create(name: "reuben", email: "r@e.com", password: "Rails2022")
+user3 = User.create(name: "jeff", email: "b@g.com", password: "Rails2023")
+
+BagItem.create(item_variant: variant1, user: user1, quantity: 3)
+BagItem.create(item_variant: variant2, user: user2, quantity: 15)
+BagItem.create(item_variant: variant3, user: user3, quantity: 2)
+# a copy with different quantity will still work, but only one variant
+BagItem.create(item_variant: variant2, user: user2, quantity: 200)
