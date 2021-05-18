@@ -3,6 +3,9 @@ class Item < ApplicationRecord
     has_many :tag_items, dependent: :destroy
     has_many :item_images, dependent: :destroy
     has_many :item_variants, dependent: :destroy
+    
+    scope :random, -> { Item.order(Arel.sql('RANDOM()')) }
+    scope :not_saved, -> (saved_list) { Item.where.not(id: saved_list) }
 
     
     # Popularity feature: the sum of appearances in saved list and shopping bag
