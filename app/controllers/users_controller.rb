@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
-
+  before_action :redirect_if_logged, only: %i[login signup prompt]
 
 
   def signup
@@ -24,9 +24,8 @@ class UsersController < ApplicationController
   
   
   
-  
-  
-  
+  def prompt
+  end
   
   def login
     @user = User.new
@@ -179,5 +178,8 @@ class UsersController < ApplicationController
     end
   end
   
+  def redirect_if_logged
+    redirect_to current_user if logged_in?
+  end
   
 end
