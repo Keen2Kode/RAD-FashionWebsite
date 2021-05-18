@@ -1,6 +1,6 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update subscription] 
+  before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
 
 
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   
   
   
-  
+  # form to send email
   def forgot_password
     @user = User.new
   end
@@ -127,7 +127,7 @@ class UsersController < ApplicationController
   end
   
   
-  
+  #form to reset password once you click email link
   def reset_password
     @user = User.find_by_signed_id(params[:token])
     redirect_to login_path, notice: "Your token expired, login again" unless @user
@@ -178,5 +178,6 @@ class UsersController < ApplicationController
       redirect_to current_user || prompt_path
     end
   end
+  
   
 end
