@@ -1,8 +1,8 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update subscription] 
+  before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
-
+  before_action :redirect_if_logged, only: %i[login signup prompt]
 
 
   def signup
@@ -24,25 +24,24 @@ class UsersController < ApplicationController
   
   
   
-  
-  
-  
+  def prompt
+  end
   
   def login
     @user = User.new
   end
   
   def logged
-    name = params[:user][:name]
+    email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(name: name)
+    user = User.find_by(email: email)
     
     if user && user.authenticate(password)
       # user helper method (accessible since included module in ApplicationController)
       log_in user
       redirect_to back_path
     else
-      @user = User.new(name: name, password: password)
+      @user = User.new(email: email, password: password)
       @user.login_errors
       render 'login'
     end
@@ -76,10 +75,6 @@ class UsersController < ApplicationController
   
   
   def show
-    unless @user and logged_in? @user
-      set_back_path user_path(@user)
-      redirect_to current_user || prompt_path
-    end
   end
   
   
@@ -95,11 +90,11 @@ class UsersController < ApplicationController
     
     if @user.visitor
       @user.visitor.destroy
-      render js: "alert('Your subscription has been revoked.')"
+      render js: "alert('Your subscription has been revoked. (See newsletter in root to verify)')"
     else
       new_visitor = Visitor.new(email: @user.email)
       new_visitor.save
-      render js: "alert('You are subscribed to R&J newsletter!')"
+      render js: "alert('You are subscribed to R&J newsletter! (See newsletter in root to verify)')"
     end
   end
   
@@ -111,7 +106,7 @@ class UsersController < ApplicationController
   
   
   
-  
+  # form to send email
   def forgot_password
     @user = User.new
   end
@@ -131,7 +126,7 @@ class UsersController < ApplicationController
   end
   
   
-  
+  #form to reset password once you click email link
   def reset_password
     @user = User.find_by_signed_id(params[:token])
     redirect_to login_path, notice: "Your token expired, login again" unless @user
@@ -169,7 +164,7 @@ class UsersController < ApplicationController
   end
   
   def login_params
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:email, :password)
   end
   
   def reset_password_params
@@ -177,9 +172,14 @@ class UsersController < ApplicationController
   end
   
   def redirect_to_correct_user
+    set_back_path @user ? user_path(@user) : request.path
     unless @user and logged_in? @user
       redirect_to current_user || prompt_path
     end
+  end
+  
+  def redirect_if_logged
+    redirect_to current_user if logged_in?
   end
   
 end

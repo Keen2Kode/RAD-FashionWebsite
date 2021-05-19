@@ -11,5 +11,11 @@ class CollectionsControllerTest < ActionDispatch::IntegrationTest
   #   get collection_url(@name)
   #   assert_response :success
   # end
+  
+  # filter that do not match any returns nothing (NO ERROR THROWN)
+  
+  # no filter passed in??
+  
+  # filters also by the collection on top of regular
 
 end

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :bag_items do
     delete :destroy_all, on: :collection
   end
+  resources :collections, only: [:show, :index] do 
+    get :filter, on: :member
+    get :search, on: :member
+  end
   
   get '/prompt'               => 'users#prompt'
   get  '/signup'              => 'users#signup'
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
     post :subscription, on: :member
   end
   
+  get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
 end

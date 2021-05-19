@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  include SavedHelper
   
   
   
@@ -7,11 +8,19 @@ class HomeController < ApplicationController
   
   
   def index
-    @random_item = Item.order(Arel.sql('RANDOM()')).first
+    @random_item = Item.random.not_saved(saved).first
     @popular_items = Item.all.sort_by(&:popularity).reverse
     @visitor = Visitor.new
     @collections = CollectionItem.collections
+    
   end
+  
+  
+  def search
+    @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
+  end
+  
+  
   
   def newsletter
     @visitor = Visitor.new(visitor_params)

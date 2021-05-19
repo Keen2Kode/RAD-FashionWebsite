@@ -10,11 +10,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> %>
-      <%= link_to root_path, method: "get", class:"navbar-brand" do %>
-      J&R Clothing
-      <% end %>
       
-      <%# Potential TODO: Buttons are selectable and stay selected%>
+      <span class="navbar-brand"><%= yield(:title) %></span>
+      
       <button type="button" class="navbar-brand btn pull-right">
         <%= link_to saved_index_path, method: "get" do %>
         <span class="glyphicon glyphicon-heart"></span>
@@ -25,20 +23,9 @@
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <% end %>
       </button>
-      <button type="button" class="navbar-brand btn pull-right">
-        <%= link_to root_path, method: "get" do %>
-        <span class="glyphicon glyphicon-search"></span>
-        <% end %>
-      </button>
+      
+      <%= render 'layouts/search_form' %>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right nav-sidebar">
-        <li>something1</li>
-        <li>something2</li>
-      </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
-    </div>
+    
   </div>
 </nav>
