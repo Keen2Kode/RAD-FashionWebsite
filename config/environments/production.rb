@@ -10,7 +10,7 @@ Rails.application.configure do
     :password => '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', # This is the secret sendgrid API key which was issued during API key creation
     :domain => 'tranquil-crag-04131.herokuapp.com',
     :address => 'smtp.sendgrid.net',
-    :port => 465,
+    :port => 567,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
