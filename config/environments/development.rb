@@ -1,5 +1,5 @@
 Rails.application.configure do
-  host = ENV.fetch('CLOUD9_URL', 'http://localhost:3000')
+  host = ENV.fetch("CLOUD9_URL") { "http://127.0.0.1:3000" }
   config.action_mailer.default_url_options = { host: host }
   
   # Settings specified here will take precedence over those in config/application.rb.
