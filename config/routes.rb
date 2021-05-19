@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
+
+  get '/auth/:provider/callback', to: 'users#create'
 end

@@ -4,8 +4,18 @@ one:
   name: MyString
   email: MyString
   password_digest: MyString
+  provider: MyString
+  uid: MyString
+  token: MyString
+  secret: MyString
+  profile_image: MyString
 
 two:
   name: MyString
   email: MyString
   password_digest: MyString
+  provider: MyString
+  uid: MyString
+  token: MyString
+  secret: MyString
+  profile_image: MyString
