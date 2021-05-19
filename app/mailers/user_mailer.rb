@@ -9,10 +9,14 @@ class UserMailer < ApplicationMailer
   
   def reset_password(request)
     @user = params[:user]
+    
+    puts Rails.env.production? ? "\n\n\n\n\nBALh\n\n\n\n\n" : "\n\n\n\n\nNOT IN PRODUCTION\n\n\n"
+    
     # so a hacker can't send to a different email, check your global id, and change it
-    @reset_token = @user.to_signed_global_id(purpose: "reset_password", expires_in: 30.minutes)
+    # alternative to storing an authentication key for the user (Tute ll)
+    token = @user.to_signed_global_id(purpose: "reset_password", expires_in: 30.minutes)
     # @url  = reset_password_url(token: @reset_token, host: request.host_with_port, protocol: 'https')
-    @url = reset_password_url(token: @reset_token)
+    @url = reset_password_url(token: token)
     mail to: @user.email
   end
   
