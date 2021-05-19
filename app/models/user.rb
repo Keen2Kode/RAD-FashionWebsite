@@ -7,7 +7,7 @@ class User < ApplicationRecord
                             length: {minimum: 8, maximum: 20},
                             format:  { with: /\A\w+\z/i}
     validates :email,       presence: true,
-                            format:  { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i},
+                            format:  { with: /\A[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+/i},
                             uniqueness: { case_sensitive: false }
     before_save { email.downcase! }
     # using bcrypt

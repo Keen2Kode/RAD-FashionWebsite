@@ -3,21 +3,13 @@
 one:
   name: MyString
   description: MyText
-  size: 1
-  colour: MyString
   image_link: MyText
   price: 1.5
-  purchases_count: 1
-  stock_count: 1
   arrival_date: 2021-04-22
 
 two:
   name: MyString
   description: MyText
-  size: 1
-  colour: MyString
   image_link: MyText
   price: 1.5
-  purchases_count: 1
-  stock_count: 1
   arrival_date: 2021-04-22
