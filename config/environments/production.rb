@@ -1,6 +1,19 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # details here wrong, need to change sendgrid api key and domain tranquil crag first
+  config.action_mailer.default_url_options = {host: 'https://tranquil-crag-04131.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => '<SENDGRID_API_KEY>', # This is the secret sendgrid API key which was issued during API key creation
+    :domain => 'https://tranquil-crag-04131.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
