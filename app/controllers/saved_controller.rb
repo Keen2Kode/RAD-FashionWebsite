@@ -1,6 +1,5 @@
 class SavedController < ApplicationController
   include SavedHelper
-  before_action :init_saved
   
   
   

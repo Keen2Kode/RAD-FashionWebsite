@@ -11,8 +11,8 @@ class UserMailer < ApplicationMailer
     @user = params[:user]
     # so a hacker can't send to a different email, check your global id, and change it
     @reset_token = @user.to_signed_global_id(purpose: "reset_password", expires_in: 30.minutes)
-    @url  = reset_password_url(token: @reset_token, host: request.host_with_port, protocol: 'https')
-    # @url = reset_password_url(token: @reset_token)
+    # @url  = reset_password_url(token: @reset_token, host: request.host_with_port, protocol: 'https')
+    @url = reset_password_url(token: @reset_token)
     mail to: @user.email
   end
   
