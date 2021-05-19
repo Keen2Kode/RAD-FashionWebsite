@@ -1,8 +1,8 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update subscription] 
+  before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
-
+  before_action :redirect_if_logged, only: %i[login signup prompt]
 
 
   def signup
@@ -24,9 +24,8 @@ class UsersController < ApplicationController
   
   
   
-  
-  
-  
+  def prompt
+  end
   
   def login
     @user = User.new
@@ -107,7 +106,7 @@ class UsersController < ApplicationController
   
   
   
-  
+  # form to send email
   def forgot_password
     @user = User.new
   end
@@ -117,7 +116,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: email)
     if @user
       # pass as params[:user] so UserMailer can send an email
-      @user.reset_password_mail
+      @user.reset_password_mail(request)
       redirect_to login_path, notice: "A link was sent to #{email} to reset your password"
     else 
       @user = User.new(email: email)
@@ -127,7 +126,7 @@ class UsersController < ApplicationController
   end
   
   
-  
+  #form to reset password once you click email link
   def reset_password
     @user = User.find_by_signed_id(params[:token])
     redirect_to login_path, notice: "Your token expired, login again" unless @user
@@ -188,6 +187,10 @@ class UsersController < ApplicationController
     unless @user and logged_in? @user
       redirect_to current_user || prompt_path
     end
+  end
+  
+  def redirect_if_logged
+    redirect_to current_user if logged_in?
   end
   
 end

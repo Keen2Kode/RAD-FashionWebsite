@@ -20,6 +20,7 @@ module SavedHelper
     private
     
     def set_saved(new_saved_list)
+        
         cookies[:saved_list] = JSON.generate(new_saved_list)
     end
 end
