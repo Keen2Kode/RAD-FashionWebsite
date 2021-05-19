@@ -16,6 +16,7 @@ gem 'jquery-rails', '~> 4.4.0'
 
 # For twitter login
 gem 'omniauth-twitter', '~> 1.4.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
