@@ -8,5 +8,6 @@
             <%= f.password_field :password, class: 'form-control' %>
             <%= f.submit params[:action].capitalize, class: "btn btn-primary" %>
         <% end %>
+        <%= button_to "Login with Twitter", "/auth/twitter", method: :post, class: "btn btn-primary" %>
     </div>
 </div>
