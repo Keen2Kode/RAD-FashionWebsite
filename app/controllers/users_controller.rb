@@ -116,7 +116,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: email)
     if @user
       # pass as params[:user] so UserMailer can send an email
-      @user.reset_password_mail
+      @user.reset_password_mail(request)
       redirect_to login_path, notice: "A link was sent to #{email} to reset your password"
     else 
       @user = User.new(email: email)

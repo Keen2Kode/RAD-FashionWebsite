@@ -45,8 +45,8 @@ class User < ApplicationRecord
     end
     
     
-    def reset_password_mail
-        UserMailer.with(user: self).reset_password.deliver_now
+    def reset_password_mail(request)
+        UserMailer.with(user: self).reset_password(request).deliver_now
     end
     
     def self.find_by_signed_id(token)
