@@ -51,6 +51,7 @@
 
   <div>
     <h2><%= @item.name %></h2>
+    <p><%= @tags.join(" | ") %></p>
     <p>$<%= @item.price %></p>
     <p><%= @item.description %></p>
 
@@ -62,6 +63,7 @@
         <%= form_with model: @bag_item, url: bag_items_path do |form| %>
           <div class="row">
             <div class="col-xs-4">
+              <%= form.label :size %>
               <%= form.select :size,  @item.variants_of(:size)  %>
             </div>
             <div class="col-xs-4">

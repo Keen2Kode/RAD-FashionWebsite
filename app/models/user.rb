@@ -45,11 +45,24 @@ class User < ApplicationRecord
     end
     
     
-    def reset_password_mail
-        UserMailer.with(user: self).reset_password.deliver_now
+    def reset_password_mail(request)
+        UserMailer.with(user: self).reset_password(request).deliver_now
     end
     
     def self.find_by_signed_id(token)
         GlobalID::Locator.locate_signed(token)
+    end
+
+    def self.find_or_create_from_auth_hash(auth_hash)
+        # this won't work because of validations on password and email above
+        # the Twitter will not be persisted on the users table
+        user = User.where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
+        user.update(
+            name: auth_hash.info.nickname,
+            profile_image: auth_hash.info.image,
+            token: auth_hash.credentials.token,
+            secret: auth_hash.credentials.secret
+        )
+        user
     end
 end

@@ -6,4 +6,10 @@ class SavedControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+
+# deleting an item from the controller also deletes from saved list
+
+# no random items left to save
+
+#check random items are not in saved list
 end

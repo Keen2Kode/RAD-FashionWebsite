@@ -1,12 +1,11 @@
 class SavedController < ApplicationController
   include SavedHelper
-  before_action :init_saved
   
   
   
   
   def index
-    @saved_list = saved.map{|id| Item.find(id)}
+    @items = saved.map{|id| Item.find_by(id: id)}
   end
   
   # PUT saved/1 

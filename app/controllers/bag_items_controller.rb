@@ -46,7 +46,6 @@ class BagItemsController < ApplicationController
     size = params[:bag_item][:size]
     item_id = params[:bag_item][:item_id]
     variant = ItemVariant.find_by(colour: colour, size: size, item_id: item_id)
-    
     session[:bag_item] = params.require(:bag_item).permit(:quantity).merge(item_variant: variant)
   end
   

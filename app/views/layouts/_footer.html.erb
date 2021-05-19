@@ -1,30 +1,33 @@
 <footer>
-    <%# Potential TODO frontend: Buttons are selectable and stay selected%>
-    
-        <%# TPODO database:link for scan, dry up link for user%>
-        
-    <button type="button" class="navbar-brand btn">
+  <div class="row">
+    <div class="col-xs-3 nopadding">
+      <button type="button" class="navbar-brand btn" style="width: 100%;">
         <%= link_to root_path do %>
-            <span class="glyphicon glyphicon-home"></span>
+        <span class="glyphicon glyphicon-home"></span>
         <% end %>
-    </button>        
-
-
-    <button type="button" class="navbar-brand btn">
+      </button>
+    </div>
+    <div class="col-xs-3 nopadding">
+      <button type="button" class="navbar-brand btn" style="width: 100%;">
         <%= link_to root_path do %>
-            <span class="glyphicon glyphicon-barcode"></span>
+        <span class="glyphicon glyphicon-barcode"></span>
         <% end %>
-    </button>
-    
-    <button type="button" class="navbar-brand btn">
+      </button>
+    </div>
+    <div class="col-xs-3 nopadding">
+      <button type="button" class="navbar-brand btn" style="width: 100%;">
         <%= link_to saved_index_path do %>
-            <span class="glyphicon glyphicon-heart"></span>
+        <span class="glyphicon glyphicon-heart"></span>
         <% end %>
-    </button>
-    
-    <button type="button" class="navbar-brand btn">
+      </button>
+    </div>
+    <div class="col-xs-3 nopadding">
+      <button type="button" class="navbar-brand btn" style="width: 100%;">
         <%= link_to(current_user || prompt_path) do %>
-            <span class="glyphicon glyphicon-user"></span>
+        <span class="glyphicon glyphicon-user"></span>
         <% end %>
-    </button>
+      </button>
+    </div>
+  </div>
+
 </footer>

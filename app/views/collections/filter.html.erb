@@ -1,8 +1,49 @@
 <%# The header window bit %>
 <h1>Filters</h1>
-<%= link_to "x", bag_items_path %>
+<%= link_to "x", collection_path(@collection) %>
 
-<% form_with model: @bag_item, url: bag_items_path do |f| %> 
-  <%= f.select :category, options_for_select(CollectionItem.categories.keys), multiple: true  %>
-  <%= f.submit "Filter" %>
+<%= form_with url: collection_path(@collection), 
+method: "get", local: true do |f| %> 
+  
+  <%# add jquery functionality for "all" checkbox, deselect/select other checkboxes %>
+  
+  <%# how do you preselect %>
+  
+  <h2 class="sub-header">Tags</h2>
+  <div class="field row">
+    <div class="col-xs-4">
+      <%= f.label :all%>
+      <%= f.check_box :all%>
+    </div>
+    <%= f.collection_check_boxes :tags, TagItem.tags, :first, :first do |b| %>
+      <div class="col-xs-4">
+        <%= b.label %>
+        <%= b.check_box %>
+      </div>
+    <% end %>
+  </div>
+  
+  <h2 class="sub-header">Colours</h2>
+  <div class="field row">
+    <%= f.collection_check_boxes :colours, ItemVariant.colours, :first, :first do |b| %>
+      <div class="col-xs-4">
+        <%= b.label %>
+        <%= b.check_box %>
+      </div>
+    <% end %>
+  </div>
+  
+  <h2 class="sub-header">Sizes</h2>
+  <div class="field row">
+    <%= f.collection_radio_buttons :size, ItemVariant.sizes, :first, :first do |b| %>
+      <div class="col-xs-4">
+        <%= b.label %>
+        <%= b.radio_button %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="row col-xs-3">
+    <%= f.submit "Filter", class: "btn btn-default" %>
+  </div>
 <% end %>
