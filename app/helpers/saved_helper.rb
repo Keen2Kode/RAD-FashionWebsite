@@ -1,6 +1,7 @@
 module SavedHelper
     
     def saved
+        cookies[:saved_list] ||= JSON.generate([])
         JSON.parse(cookies[:saved_list])
     end
     
@@ -12,9 +13,6 @@ module SavedHelper
         set_saved(saved - [item_id])
     end
     
-    def init_saved
-        cookies[:saved_list] ||= JSON.generate([])
-    end
     
     
     private
