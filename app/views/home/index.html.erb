@@ -1,6 +1,8 @@
 <% provide(:title, "HOME") %>
 
-<%= render "random" %>
+<%= link_to "Refresh Random", refresh_random_contents_path, :remote => true %>
+
+<div id="random_dynamic"><%= render "random" %></div>
 
 <h2 class="sub-header">Popular</h2>
 <%= link_to "See all", '#' %>

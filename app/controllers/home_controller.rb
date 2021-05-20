@@ -3,7 +3,15 @@ class HomeController < ApplicationController
   
   
   
-  
+  def refresh_random
+    puts "REFRESHING THE RANDOM PARTIAL PAGE..."
+    @random_item = Item.random.first
+
+    respond_to do |format|    
+      format.html           
+      format.js
+    end       
+  end
   
   
   def index

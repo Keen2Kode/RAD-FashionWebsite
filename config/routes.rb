@@ -38,4 +38,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/auth/:provider/callback', to: 'users#create'
+  get '/refresh_random', to: 'home#refresh_random', as: 'refresh_random_contents'
+
 end
