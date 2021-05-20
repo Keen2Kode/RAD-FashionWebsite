@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  category: 1
-  item: one
+# one:
+#   category: 1
+#   item: one
 
-two:
-  category: 1
-  item: two
+# two:
+#   category: 1
+#   item: two

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :bag_items do
     delete :destroy_all, on: :collection
+    get :rating, on: :collection
   end
   resources :collections, only: [:show, :index] do 
     get :filter, on: :member
@@ -33,4 +34,6 @@ Rails.application.routes.draw do
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   root 'home#index'
+
+  get '/auth/:provider/callback', to: 'users#create'
 end

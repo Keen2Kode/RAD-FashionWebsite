@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
-  before_action :redirect_if_logged, only: %i[login signup prompt]
+  before_action :redirect_if_logged, only: %i[login signup prompt forgot_password]
 
 
   def signup
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def logged
     email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(email: email)
+    user = User.find_by(email: email.downcase)
     
     if user && user.authenticate(password)
       # user helper method (accessible since included module in ApplicationController)
@@ -113,10 +113,10 @@ class UsersController < ApplicationController
   
   def forgot_password_create
     email = params[:user][:email]
-    @user = User.find_by(email: email)
+    @user = User.find_by(email: email.downcase)
     if @user
       # pass as params[:user] so UserMailer can send an email
-      @user.reset_password_mail
+      @user.reset_password_mail(request)
       redirect_to login_path, notice: "A link was sent to #{email} to reset your password"
     else 
       @user = User.new(email: email)
@@ -148,6 +148,17 @@ class UsersController < ApplicationController
   
   
   
+  def create
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    session[:user_id] = @user.id
+    redirect_to root_path
+  end
+  
+  protected
+  
+  def auth_hash
+    request.env['omniauth.auth']
+  end
   
   
   
@@ -179,7 +190,7 @@ class UsersController < ApplicationController
   end
   
   def redirect_if_logged
-    redirect_to current_user if logged_in?
+    redirect_to current_user, notice: "You're already logged in!" if logged_in?
   end
   
 end

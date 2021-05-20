@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 2021_05_16_211113) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.string "secret"
+    t.string "profile_image"
+    t.integer "checkouts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
