@@ -1,0 +1,26 @@
+<h1> Rate us! </h1>
+
+<div class="container">
+  <%= form_with url: bag_items_path, method: :get, local: true do |form| %>
+    <div class="row">
+      
+      <div class="col-xs-4">
+        <%= form.label :rating_poor %>
+        <%= form.radio_button :rating, "Poor" %>
+      </div>
+      
+      <div class="col-xs-4">
+        <%= form.label :rating_average %>
+        <%= form.radio_button :rating, "Average" %>
+      </div>
+      
+      <div class="col-xs-4">
+        <%= form.label :rating_great %>
+        <%= form.radio_button :rating, "Great" %>
+      </div>
+      
+      <%= form.submit "Rate" %>
+      
+    </div>
+  <% end %>
+</div>

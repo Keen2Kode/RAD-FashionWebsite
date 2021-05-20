@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_211113) do
     t.string "token"
     t.string "secret"
     t.string "profile_image"
+    t.integer "checkouts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

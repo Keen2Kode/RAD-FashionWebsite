@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def logged
     email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(email: email)
+    user = User.find_by(email: email.downcase)
     
     if user && user.authenticate(password)
       # user helper method (accessible since included module in ApplicationController)
@@ -113,7 +113,7 @@ class UsersController < ApplicationController
   
   def forgot_password_create
     email = params[:user][:email]
-    @user = User.find_by(email: email)
+    @user = User.find_by(email: email.downcase)
     if @user
       # pass as params[:user] so UserMailer can send an email
       @user.reset_password_mail(request)
