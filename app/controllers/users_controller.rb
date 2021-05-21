@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update subscription] 
   before_action :redirect_to_correct_user, only: %i[show edit]
-
+  before_action :redirect_if_logged, only: %i[login signup prompt forgot_password]
 
 
   def signup
@@ -24,9 +24,8 @@ class UsersController < ApplicationController
   
   
   
-  
-  
-  
+  def prompt
+  end
   
   def login
     @user = User.new
@@ -35,11 +34,12 @@ class UsersController < ApplicationController
   def logged
     email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(email: email)
+    @user = User.find_by(email: email.downcase)
     
-    if user && user.authenticate(password)
-      # user helper method (accessible since included module in ApplicationController)
-      log_in user
+    if @user && @user.authenticate(password)
+      # user/saved helper method (accessible since included module in ApplicationController)
+      log_in @user
+      # store_saved_list
       redirect_to back_path
     else
       @user = User.new(email: email, password: password)
@@ -93,8 +93,7 @@ class UsersController < ApplicationController
       @user.visitor.destroy
       render js: "alert('Your subscription has been revoked. (See newsletter in root to verify)')"
     else
-      new_visitor = Visitor.new(email: @user.email)
-      new_visitor.save
+      Visitor.create(email: @user.email)
       render js: "alert('You are subscribed to R&J newsletter! (See newsletter in root to verify)')"
     end
   end
@@ -114,10 +113,10 @@ class UsersController < ApplicationController
   
   def forgot_password_create
     email = params[:user][:email]
-    @user = User.find_by(email: email)
+    @user = User.find_by(email: email.downcase)
     if @user
       # pass as params[:user] so UserMailer can send an email
-      @user.reset_password_mail
+      @user.reset_password_mail(request)
       redirect_to login_path, notice: "A link was sent to #{email} to reset your password"
     else 
       @user = User.new(email: email)
@@ -152,6 +151,29 @@ class UsersController < ApplicationController
   
   
   
+  def create
+    @user = User.find_or_create_from_auth_hash(auth_hash)
+    session[:user_id] = @user.id
+    redirect_to root_path
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  protected
+  
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+  
+  
+  
   
   
   private
@@ -172,6 +194,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
   
+  
+  
+  
+  
+  
   def redirect_to_correct_user
     set_back_path @user ? user_path(@user) : request.path
     unless @user and logged_in? @user
@@ -179,5 +206,21 @@ class UsersController < ApplicationController
     end
   end
   
+  def redirect_if_logged
+    redirect_to current_user, notice: "You're already logged in!" if logged_in?
+  end
   
+  
+  
+  
+    # an unlogged user can add more saved items
+    # but NOT delete any until after they login
+    # because a different browser with an empty session/saved list
+    # removes the already logged saved list items
+  def store_saved_list
+    saved.each { |item_id| SavedItem.create(user: @user, item_id: item_id) }
+    item_ids = @user.saved_items.map(&:item_id)
+    cookies_set_saved item_ids
+  end
+
 end

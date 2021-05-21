@@ -1,15 +1,16 @@
 class UserMailer < ApplicationMailer
-
-
-  # # TODO: complete so host url works on other systems AND all environment
-  # def default_url_options
-  #   { host: "https://257e557ba36343949ed1801d78c2d064.vfs.cloud9.us-east-2.amazonaws.com" }
-  # end
   
-  def reset_password
+  def reset_password(request)
     @user = params[:user]
+    
     # so a hacker can't send to a different email, check your global id, and change it
-    @reset_token = @user.to_signed_global_id(purpose: "reset_password", expires_in: 30.minutes)
+    # alternative to storing an authentication key for the user (Tute ll)
+    token = @user.to_signed_global_id(purpose: "reset_password", expires_in: 30.minutes)
+    cloud9_url = reset_password_url(token: token)
+    heroku_url = reset_password_url(token: token, host: request.host_with_port, protocol: 'https')
+    
+    @url =  Rails.env.production? ? cloud9_url : heroku_url
     mail to: @user.email
   end
+  
 end

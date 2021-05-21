@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'sendgrid-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.5'
 # Use postgresql as the database for Active Record
@@ -13,6 +14,10 @@ gem 'puma', '~> 3.11'
 # For bootstrap
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails', '~> 4.4.0'
+
+# For twitter login
+gem 'omniauth-twitter', '~> 1.4.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

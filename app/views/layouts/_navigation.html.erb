@@ -14,18 +14,15 @@
       <span class="navbar-brand"><%= yield(:title) %></span>
       
       <button type="button" class="navbar-brand btn pull-right">
-        <%= link_to saved_index_path, method: "get" do %>
-        <span class="glyphicon glyphicon-heart"></span>
-        <% end %>
-      </button>
-      <button type="button" class="navbar-brand btn pull-right">
         <%= link_to bag_items_path, method: "get" do %>
         <span class="glyphicon glyphicon-shopping-cart"></span>
         <% end %>
       </button>
-      
-      <%= render 'layouts/search_form' %>
+      <button type="button" class="navbar-brand btn collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
     </div>
     
   </div>
 </nav>
+<%= render 'layouts/search_form' %>

@@ -1,5 +1,7 @@
 {
   "name": "RAD2021_s3707189_s3717497",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "heroku": "^7.54.0"
+  }
 }

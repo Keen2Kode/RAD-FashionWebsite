@@ -7,15 +7,16 @@ rails g controller collections index men women kids new_ins
 rails g model visitor email:string
 rails g model collection_item category:integer item:references
 rails g controller saved index
-rails g model user name:string email:string password_digest:string // needs bcrypt and put has_secure_password in user class
+rails g model user name:string email:string password_digest:string provider:string uid:string token:string secret:string profile_image:string checkouts:integer // needs bcrypt and put has_secure_password in user class
 rails g model tag_item tag:integer item:references
 rails g model item_image item:references image_link
 rails g mailer User reset_password
 rails g model item_variant colour:integer size:integer item:references
 rails g model bag_item quantity:integer item_variant:references user:references
+rails g model saved_item item:references user:references
 ```
 
-Can reset/drop tables now, with `rails db:migrate` `rails db:reset`. It also does the job of seeding data, and means migration files can be edited directly
+Can reset/drop tables now, with `rails db:drop db:create db:migrate` or `rails db:migrate:reset`. It also does the job of seeding data, and means migration files can be edited directly
 
 ## Commands to run
 ```
