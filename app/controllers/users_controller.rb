@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(password)
       # user/saved helper method (accessible since included module in ApplicationController)
       log_in @user
-      store_saved_list
+      # store_saved_list
       redirect_to back_path
     else
       @user = User.new(email: email, password: password)
@@ -220,7 +220,7 @@ class UsersController < ApplicationController
   def store_saved_list
     saved.each { |item_id| SavedItem.create(user: @user, item_id: item_id) }
     item_ids = @user.saved_items.map(&:item_id)
-    cookies_reset_saved item_ids
+    cookies_set_saved item_ids
   end
 
 end

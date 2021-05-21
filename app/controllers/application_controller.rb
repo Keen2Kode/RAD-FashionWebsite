@@ -3,4 +3,9 @@ class ApplicationController < ActionController::Base
     include UsersHelper
     include SavedHelper
     
+    
+    def saved
+        db_saved = current_user.saved_items.map(&:item_id) if logged_in?
+        logged_in? ? db_saved : cookies_saved
+    end
 end
