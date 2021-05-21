@@ -13,12 +13,12 @@ method: "get", local: true do |f| %>
   <div class="field row">
     <div class="col-xs-4">
       <%= f.label :all%>
-      <%= f.check_box :all%>
+      <%= f.check_box :all, checked: true%>
     </div>
     <%= f.collection_check_boxes :tags, TagItem.tags, :first, :first do |b| %>
       <div class="col-xs-4">
         <%= b.label %>
-        <%= b.check_box %>
+        <%= b.check_box(checked: true) %>
       </div>
     <% end %>
   </div>
@@ -28,7 +28,7 @@ method: "get", local: true do |f| %>
     <%= f.collection_check_boxes :colours, ItemVariant.colours, :first, :first do |b| %>
       <div class="col-xs-4">
         <%= b.label %>
-        <%= b.check_box %>
+        <%= b.check_box(checked: true) %>
       </div>
     <% end %>
   </div>
@@ -38,7 +38,7 @@ method: "get", local: true do |f| %>
     <%= f.collection_radio_buttons :size, ItemVariant.sizes, :first, :first do |b| %>
       <div class="col-xs-4">
         <%= b.label %>
-        <%= b.radio_button %>
+        <%= b.radio_button(checked: true) %>
       </div>
     <% end %>
   </div>

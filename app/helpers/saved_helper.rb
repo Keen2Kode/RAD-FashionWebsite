@@ -6,12 +6,10 @@ module SavedHelper
     end
     
     def cookies_add_saved(item_id)
-        puts "TO ADD #{cookies_saved + [item_id]} "
         cookies_set_saved(cookies_saved + [item_id])
     end
     
     def cookies_delete_saved(item_id)
-        puts "TO DEDLETE #{cookies_saved + [item_id]} "
         cookies_set_saved(cookies_saved - [item_id])
     end
     
