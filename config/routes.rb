@@ -37,5 +37,6 @@ Rails.application.routes.draw do
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   get 'popular'     => 'home#popular'
+  get 'help'        => 'home#help'
   root 'home#index'
 end
