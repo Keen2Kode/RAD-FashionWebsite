@@ -8,15 +8,19 @@ class HomeController < ApplicationController
   
   def index
     @random_item = Item.random.not_saved(saved).first
-    @popular_items = Item.all.sort_by(&:popularity).reverse
+    @popular_items = Item.popular.take 5
     @visitor = Visitor.new
     @collections = CollectionItem.collections
-    
+    @popular_page = true
   end
   
+  def popular
+    @items = Item.popular
+    @popular_page = true
+  end
   
   def search
-    @items = Item.where("name ILIKE ?", "%#{params[:query]}%")
+    @items = Item.where "name ILIKE ?", "%#{params[:query]}%"
   end
   
   

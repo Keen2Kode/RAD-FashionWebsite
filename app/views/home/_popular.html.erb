@@ -2,30 +2,7 @@
 <div class="container">
   <div class="row flex-row flex-nowrap">
     <% @popular_items.each do |item| %>
-      <div class="col-xs-6 smallpadding">
-        
-        <%# use minus icon if item already in saved items %>
-        <button type="button" class="btn btn-xs" style="position: absolute;">
-          <%= link_to saved_path(item), method: :put do %>
-            <span class="glyphicon glyphicon-plus"></span>  
-          <% end %>
-        </button>
-        
-        <%= link_to item do %>
-          <div class="well" style="background-image:url('<%= item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
-        <% end %>
-        
-        <div>
-          <%= link_to item do %>
-            <b><%= item.name %></b>
-          <% end %>
-          <br>
-          $<%= item.price %>
-          <br>
-          Popularity <%= item.popularity %>
-        </div>
-        
-      </div>
+      <%= render 'shared/item', item: item %>
     <% end %>
   </div>
 </div>
