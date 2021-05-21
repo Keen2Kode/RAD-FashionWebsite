@@ -1,13 +1,17 @@
 class User < ApplicationRecord
     has_many :bag_items
+    has_many :saved_items
     
+    # scope :by_uid, ->(uid) { where("BINARY uid = ?", uid) }
+    
+    attribute :checkouts, default: 0
     validates :name,        presence: true,
                             uniqueness: true
     validates :password,    presence: true, 
                             length: {minimum: 8, maximum: 20},
-                            format:  { with: /\A\w+\z/i}
+                            format:  { with: /\A[a-zA-Z0-9]+\z/i}
     validates :email,       presence: true,
-                            format:  { with: /\A[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+/i},
+                            format:  { with: /\A\w+@\w+\.\w+/i},
                             uniqueness: { case_sensitive: false }
     before_save { email.downcase! }
     # using bcrypt
@@ -21,7 +25,7 @@ class User < ApplicationRecord
     
     # generates login errors with a dummy user object
     def login_errors
-        user = User.find_by(email: email)
+        user = User.find_by(email: email.downcase)
         if not user
             errors.add(:email, "#{email} not found")
         elsif not user.authenticate(password)
@@ -30,7 +34,7 @@ class User < ApplicationRecord
     end
     
     def forgot_password_errors
-        user = User.find_by(email: email)
+        user = User.find_by(email: email.downcase)
         errors.add(:email, "#{email} not found") unless user
     end
     
@@ -41,7 +45,7 @@ class User < ApplicationRecord
     
     #subscribed to newsletter
     def visitor
-        Visitor.find_by(email: email)
+        Visitor.find_by(email: email.downcase)
     end
     
     

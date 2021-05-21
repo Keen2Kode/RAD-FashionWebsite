@@ -1,7 +1,6 @@
 class BagItemsController < ApplicationController
   before_action :persist_bag_item, only: [:create]
   before_action :pathing_and_create_bag_item, only: [:index, :create]
-  # after_action :refresh_bag_items, only: [:create, :destroy, :destroy_all]
   
   
   
@@ -28,6 +27,7 @@ class BagItemsController < ApplicationController
   def destroy_all
     @bag_items = BagItem.where(user_id: current_user)
     add_to_popularity(@bag_items)
+    current_user.increment!(:checkouts)
     @bag_items.destroy_all
     redirect_to bag_items_path
   end
@@ -35,10 +35,6 @@ class BagItemsController < ApplicationController
   
   private
   
-  # def refresh_bag_items
-  #   puts "CALLED REFREHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-  #   redirect_to bag_items_path
-  # end
   
   # if user is not logged in, the bag item params are saved until after login
   def persist_bag_item
@@ -76,8 +72,7 @@ class BagItemsController < ApplicationController
   # prevents spam of user constantly adding and removing the same item to "inflate" popularity
   def add_to_popularity(bag_items)
     bag_items.each do |bag_item|
-      bag_item.item.popularity += bag_item.quantity
-      bag_item.item.save
+      bag_item.item.increment!(:popularity, by = bag_item.quantity)
     end
   end
   
