@@ -4,13 +4,13 @@ class SavedController < ApplicationController
   
   
   def index
+    # application controller method
     @items = saved.map{|id| Item.find_by(id: id)}
   end
   
   # for saved items for each user
   def db_index
     @saved_items = SavedItem.all
-    @items = current_user.saved_items.map(&:item) if logged_in?
   end
   
   # PUT saved/1 
@@ -18,16 +18,8 @@ class SavedController < ApplicationController
   # when eg: you click on a popular item button (submitting a form)
   def update
     @item = Item.find(params[:id])
-    
-    if saved.include? @item.id
-      delete_saved
-      @item.popularity -= 1
-    else
-      add_saved
-      @item.popularity += 1
-    end
-    
-    @item.save
+    logged_in? ? update_db : update_cookies
+    saved.include?(@item.id) ? @item.decrement!(:popularity) : @item.increment!(:popularity)
   end
   
   
@@ -40,14 +32,16 @@ class SavedController < ApplicationController
   
   
   private
-  
-  def delete_saved
-    cookies_delete_saved @item.id
-    SavedItem.find_by(item: @item, user: current_user).delete if logged_in?
+  def update_db
+    if saved.include? @item.id
+      SavedItem.find_by(item: @item, user: current_user).delete
+    else
+      SavedItem.create(item: @item, user: current_user)
+    end
   end
   
-  def add_saved
-    cookies_add_saved @item.id
-    SavedItem.create(item: @item, user: current_user) if logged_in?
+  def update_cookies
+    saved.include?(@item.id) ? cookies_delete_saved(@item.id) : cookies_add_saved(@item.id)
   end
+  
 end
