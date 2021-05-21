@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resources :collections, only: [:show, :index]
   
-  resources :saved, only: [:index, :update]
+  resources :saved, only: [:index, :update] do
+    get :db_index, on: :collection
+  end
     
   resources :items do
     get :filter, on: :member

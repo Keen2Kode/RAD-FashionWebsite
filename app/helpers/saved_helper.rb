@@ -5,20 +5,23 @@ module SavedHelper
         JSON.parse(cookies[:saved_list])
     end
     
-    def add_saved(item_id)
+    def cookies_add_saved(item_id)
         set_saved(saved + [item_id])
     end
     
-    def delete_saved(item_id)
+    def cookies_delete_saved(item_id)
         set_saved(saved - [item_id])
     end
     
+    
+    def cookies_reset_saved(item_ids)
+        set_saved(item_ids)
+    end
     
     
     private
     
     def set_saved(new_saved_list)
-        
         cookies[:saved_list] = JSON.generate(new_saved_list)
     end
 end

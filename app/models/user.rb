@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :bag_items
+    has_many :saved_items
     
     # scope :by_uid, ->(uid) { where("BINARY uid = ?", uid) }
     
@@ -8,9 +9,9 @@ class User < ApplicationRecord
                             uniqueness: true
     validates :password,    presence: true, 
                             length: {minimum: 8, maximum: 20},
-                            format:  { with: /\A\w+\z/i}
+                            format:  { with: /\A[a-zA-Z0-9]+\z/i}
     validates :email,       presence: true,
-                            format:  { with: /\A[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+/i},
+                            format:  { with: /\A\w+@\w+\.\w+/i},
                             uniqueness: { case_sensitive: false }
     before_save { email.downcase! }
     # using bcrypt
