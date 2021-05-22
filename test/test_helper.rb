@@ -22,5 +22,6 @@ class ActiveSupport::TestCase
     # only becomes available after a user logs in and activates the session
     !session[:user_id].nil?
   end
-  # Add more helper methods to be used by all tests here...
+  
+  
 end
