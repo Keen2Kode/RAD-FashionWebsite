@@ -6,11 +6,11 @@
     <div style="background-image:url('<%= @random_item.image_link %>'); background-repeat: no-repeat; background-size: cover; background-position: center; height: 300px">
       
       <%# use minus if item already in saved items %>
+      <%= link_to saved_path(@random_item), method: :put, :remote => true do %>
       <button type="button" class="btn btn-xs">
-        <%= link_to saved_path(@random_item), method: :put do %>
         <span class="glyphicon glyphicon-plus"></span>
-        <% end %>
       </button>
+      <% end %>
       
       <%= link_to @random_item do %>
         <div style="width: 270px; position: absolute; top: 185px; background-color: rgba(255, 255, 255, 0.5);">

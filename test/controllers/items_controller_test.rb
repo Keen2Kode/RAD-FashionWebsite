@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionDispatch::IntegrationTest
-  setup do
+  def setup
     @item = items(:one)
   end
 
@@ -14,35 +14,48 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     get new_item_url
     assert_response :success
   end
+  
+  test "should get edit" do
+    get edit_item_url @item
+    assert_response :success
+  end
+  
+  
+  
+  
+  
 
   test "should create item" do
     assert_difference('Item.count') do
-      post items_url, params: { item: { arrival_date: @item.arrival_date, colour: @item.colour, description: @item.description, image_link: @item.image_link, name: @item.name, price: @item.price, purchases_count: @item.purchases_count, size: @item.size, stock_count: @item.stock_count } }
+      post items_url, params: 
+      { 
+        item: 
+        { 
+          # @item already saved to db by fixture, so needs a unique name
+          arrival_date: @item.arrival_date,
+          description: @item.description, 
+          image_link: @item.image_link, 
+          name: "Different item name", 
+          price: @item.price
+        } 
+      }
     end
 
     assert_redirected_to item_url(Item.last)
   end
 
-  test "should show item" do
-    get item_url(@item)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_item_url(@item)
-    assert_response :success
-  end
-
   test "should update item" do
-    patch item_url(@item), params: { item: { arrival_date: @item.arrival_date, colour: @item.colour, description: @item.description, image_link: @item.image_link, name: @item.name, price: @item.price, purchases_count: @item.purchases_count, size: @item.size, stock_count: @item.stock_count } }
+    patch item_url(@item), params: 
+    { 
+      item: 
+      { 
+        arrival_date: Date.new(2020,10,10),
+        description: "New description", 
+        image_link: "link", 
+        name: "blah", 
+        price: 10.5
+      } 
+    }
     assert_redirected_to item_url(@item)
   end
-
-  # test "should destroy item" do
-  #   assert_difference('Item.count', -1) do
-  #     delete item_url(@item)
-  #   end
-
-  #   assert_redirected_to items_url
-  # end
 end

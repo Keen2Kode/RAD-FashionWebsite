@@ -41,7 +41,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "good emails pass" do
     valid_emails = %w[joe@apple.com TEST@EXP.ORG 
-    donz2020@136.co ]
+    donz2020@136.co joe_s@a-School.net]
     valid_emails.each do |email|
       @user.email = email
       assert @user.valid?, "#{email.inspect} should be valid"
@@ -49,7 +49,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "bad emails rejected" do
-    invalid_emails = %w[joe_s@a-School.net joe@apple,com TEST@@EXP.ORG shop.biz don+z@13+6.co bla@blacom]
+    invalid_emails = %w[joe@apple,com TEST@@EXP.ORG shop.biz don+z@13+6.co bla@blacom]
     invalid_emails.each do | email |
       @user.email = email
       assert_not @user.valid?, "#{email.inspect} should be invalid"
