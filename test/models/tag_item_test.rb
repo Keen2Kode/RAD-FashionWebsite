@@ -16,6 +16,11 @@ class TagItemTest < ActiveSupport::TestCase
     assert_not @tag_item.valid?
   end
   
+  # so testing calls valid enums
+  test "atleast 3 tag choices" do
+    assert TagItem.tags.size >= 3, "populate the TagItem.tag enum with 3 tags"
+  end
+  
   
   
   
@@ -50,8 +55,8 @@ class TagItemTest < ActiveSupport::TestCase
     @tag_item.item = items(:one)
     clone.item = items(:two)
     
+    @tag_item.save
     assert clone.valid?
-    assert @tag_item.valid?
   end
   
   test "tag_items with of the same item can have multiple tags" do
@@ -59,7 +64,7 @@ class TagItemTest < ActiveSupport::TestCase
     @tag_item.tag = 1
     clone.tag = 2
     
+    @tag_item.save
     assert clone.valid?
-    assert @tag_item.valid?
   end
 end

@@ -10,7 +10,7 @@ class ItemVariant < ApplicationRecord
     
     def no_matching_variant
         if item.item_variants.find_by(item_id: item.id, colour: colour, size: size)
-            errors.add(:size, "Variant already exists")
+            errors.add(:size, " #{size} Variant already exists")
         end
     end
 
