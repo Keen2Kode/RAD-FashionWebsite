@@ -29,7 +29,14 @@ class BagItemsController < ApplicationController
     add_to_popularity(@bag_items)
     current_user.increment!(:checkouts)
     @bag_items.destroy_all
-    redirect_to bag_items_path
+
+    if current_user.checkouts == 1
+      respond_to do |format|
+        format.js { render 'bag_items/first_checkout_modal.js.erb' }
+      end
+    else
+      redirect_to bag_items_path
+    end
   end
   
   
