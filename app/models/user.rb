@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :bag_items
+    has_many :saved_items
     
     # scope :by_uid, ->(uid) { where("BINARY uid = ?", uid) }
     
@@ -8,8 +9,9 @@ class User < ApplicationRecord
                             uniqueness: true
     validates :password,    presence: true, 
                             length: {minimum: 8, maximum: 20},
-                            format:  { with: /\A\w+\z/i}
+                            format:  { with: /\A[a-zA-Z0-9]+\z/}
     validates :email,       presence: true,
+                            # based on tute 7, unsure with what <> stands for so I reused it here
                             format:  { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i},
                             uniqueness: { case_sensitive: false }
     before_save { email.downcase! }
@@ -68,4 +70,9 @@ class User < ApplicationRecord
         )
         user
     end
+    
+     def self.digest(string) 
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost 
+        BCrypt::Password.create(string, cost: cost) 
+     end
 end

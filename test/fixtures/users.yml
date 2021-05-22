@@ -1,21 +1,31 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   name: MyString
+#   email: MyString
+#   password_digest: MyString
+#   provider: MyString
+#   uid: MyString
+#   token: MyString
+#   secret: MyString
+#   profile_image: MyString
+#   checkouts: 0
+
+# two:
+#   name: MyString
+#   email: MyString
+#   password_digest: MyString
+#   provider: MyString
+#   uid: MyString
+#   token: MyString
+#   secret: MyString
+#   profile_image: MyString
+#   checkouts:0 
 
 one:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  provider: MyString
-  uid: MyString
-  token: MyString
-  secret: MyString
-  profile_image: MyString
-
+    name: bill
+    email: bill@test.com
+    password_digest: <%= User.digest('billisAWesome') %>
 two:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  provider: MyString
-  uid: MyString
-  token: MyString
-  secret: MyString
-  profile_image: MyString
+    name: mary
+    email: mary@rad2021.org
+    password_digest: <%= User.digest('maryIsAwsoem') %>

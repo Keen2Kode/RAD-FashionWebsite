@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(name: "RAD", email: "rad2021rmit@gmail.com",
-    #8-20 non special (\w) characters
+    #8-20 ALPHA NUMERIC characters (discussions page 2)
     password: "Rails2021", password_confirmation: "Rails2021")
   end
   
@@ -40,8 +40,8 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "good emails pass" do
-    valid_emails = %w[joe@apple.com TEST@EXP.ORG joe_s@a-School.net 
-    alex.smith@topshop.biz don+z@136.co]
+    valid_emails = %w[joe@apple.com TEST@EXP.ORG 
+    donz2020@136.co joe_s@a-School.net]
     valid_emails.each do |email|
       @user.email = email
       assert @user.valid?, "#{email.inspect} should be valid"
@@ -49,8 +49,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "bad emails rejected" do
-    invalid_emails = %w[joe@apple,com TEST@@EXP.ORG joe_s@a_School.net
-    alex.smith@top shop.biz don+z@13+6.co]
+    invalid_emails = %w[joe@apple,com TEST@@EXP.ORG shop.biz don+z@13+6.co bla@blacom]
     invalid_emails.each do | email |
       @user.email = email
       assert_not @user.valid?, "#{email.inspect} should be invalid"
@@ -101,6 +100,7 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "#" * 19
     assert_not @user.valid?
   end
+  
   
   
 end

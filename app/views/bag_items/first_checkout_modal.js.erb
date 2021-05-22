@@ -1,0 +1,5 @@
+$("#first_checkout_modal_content").html("<%= j render 'bag_items/first_checkout_modal' %>");
+$("#myModal").modal('show');
+$("#myModal").on("hidden.bs.modal", function () {
+    window.location = "<%= j bag_items_path %>";
+});

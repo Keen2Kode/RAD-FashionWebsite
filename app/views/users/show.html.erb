@@ -2,20 +2,30 @@
 
 <h1>
     <%= gravatar_for @user %>
+    <%= @user.name %>
 </h1>
 
-<div>
-    <%= link_to 'Pending orders', bag_items_path %>
-</div>
+<hr>
 
-<div>
-    <%= link_to 'Update login details', edit_user_path(@user) %>
-</div>
+<h4>
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <%= link_to 'Pending Orders', bag_items_path %>
+</h4>
+<br>
 
-<%= form_with url: subscription_user_path(@user) do |f| %>
-    <%= f.submit "Subscription", class: "actions" %>
-<% end %>
+<h4>
+    <span class="glyphicon glyphicon-user"></span>
+    <%= link_to 'Update Login Details', edit_user_path(@user) %>
+</h4>
+<br>
 
-<div>
-    <%= link_to 'Log out', logout_path, method: :delete %>
-</div>
+<h4>
+    <span class="glyphicon glyphicon-send"></span>
+    <%= link_to "Subscribe/Unsubscribe", subscription_user_path(@user), method: :post, remote: true %>
+</h4>
+<br>
+
+<h4>
+    <span class="glyphicon glyphicon-log-out"></span>
+    <%= link_to 'Log Out', logout_path, method: :delete %>
+</h4>

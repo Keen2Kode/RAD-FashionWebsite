@@ -34,11 +34,12 @@ class UsersController < ApplicationController
   def logged
     email = params[:user][:email]
     password = params[:user][:password]
-    user = User.find_by(email: email.downcase)
+    @user = User.find_by(email: email.downcase)
     
-    if user && user.authenticate(password)
-      # user helper method (accessible since included module in ApplicationController)
-      log_in user
+    if @user && @user.authenticate(password)
+      # user/saved helper method (accessible since included module in ApplicationController)
+      store_saved_list
+      log_in @user
       redirect_to back_path
     else
       @user = User.new(email: email, password: password)
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
   end
   
   def logout
+    sync_cookies_saved
     log_out current_user
     redirect_to root_path
   end
@@ -92,8 +94,7 @@ class UsersController < ApplicationController
       @user.visitor.destroy
       render js: "alert('Your subscription has been revoked. (See newsletter in root to verify)')"
     else
-      new_visitor = Visitor.new(email: @user.email)
-      new_visitor.save
+      Visitor.create(email: @user.email)
       render js: "alert('You are subscribed to R&J newsletter! (See newsletter in root to verify)')"
     end
   end
@@ -148,11 +149,23 @@ class UsersController < ApplicationController
   
   
   
+  
+  
+  
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     session[:user_id] = @user.id
     redirect_to root_path
   end
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   protected
   
@@ -182,6 +195,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
   
+  
+  
+  
+  
+  
   def redirect_to_correct_user
     set_back_path @user ? user_path(@user) : request.path
     unless @user and logged_in? @user
@@ -193,4 +211,20 @@ class UsersController < ApplicationController
     redirect_to current_user, notice: "You're already logged in!" if logged_in?
   end
   
+  
+  
+  
+    # an unlogged user can add more saved items
+    # the cookies saved list remains unmodified ()
+  def store_saved_list
+    cookies_saved.each do |item_id| 
+      SavedItem.create(user: @user, item_id: item_id)
+    end
+  end
+  
+  def sync_cookies_saved
+    item_ids = current_user.saved_items.map(&:item_id)
+    cookies_set_saved item_ids
+  end
+
 end

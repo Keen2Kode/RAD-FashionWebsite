@@ -6,6 +6,7 @@ class Item < ApplicationRecord
     
     scope :random, -> { Item.order(Arel.sql('RANDOM()')) }
     scope :not_saved, -> (saved_list) { Item.where.not(id: saved_list) }
+    scope :popular, -> { Item.all.sort_by(&:popularity).reverse }
 
     
     # Popularity feature: the sum of appearances in saved list and shopping bag
@@ -16,6 +17,8 @@ class Item < ApplicationRecord
     validates :popularity,      presence: true, 
                                 numericality: {greater_than_or_equal_to: 0}
     validates :description,     length: {maximum: 140}
+    validates :price,           presence: true,
+                                numericality: {greater_than_or_equal_to: 0}
     validates :arrival_date,    presence: true
     validate :arrival_date_cannot_be_in_the_future
     
