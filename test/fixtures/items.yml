@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  image_link: MyText
-  price: 1.5
+  name: "Kids Lined Hoodie"
+  description: "Jack & Milly Issac Organic Sherpa Lined Hoodie"
+  image_link: "https://rmit-rad.s3-ap-southeast-2.amazonaws.com/kids-jack-milly-issac-organic-sherpa-lined-hodie.jpeg"
+  price: 34.95
+  popularity: 4
   arrival_date: 2021-04-22
 
 two:
