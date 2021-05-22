@@ -1,7 +1,11 @@
 <div class="col-xs-6 smallpadding">
     <%= link_to saved_path(item), method: :put, :remote => true do %>
     <button type="button" class="btn btn-xs" style="position: absolute;">
+        <% if saved.include? item.id %>
+        <span class="glyphicon glyphicon-minus"></span>
+        <% else %>
         <span class="glyphicon glyphicon-plus"></span>
+        <% end %>
     </button>
     <% end %>
     
