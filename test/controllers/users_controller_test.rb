@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  
+  include SavedHelper
   def setup
     @user = users(:one)
     @user_2 = users(:two)
@@ -57,7 +57,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   
   test "valid signup" do
     get signup_path
-    assert_not is_logged_in?
     
     assert_difference 'User.count', 1 do
       post signup_path, 
@@ -76,4 +75,28 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
   end
 
+
+
+
+
+
+  # feature multiple browsers
+  test "logging in adds saved list cookies to database" do
+    cookies_add_saved(items(:one).id)
+    cookies_add_saved(items(:two).id)
+    
+    assert_difference 'SavedItem.count', 2 do
+      log_in_as @user, @user_password
+    end
+  end
+  
+  test "logging out syncs the saved list cookies with the database" do
+    log_in_as @user, @user_password
+    SavedItem.create(user: @user, item: items(:one))
+    SavedItem.create(user: @user, item: items(:two))
+    
+    assert_difference 'cookies_saved.size', 2 do
+      delete logout_url
+    end
+  end
 end

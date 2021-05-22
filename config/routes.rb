@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :collections, only: [:show, :index]
   
   resources :saved, only: [:index, :update] do
-    get :db_index, on: :collection
+    get :db, on: :collection
   end
     
   resources :items do

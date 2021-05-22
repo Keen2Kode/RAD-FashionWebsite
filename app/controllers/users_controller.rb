@@ -38,8 +38,8 @@ class UsersController < ApplicationController
     
     if @user && @user.authenticate(password)
       # user/saved helper method (accessible since included module in ApplicationController)
+      store_saved_list
       log_in @user
-      # store_saved_list
       redirect_to back_path
     else
       @user = User.new(email: email, password: password)
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   end
   
   def logout
+    sync_cookies_saved
     log_out current_user
     redirect_to root_path
   end
@@ -214,12 +215,15 @@ class UsersController < ApplicationController
   
   
     # an unlogged user can add more saved items
-    # but NOT delete any until after they login
-    # because a different browser with an empty session/saved list
-    # removes the already logged saved list items
+    # the cookies saved list remains unmodified ()
   def store_saved_list
-    saved.each { |item_id| SavedItem.create(user: @user, item_id: item_id) }
-    item_ids = @user.saved_items.map(&:item_id)
+    cookies_saved.each do |item_id| 
+      SavedItem.create(user: @user, item_id: item_id)
+    end
+  end
+  
+  def sync_cookies_saved
+    item_ids = current_user.saved_items.map(&:item_id)
     cookies_set_saved item_ids
   end
 
