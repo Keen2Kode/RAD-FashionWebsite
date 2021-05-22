@@ -26,7 +26,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   
 
   test "should create item" do
-    assert_difference('Item.count') do
+    assert_difference 'Item.count' do
       post items_url, params: 
       { 
         item: 

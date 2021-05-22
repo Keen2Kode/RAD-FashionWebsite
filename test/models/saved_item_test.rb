@@ -39,5 +39,6 @@ class SavedItemTest < ActiveSupport::TestCase
   end
   
   # can't test deletion, apparently this requires postgresql setting modification
+  # https://guides.rubyonrails.org/testing.html#fixtures-in-action
   # so it may not be consistent across environments
 end
