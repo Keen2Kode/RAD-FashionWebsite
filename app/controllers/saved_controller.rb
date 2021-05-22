@@ -33,7 +33,7 @@ class SavedController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      format.js { render 'refresh_dynamic_partial.js.erb' }
     end
   end
   
