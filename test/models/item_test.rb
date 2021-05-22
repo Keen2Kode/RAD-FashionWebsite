@@ -67,7 +67,7 @@ class ItemTest < ActiveSupport::TestCase
   
   test "scope popular has most popular item first" do
     max_popularity = Item.all.map(&:popularity).max
-    @item.popularity = max_popularity
+    @item.popularity = max_popularity+1
     @item.save
     assert_equal @item, Item.popular.first
   end

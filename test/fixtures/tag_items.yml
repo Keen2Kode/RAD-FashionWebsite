@@ -1,9 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   tag: 1
-#   item: one
+# tag item with single tag, easy to manipulate for tests
+one:
+  tag: "shirts"
+  item: one
 
-# two:
-#   tag: 1
-#   item: two
+two:
+  tag: "jackets"
+  item: two
+
+three:
+  tag: "dresses"
+  item: two
+
+four:
+  tag: "dresses"
+  item: three
