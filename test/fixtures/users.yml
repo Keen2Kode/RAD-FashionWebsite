@@ -20,3 +20,12 @@
 #   secret: MyString
 #   profile_image: MyString
 #   checkouts:0 
+
+one:
+    name: bill
+    email: bill@test.com
+    password_digest: <%= User.digest('billisAWesome') %>
+two:
+    name: mary
+    email: mary@rad2021.org
+    password_digest: <%= User.digest('maryIsAwsoem') %>
