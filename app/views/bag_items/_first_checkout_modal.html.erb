@@ -1,0 +1,36 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center" id="myModalLabel">rate us</h4>
+      </div>
+      <div class="modal-body">
+
+        <h3>Rate your experience with this app..</h3>
+        <br>
+
+        <label class="btn btn-danger">
+          <input type="radio" name="options" id="option1"> <strong>1</strong>
+        </label>
+        <label class="btn btn-warning">
+          <input type="radio" name="options" id="option2"> <strong>2</strong>
+        </label>
+        <label class="btn btn-info">
+          <input type="radio" name="options" id="option3"> <strong>3</strong>
+        </label>
+        <label class="btn btn-primary">
+          <input type="radio" name="options" id="option4"> <strong>4</strong>
+        </label>
+        <label class="btn btn-success">
+          <input type="radio" name="options" id="option5" checked> <strong>5</strong>
+        </label>
+
+      </div>
+      <div class="modal-footer">
+        <%= link_to bag_items_path do %>
+        <button type="button" class="btn btn-primary">Submit</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
