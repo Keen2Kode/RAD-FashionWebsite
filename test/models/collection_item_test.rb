@@ -2,38 +2,18 @@ require 'test_helper'
 
 class CollectionItemTest < ActiveSupport::TestCase
   def setup
-    @category = CollectionItem.new(item_id: 10, category: 2)
+    @collection_item = collection_items(:one)
   end
   
-  # test "should be valid" do
-  #   assert @category.valid?
-  # end
+  test "collection should be present" do
+    @collection_item.category = nil
+    assert_not @collection_item.valid?, @collection_item.errors.full_messages.to_sentence
+  end
   
-  # test "name should be present" do
-  #   @customer.username = " "
-  #   # need to add validation in Customer/model like "validates :username, presence: true"
-  #   # to avoid "  "for this test to work
-  #   assert_not @customer.valid?
-  # end
-  
-  # test "email should be present" do
-  #   @customer.email = " "
-  #   assert_not @customer.valid?
-  # end
-  
-  
-  
-  
-  
-  # test "username should not be too long" do
-  #   @customer.username = "x" * 26
-  #   assert_not @customer.valid?
-  # end
- 
-  # test "email should not be too long" do
-  #   @customer.email = "x" * 100 + "@example.com"
-  #   assert_not @customer.valid?
-  # end
+  test "item should be present" do
+    @collection_item.item = nil
+    assert_not @collection_item.valid?, @collection_item.errors.full_messages.to_sentence
+  end
   
   
   
@@ -41,46 +21,69 @@ class CollectionItemTest < ActiveSupport::TestCase
   
   
   
-  # test "good emails should pass" do
-  #   # A list of valid emails
-  #   valid_emails = %w[joe@apple.com TEST@EXP.ORG joe_s@a-School.net alex.smith@topshop.biz don+z@136.co]
-  #   valid_emails.each do |email|
-  #     @customer.email = email
-  #     assert @customer.valid?, "#{email.inspect} should be valid"
-  #   end
-  # end
- 
- 
-  # test "bad emails should be rejected" do
-  #   invalid_emails =["joe@apple,com TEST@@EXP.ORG", "joe_s@a_School.net", "alex.smith@top", "shop.biz don+z@13+6.co"]
-  #   invalid_emails.each do | email |
-  #     @customer.email = email
-  #     assert_not @customer.valid?, "#{email.inspect} should be invalid"
-  #   end
-  # end
+  test "should have exactly 3 category choices" do
+    assert_equal 3, CollectionItem.categories.size, "populate the category enum with 3 categories: men, women, kids"
+  end
+  
+  test "should have 'men' category" do
+    assert_includes CollectionItem.categories.keys, 'men'
+  end
+  
+  test "should have 'women' category" do
+    assert_includes CollectionItem.categories.keys, 'women'
+  end
+
+  test "should have 'kids' category" do
+    assert_includes CollectionItem.categories.keys, 'kids'
+  end
+  
+  test "collections array should have 'new_ins'" do
+    assert_includes CollectionItem.collections, CollectionItem.new_ins
+  end
   
   
   
   
   
   
+  test "non-existent category value should raise error" do
+    assert_raise(ArgumentError) do
+      @collection_item.category = CollectionItem.categories.size + 1
+    end
+  end
   
+    
+  test "non-existent category key should raise error" do
+    assert_raise(ArgumentError) do
+      @collection_item.category = "Non existent category key"
+    end
+  end
+
+
+
+
+
+
+  test "same category and items should not be valid" do
+    assert_not @collection_item.dup.valid?
+  end
   
-  # test "emails should be unique" do
-  #   clone = @customer.dup
-  #   clone.email = @customer.email
-  #   @customer.save
-  #   assert_not clone.valid?
-  # end
+  test "same category but different items should be valid" do
+    clone = @collection_item.dup
+    @collection_item.item = items(:one)
+    clone.item = items(:two)
+    
+    @collection_item.save
+    assert clone.valid?
+  end
   
+  test "same item can have multiple collections" do
+    clone = @collection_item.dup
+    @collection_item.category = 1
+    clone.category = 2
+    
+    @collection_item.save
+    assert clone.valid?
+  end
   
-  
-  
-  
-  # test "email addresses should be saved as lower-case" do
-  #   mixed_case_email = "Joe@RAd.oRg.AU"
-  #   @customer.email = mixed_case_email
-  #   @customer.save
-  #   assert_equal mixed_case_email.downcase, @customer.reload.email
-  # end
 end
