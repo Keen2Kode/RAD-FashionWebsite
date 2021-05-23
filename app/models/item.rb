@@ -45,10 +45,6 @@ class Item < ApplicationRecord
         arrival_date > Date.today - 3.months
     end
     
-    def variants_of(attribute)
-        item_variants.map(&attribute).uniq
-    end
-
     def variants_for(attribute, from_size = nil, from_colour = nil)
         output = nil
         if from_size == nil && from_colour == nil
