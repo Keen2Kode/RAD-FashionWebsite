@@ -67,89 +67,56 @@ function hasScrolled() {
 $(document).ready(function () {
     $("select#bag_item_size").change(function(){
         var selected_size = $(this).val();
+        var selected_colour = $("select#bag_item_colour").val();
         var item_id = $("#bag_item_item_id").val()
-        // alert("hello " + selected_size + "..." + $("#bag_item_item_id").val() + "..." + $("select#bag_item_colour").val() + " ...");
-        if (selected_size == '') {
-            // alert('Please choose a size')
-            $.ajax({
-                url: "/items/" + item_id + "/get_sizes",
-                method: "GET",  
-                dataType: "json",
-                data: {},
-                error: function (xhr, status, error) {
-                    console.error('AJAX Error: ' + status + error);
-                },
-                success: function (response) {
-                    $("select#bag_item_size").empty();
-                    $("select#bag_item_size").append('<option value="">See options</option>');
-                    for(var i = 0; i < response.length; i++){
-                        $("select#bag_item_size").append('<option value="' + response[i] + '">' +response[i] + '</option>');
-                    }
+
+        $.ajax({
+            url: "/items/" + item_id + "/get_colours",
+            method: "GET",  
+            dataType: "json",
+            data: { 
+                size: selected_size
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ' + status + error);
+            },
+            success: function (response) {
+                if (response.includes(selected_colour)) {
+                    $("#add-to-bag-submit").prop('disabled', false);
+                    $("#available-colour-size-combination").empty();
+                } else {
+                    $("#add-to-bag-submit").prop('disabled', true);
+                    $("#available-colour-size-combination").text('Sorry, for '+selected_size+', only '+response+' are available');
                 }
-            });
-        } else {
-            $.ajax({
-                url: "/items/" + item_id + "/get_colours",
-                method: "GET",  
-                dataType: "json",
-                data: { 
-                    size: selected_size
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX Error: ' + status + error);
-                },
-                success: function (response) {
-                    $("select#bag_item_colour").empty();
-                    for(var i = 0; i < response.length; i++){
-                        $("select#bag_item_colour").append('<option value="' + response[i] + '">' +response[i] + '</option>');
-                    }
-                    $("select#bag_item_colour").append('<option value="">See options</option>');
-                }
-            });
-        }
+            }
+        });
     });
     
     $("select#bag_item_colour").change(function(){
         var selected_colour = $(this).val();
+        var selected_size = $("select#bag_item_size").val();
         var item_id = $("#bag_item_item_id").val()
-        // alert("hello " + selected_colour + "..." + $("#bag_item_item_id").val() + "..." + $("select#bag_item_size").val() + " ...");
-        if (selected_colour == '') {
-            $.ajax({
-                url: "/items/" + item_id + "/get_colours",
-                method: "GET",  
-                dataType: "json",
-                data: { },
-                error: function (xhr, status, error) {
-                    console.error('AJAX Error: ' + status + error);
-                },
-                success: function (response) {
-                    $("select#bag_item_colour").empty();
-                    $("select#bag_item_colour").append('<option value="">See options</option>');
-                    for(var i = 0; i < response.length; i++){
-                        $("select#bag_item_colour").append('<option value="' + response[i] + '">' +response[i] + '</option>');
-                    }
+
+        $.ajax({
+            url: "/items/" + item_id + "/get_sizes",
+            method: "GET",  
+            dataType: "json",
+            data: { 
+                colour: selected_colour
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ' + status + error);
+            },
+            success: function (response) {
+                if (response.includes(selected_size)) {
+                    $("#add-to-bag-submit").prop('disabled', false);
+                    $("#available-colour-size-combination").text('In stock');
+                } else {
+                    $("#add-to-bag-submit").prop('disabled', true);
+                    $("#available-colour-size-combination").text('Sorry, for '+selected_colour+', only '+response+' are available');
                 }
-            });
-        } else {
-            $.ajax({
-                url: "/items/" + item_id + "/get_sizes",
-                method: "GET",  
-                dataType: "json",
-                data: { 
-                    colour: selected_colour
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX Error: ' + status + error);
-                },
-                success: function (response) {
-                    $("select#bag_item_size").empty();
-                    for(var i = 0; i < response.length; i++){
-                        $("select#bag_item_size").append('<option value="' + response[i] + '">' +response[i] + '</option>');
-                    }
-                    $("select#bag_item_size").append('<option value="">See options</option>');
-                }
-            });
-        }
+            }
+        });
     });
 
     

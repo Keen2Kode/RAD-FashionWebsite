@@ -74,9 +74,12 @@
               <%= form.label :quantity %>
               <%= form.number_field :quantity, value: 1, min: 1, max: 100  %>
             </div>
-            <%= form.hidden_field :item_id, value: @item.id %>
-            <%= form.submit "Add to Bag", class: "btn btn-primary btn-block" %>
           </div>
+          <div>
+            <p id="available-colour-size-combination">Please select to see in stock items</p>
+          </div>
+            <%= form.hidden_field :item_id, value: @item.id %>
+            <%= form.submit "Add to Bag", class: "btn btn-primary btn-block", id: "add-to-bag-submit", :disabled => true %>
         <% end %>
       <% end %>
 
