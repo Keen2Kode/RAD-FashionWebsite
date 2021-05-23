@@ -1,12 +1,13 @@
 class BagItem < ApplicationRecord
-  # belongs_to :item
   belongs_to :user
   belongs_to :item_variant
   # bag_item -> item_variant -> item
   has_one :item, through: :item_variant
   
-  validates :quantity,  presence: true, 
-                        numericality: {greater_than: 0}
+  validates :quantity,      presence: true, 
+                            numericality: {greater_than: 0}
+  validates :user,          presence: true
+  validates :item_variant,  presence: true
                         
   # adding the same bag item is valid,
   # but update the quantity VS saving the bag_item separately

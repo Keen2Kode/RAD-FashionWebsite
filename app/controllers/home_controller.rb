@@ -42,10 +42,6 @@ class HomeController < ApplicationController
   
   
   private
-
-  def item_params
-    params.require(:item)
-  end
   
   def visitor_params
     params.require(:visitor).permit(:email)

@@ -1,17 +1,19 @@
 class BagItemsController < ApplicationController
   before_action :persist_bag_item, only: [:create]
-  before_action :pathing_and_create_bag_item, only: [:index, :create]
+  before_action :redirect_prompt
   
   
   
   
   def index
+    create_bag_item
     @bag_items = BagItem.where(user_id: current_user)
     @total_price = @bag_items.sum {|bag_item| bag_item.item.price * bag_item.quantity}
   end
   
   
   def create
+    create_bag_item
     redirect_to bag_items_path
   end
   
@@ -29,7 +31,14 @@ class BagItemsController < ApplicationController
     add_to_popularity(@bag_items)
     current_user.increment!(:checkouts)
     @bag_items.destroy_all
-    redirect_to bag_items_path
+
+    if current_user.checkouts == 1
+      respond_to do |format|
+        format.js { render 'bag_items/first_checkout_modal.js.erb' }
+      end
+    else
+      redirect_to bag_items_path
+    end
   end
   
   
@@ -48,11 +57,9 @@ class BagItemsController < ApplicationController
   
   
   
-  def pathing_and_create_bag_item
+  def redirect_prompt
     set_back_path bag_items_path
     redirect_to prompt_path and return unless logged_in?
-    
-    create_bag_item
   end
   
   

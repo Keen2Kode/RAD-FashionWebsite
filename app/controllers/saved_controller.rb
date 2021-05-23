@@ -9,17 +9,33 @@ class SavedController < ApplicationController
   end
   
   # for saved items for each user
-  def db_index
+  def db
     @saved_items = SavedItem.all
   end
   
   # PUT saved/1 
-  # aka url: saved_path(1), method: put
+  # aka path: saved_path(1), method: put
   # when eg: you click on a popular item button (submitting a form)
   def update
     @item = Item.find(params[:id])
     logged_in? ? update_db : update_cookies
     saved.include?(@item.id) ? @item.decrement!(:popularity) : @item.increment!(:popularity)
+    
+    
+    # the trick is reassigning @random_item, this is used by the home controller to display new random item
+    # the weird thing here is when we are on the last item, the @random_item is the same as @item (not sure why), so i need to nullify the @random_item when ALL the items are saved
+    @random_item = Item.not_saved(saved).random.first
+    if @random_item == @item
+      # puts "PREV ITEM: " + @item.name
+      @random_item = nil
+    else
+      # puts "NEW ITEM: " + @random_item.name
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   

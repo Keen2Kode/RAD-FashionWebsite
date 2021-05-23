@@ -1,11 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   colour: 1
-#   size: 1
-#   item: one
+# only one variant for ease of testing
+one:
+  colour: 1
+  size: 1
+  item: one
 
-# two:
-#   colour: 1
-#   size: 1
-#   item: two
+two_a:
+  colour: 1
+  size: 1
+  item: two
+
+two_b:
+  colour: 1
+  size: 2
+  item: two
+
+two_c:
+  colour: 2
+  size: 1
+  item: two
+
+two_d:
+  colour: 3
+  size: 1
+  item: two

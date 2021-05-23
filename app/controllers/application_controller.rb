@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     include UsersHelper
     include SavedHelper
     
+    helper_method :saved
     
     def saved
         db_saved = current_user.saved_items.map(&:item_id) if logged_in?
