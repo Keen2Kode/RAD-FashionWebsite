@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection
+  before_action :set_collection_or_redirect
   
   def index
     redirect_to collection_path(CollectionItem.everything)
@@ -8,19 +8,8 @@ class CollectionsController < ApplicationController
   def show
     @items = Item.all.select{|item| item.collections.include? @collection}
     @items = search if params[:colours]
-    
   end
   
-  
-  
-  
-  
-  def filter
-  end
-  
-  def search
-    
-  end
   
   
   private
@@ -29,16 +18,15 @@ class CollectionsController < ApplicationController
     colours = params[:colours] - ['']
     size = params[:size]
     tags = params[:tags] - ['']
-    return [] if colours.empty? || tags.empty? || !size
-    
-    variants = ItemVariant.where(colour: colours).where(size: size)
-    tags = TagItem.where(tag: tags)
-    matches = variants.map(&:item) & tags.map(&:item)
-    @items & matches
+
+    @items & Item.filter(colours, size, tags)
   end
   
-  def set_collection
+  
+  def set_collection_or_redirect
     # eg: collections/men gives "men"
     @collection = params[:id]
+    valid_collections = CollectionItem.collections + [CollectionItem.everything]
+    redirect_to collection_path(CollectionItem.everything) unless valid_collections.include? @collection
   end
 end

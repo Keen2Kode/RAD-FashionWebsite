@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   end
   resources :collections, only: [:show, :index] do 
     get :filter, on: :member
-    get :search, on: :member
   end
   
   get '/auth/:provider/callback'  => 'users#create'

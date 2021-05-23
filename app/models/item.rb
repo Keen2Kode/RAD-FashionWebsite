@@ -4,9 +4,9 @@ class Item < ApplicationRecord
     has_many :item_images, dependent: :destroy
     has_many :item_variants, dependent: :destroy
     
-    scope :random, -> { Item.order(Arel.sql('RANDOM()')) }
-    scope :not_saved, -> (saved_list) { Item.where.not(id: saved_list) }
-    scope :popular, -> { Item.all.sort_by(&:popularity).reverse }
+    scope :random, ->                   { Item.order(Arel.sql('RANDOM()')) }
+    scope :not_saved, -> (saved_list)   { Item.where.not(id: saved_list) }
+    scope :popular, ->                  { Item.all.sort_by(&:popularity).reverse }
 
     
     # Popularity feature: the sum of appearances in saved list and shopping bag
@@ -47,5 +47,13 @@ class Item < ApplicationRecord
     
     def variants_of(attribute)
         item_variants.map(&attribute).uniq
+    end
+    
+    def self.filter(colours, size, tags)
+        return [] if colours.empty? || tags.empty? || !size
+    
+        variants = ItemVariant.where(colour: colours).where(size: size)
+        tags = TagItem.where(tag: tags)
+        variants.map(&:item) & tags.map(&:item)
     end
 end
