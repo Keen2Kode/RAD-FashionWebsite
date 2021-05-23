@@ -7,7 +7,7 @@ class CollectionsController < ApplicationController
 
   def show
     @items = Item.all.select{|item| item.collections.include? @collection}
-    @items = search(params[:colours] - [''], params[:size], params[:tags] - ['']) if params[:colours]
+    @items = search if params[:colours]
     
   end
   
@@ -25,7 +25,10 @@ class CollectionsController < ApplicationController
   
   private
   
-  def search(colours, size, tags)
+  def search
+    colours = params[:colours] - ['']
+    size = params[:size]
+    tags = params[:tags] - ['']
     return [] if colours.empty? || tags.empty? || !size
     
     variants = ItemVariant.where(colour: colours).where(size: size)
