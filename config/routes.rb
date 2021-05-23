@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get :filter, on: :member
   end
   
+  get '/items/:id/get_colours' => 'items#get_colours'
+  get '/items/:id/get_sizes' => 'items#get_sizes'
+  
   resources :bag_items do
     delete :destroy_all, on: :collection
     get :rating, on: :collection

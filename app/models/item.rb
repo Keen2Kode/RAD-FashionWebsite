@@ -48,4 +48,19 @@ class Item < ApplicationRecord
     def variants_of(attribute)
         item_variants.map(&attribute).uniq
     end
+
+    def variants_for(attribute, from_size = nil, from_colour = nil)
+        output = nil
+        if from_size == nil && from_colour == nil
+            output = item_variants
+        elsif from_size != nil && from_colour == nil
+            output = item_variants.where(size: from_size)
+        elsif from_colour != nil && from_size == nil
+            output = item_variants.where(colour: from_colour)
+        else
+            output = item_variants.where(size: from_size, colour: from_colour)
+        end
+        output = output.map(&attribute).uniq
+        output
+    end
 end

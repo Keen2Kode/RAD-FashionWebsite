@@ -59,6 +59,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  # response is JSON array of colours 
+  def get_colours
+    @item = Item.find(params[:id])
+    @colours = @item.variants_for(:colour, params[:size], nil)
+    respond_to do |format|
+      format.json { render :json => @colours }
+    end
+  end
+  
+  # response is JSON array of sizes
+  def get_sizes
+    @item = Item.find(params[:id])
+    @sizes = @item.variants_for(:size, nil, params[:colour])
+    respond_to do |format|
+      format.json { render :json => @sizes }
+    end
+  end
+
   private
   
     def set_item
