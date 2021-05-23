@@ -2,26 +2,36 @@
 
 # only one variant for ease of testing
 one:
-  colour: 1
-  size: 1
+  colour: green
+  size: extra_small
   item: one
 
 two_a:
-  colour: 1
-  size: 1
+  colour: green
+  size: extra_small
   item: two
 
 two_b:
-  colour: 1
-  size: 2
+  colour: green
+  size: small
   item: two
 
 two_c:
-  colour: 2
-  size: 1
+  colour: blue
+  size: extra_small
   item: two
 
 two_d:
-  colour: 3
-  size: 1
+  colour: brown
+  size: extra_small
   item: two
+
+two_e:
+  colour: green
+  size: medium
+  item: two
+  
+three:
+  colour: green
+  size: large
+  item: three

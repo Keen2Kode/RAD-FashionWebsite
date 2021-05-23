@@ -1,9 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   category: 1
-#   item: one
+one:
+  category: 'women'
+  item: one
 
-# two:
-#   category: 1
-#   item: two
+two:
+  category: 'men'
+  item: two
+
+three_a:
+  category: 'men'
+  item: three
+  
+three_b:
+  category: 'women'
+  item: three
+  
+three_c:
+  category: 'kids'
+  item: three
+  

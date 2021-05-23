@@ -76,4 +76,47 @@ class ItemTest < ActiveSupport::TestCase
     @item.save
     assert_equal @item, Item.popular.last
   end
+  
+  
+  
+  
+  
+  
+  test "filter should be empty if no size" do
+    items = Item.filter(ItemVariant.colours.keys, nil, TagItem.tags.keys)
+    assert items.empty?
+  end
+  
+  test "filter should be empty if no colours" do
+    items = Item.filter([], ItemVariant.sizes.keys, TagItem.tags.keys)
+    assert items.empty?
+  end
+  
+  test "filter should be empty if no tags" do
+    items = Item.filter(ItemVariant.colours.keys, ItemVariant.sizes.keys, [])
+    assert items.empty?
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  test "filter should filter by size" do
+    size = 'extra_small'
+    items_with_size = [items(:one), items(:two)]
+    filtered_items = Item.filter(ItemVariant.colours.keys, size, TagItem.tags.keys)
+
+    assert_equal items_with_size, filtered_items
+  end
+  
+  test "filter should filter by colours" do
+    colours = ['blue', 'brown']
+    items_with_colour = [items(:two)]
+    filtered_items = Item.filter(colours, ItemVariant.sizes.keys, TagItem.tags.keys)
+    
+    assert_equal items_with_colour, filtered_items
+  end
 end
