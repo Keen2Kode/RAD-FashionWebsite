@@ -14,7 +14,7 @@
 
 **Git Repository:** [RAD2021_s3707189_s3717497](https://github.com/jeffmadrid/RAD2021_s3707189_s3717497)
 
-#### Notes
+## Notes
 Due to Turbolinks, some javascript features may not seem to work. For these, refresh the page to get it working. Eg: Sidebar feature
 
 
