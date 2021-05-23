@@ -4,10 +4,12 @@
             <%= render 'shared/errors', model: user %>
             <%= f.label :email %>
             <%= f.text_field :email, class: 'form-control' %>
+            <p></p>
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control' %>
-            <%= f.submit params[:action].capitalize, class: "btn btn-primary" %>
+            <br>
+            <%= f.submit params[:action].capitalize, class: "btn btn-primary btn-block" %>
         <% end %>
-        <%= button_to "Login with Twitter", "/auth/twitter", method: :post, class: "btn btn-primary" %>
+        <p></p>
     </div>
 </div>
