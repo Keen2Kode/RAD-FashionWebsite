@@ -6,7 +6,13 @@
 
 **Level Attempted:** 90+ (Multiple Browser feature only)
 
+**Toggle Track Summary:** [Time Sheet](../blob/master/Toggl_Track_summary_report_2021-04-04_2021-05-31.pdf) (access via the repo)
 
+**(Heroku)[https://tranquil-crag-04131.herokuapp.com/]** link deployed
+
+**Last Heroku log:** TOOOOODDOOOO
+
+**Git Repository:** RAD2021_s3707189_s3717497, located at https://github.com/jeffmadrid/RAD2021_s3707189_s3717497
 
 
 
