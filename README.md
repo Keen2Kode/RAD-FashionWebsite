@@ -1,4 +1,15 @@
-# RAD2021_s3707189_s3717497
+# Rapid Application Development: Fashion Website with RoR 5
+
+**Group members:** Reuben Abraham s3717497, Jeff Madrid s3707189
+
+**Contribution:** 50/50
+
+**Level Attempted:** 90+ (Multiple Browser feature only)
+
+
+
+
+
 
 ## Assignment commands
 ```
