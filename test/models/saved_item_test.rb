@@ -3,7 +3,7 @@ require 'test_helper'
 class SavedItemTest < ActiveSupport::TestCase
   
   def setup
-    @saved_item = SavedItem.new(item: items(:one), user: users(:one))
+    @saved_item = SavedItem.new(item: items(:one), user: users(:bill))
   end
   
   

@@ -41,7 +41,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to item_url(Item.last)
+    assert_redirected_to item_url Item.last
   end
 
   test "should update item" do
