@@ -63,3 +63,61 @@ function hasScrolled() {
     
     lastScrollTop = st;
 }
+
+$(document).ready(function () {
+    $("select#bag_item_size").change(function(){
+        var selected_size = $(this).val();
+        var selected_colour = $("select#bag_item_colour").val();
+        var item_id = $("#bag_item_item_id").val()
+
+        $.ajax({
+            url: "/items/" + item_id + "/get_colours",
+            method: "GET",  
+            dataType: "json",
+            data: { 
+                size: selected_size
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ' + status + error);
+            },
+            success: function (response) {
+                if (response.includes(selected_colour)) {
+                    $("#add-to-bag-submit").prop('disabled', false);
+                    $("#available-colour-size-combination").empty();
+                } else {
+                    $("#add-to-bag-submit").prop('disabled', true);
+                    $("#available-colour-size-combination").text('Sorry, for '+selected_size+', only '+response+' are available');
+                }
+            }
+        });
+    });
+    
+    $("select#bag_item_colour").change(function(){
+        var selected_colour = $(this).val();
+        var selected_size = $("select#bag_item_size").val();
+        var item_id = $("#bag_item_item_id").val()
+
+        $.ajax({
+            url: "/items/" + item_id + "/get_sizes",
+            method: "GET",  
+            dataType: "json",
+            data: { 
+                colour: selected_colour
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error: ' + status + error);
+            },
+            success: function (response) {
+                if (response.includes(selected_size)) {
+                    $("#add-to-bag-submit").prop('disabled', false);
+                    $("#available-colour-size-combination").text('In stock');
+                } else {
+                    $("#add-to-bag-submit").prop('disabled', true);
+                    $("#available-colour-size-combination").text('Sorry, for '+selected_colour+', only '+response+' are available');
+                }
+            }
+        });
+    });
+
+    
+});
