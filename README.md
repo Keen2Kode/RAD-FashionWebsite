@@ -12,7 +12,7 @@
 
 **Last Heroku log:** TOOOOODDOOOO
 
-**Git Repository:** RAD2021_s3707189_s3717497, located at https://github.com/jeffmadrid/RAD2021_s3707189_s3717497
+**Git Repository:** [RAD2021_s3707189_s3717497](https://github.com/jeffmadrid/RAD2021_s3707189_s3717497)
 
 
 
