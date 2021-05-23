@@ -8,7 +8,7 @@
 
 **Toggle Track Summary:** [Time Sheet](../master/Toggl_Track_summary_report_2021-04-04_2021-05-31.pdf) (access via the repo)
 
-**[Heroku](https://tranquil-crag-04131.herokuapp.com)** link deployed
+**Deployed App:** [Heroku](https://tranquil-crag-04131.herokuapp.com)
 
 **Last Heroku log:** TOOOOODDOOOO
 
