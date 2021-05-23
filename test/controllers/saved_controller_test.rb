@@ -4,7 +4,7 @@ class SavedControllerTest < ActionDispatch::IntegrationTest
   include SavedHelper
   
   def setup
-    @user = users(:one)
+    @user = users(:bill)
     @user_password = 'billisAWesome'
     
     @item = items(:one)

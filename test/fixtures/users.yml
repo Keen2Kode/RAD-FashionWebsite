@@ -21,11 +21,11 @@
 #   profile_image: MyString
 #   checkouts:0 
 
-one:
+bill:
     name: bill
     email: bill@test.com
     password_digest: <%= User.digest('billisAWesome') %>
-two:
+mary:
     name: mary
     email: mary@rad2021.org
     password_digest: <%= User.digest('maryIsAwsoem') %>

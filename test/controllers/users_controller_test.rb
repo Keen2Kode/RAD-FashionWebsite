@@ -3,8 +3,8 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   include SavedHelper
   def setup
-    @user = users(:one)
-    @user_2 = users(:two)
+    @user = users(:bill)
+    @user_2 = users(:mary)
     @user_password = 'billisAWesome'
     @user_2_password = 'maryIsAwsoem'
   end
