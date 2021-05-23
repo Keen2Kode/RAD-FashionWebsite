@@ -3,5 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load',  ->
-    $('#all').click ->
-        $('input[name="tags[]"]').click()
+    $('#all').change ->
+        allChecked = $(this).is(":checked")
+        $('input[name="tags[]"]').prop('checked', allChecked)

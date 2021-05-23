@@ -3,9 +3,14 @@
 <br>
 <br>
 <div>
-  <%= button_to "Login", "/login", method: :get, class: "btn btn-primary btn-block" %>
+  <%= button_to "Login", login_path, method: :get, class: "btn btn-primary btn-block" %>
 </div>
 <p></p>
 <div>
   <%= button_to "Login with Twitter", "/auth/twitter", method: :post, class: "btn btn-info btn-block" %>
 </div>
+
+<br>
+<hr/>
+
+<p class="text-center"><%= link_to 'New to us? Sign up here', signup_path %></p>
