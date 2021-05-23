@@ -1,10 +1,13 @@
+<% provide(:title, "Log In") %>
+
 <%= notice %>
 
-<h1>Log in</h1>
-
-
+<h1>Log In</h1>
+<br>
 
 <%= render 'login_form', user: @user, path: login_path  %>
 
-<%= link_to 'New to us?', signup_path %> |
-<%= link_to 'Forgot password?', forgot_password_path %>
+<br>
+
+<p><%= link_to 'New to us? Sign up here', signup_path %></p>
+<p><%= link_to 'Forgot password?', forgot_password_path %></p>
