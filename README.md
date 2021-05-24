@@ -18,7 +18,7 @@ Today at 1:35 PM · v30
 **Git Repository:** [RAD2021_s3707189_s3717497](https://github.com/jeffmadrid/RAD2021_s3707189_s3717497)
 
 ## Notes
-Due to Turbolinks, some javascript features may not seem to work. For these, refresh the page to get it working. Eg: Sidebar feature
+Due to Turbolinks, some javascript features may not seem to work. For these, refresh the page to get it working. Eg: Sidebar feature, items "Add to Bag" button
 
 You can see the database here
 ![Database](../master/RAD%20Assignment.png)
