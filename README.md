@@ -10,10 +10,7 @@
 
 **Deployed App:** [Heroku](https://tranquil-crag-04131.herokuapp.com)
 
-**Last Heroku log:** 
-
-jefferson.imadrid@gmail.com: Deployed 5de12b21
-Today at 1:35 PM · v30
+**Last Heroku log:**  jefferson.imadrid@gmail.com: Deployed 5de12b21  Today at 1:35 PM · v30
 
 **Git Repository:** [RAD2021_s3707189_s3717497](https://github.com/jeffmadrid/RAD2021_s3707189_s3717497)
 
