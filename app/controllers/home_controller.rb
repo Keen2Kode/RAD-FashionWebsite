@@ -35,6 +35,7 @@ class HomeController < ApplicationController
     @saved_items = SavedItem.all
     @purchased_items = BagItem.where(purchased: true)
     @visitors = Visitor.all
+    @overall_rating = Rating.sum(:value)/Rating.count if (Rating.count > 0)
   end
   
   

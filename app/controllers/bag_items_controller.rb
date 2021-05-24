@@ -39,7 +39,7 @@ class BagItemsController < ApplicationController
         format.js { render 'bag_items/first_checkout_modal.js.erb' }
       end
     else
-      redirect_to bag_items_path
+      redirect_to root_path
     end
   end
   

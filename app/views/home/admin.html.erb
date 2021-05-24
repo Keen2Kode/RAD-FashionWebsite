@@ -41,7 +41,12 @@
 </table>
 
 
-<h2 class="sub-header">Rating</h2>
+<h2 class="sub-header">Overall Rating</h2>
+<% if @overall_rating %>
+  <p>Aggregated from all users: <%= @overall_rating%></p>   
+<% else %>
+  <p>No one has rated yet</p>
+<% end%>
 
 <h2 class="sub-header">Newsletter subscriptions</h2>
 <table>
