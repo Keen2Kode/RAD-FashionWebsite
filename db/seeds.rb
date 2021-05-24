@@ -197,7 +197,7 @@ variant.each {|v| ItemVariant.create(item: item5, size: v[0], colour: v[1])}
 
 
 
-user1 = User.create(name: "RAD", email: "rad2021rmit@gmail.com", password: "Rails2021")
+user1 = User.create(name: "RAD", email: "rad2021rmit@gmail.com", password: "Rails2021", admin: true)
 user2 = User.create(name: "reuben", email: "r@e.com", password: "Rails2022")
 user3 = User.create(name: "jeff", email: "b@g.com", password: "Rails2023")
 

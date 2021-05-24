@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_152009) do
+ActiveRecord::Schema.define(version: 2021_05_24_024003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bag_items", force: :cascade do |t|
     t.integer "quantity"
+    t.boolean "purchased"
     t.bigint "item_variant_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -61,6 +62,14 @@ ActiveRecord::Schema.define(version: 2021_05_20_152009) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "saved_items", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "user_id"
@@ -88,6 +97,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_152009) do
     t.string "secret"
     t.string "profile_image"
     t.integer "checkouts"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_152009) do
   add_foreign_key "collection_items", "items"
   add_foreign_key "item_images", "items"
   add_foreign_key "item_variants", "items"
+  add_foreign_key "ratings", "users"
   add_foreign_key "saved_items", "items"
   add_foreign_key "saved_items", "users"
   add_foreign_key "tag_items", "items"

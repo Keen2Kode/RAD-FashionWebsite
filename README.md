@@ -38,8 +38,9 @@ rails g model tag_item tag:integer item:references
 rails g model item_image item:references image_link
 rails g mailer User reset_password
 rails g model item_variant colour:integer size:integer item:references
-rails g model bag_item quantity:integer item_variant:references user:references
+rails g model bag_item quantity:integer purchased:boolean item_variant:references user:references
 rails g model saved_item item:references user:references
+rails g model rating value:integer user:references
 ```
 
 Can undo all migrations with `rails db:migrate VERSION=0`. 

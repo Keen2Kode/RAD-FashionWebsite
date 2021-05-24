@@ -7,7 +7,7 @@ class BagItemsController < ApplicationController
   
   def index
     create_bag_item
-    @bag_items = BagItem.where(user_id: current_user)
+    @bag_items = BagItem.where(user_id: current_user, purchased: false)
     @total_price = @bag_items.sum {|bag_item| bag_item.item.price * bag_item.quantity}
   end
   
@@ -26,18 +26,20 @@ class BagItemsController < ApplicationController
   end
   
   
-  def destroy_all
-    @bag_items = BagItem.where(user_id: current_user)
+  def checkout
+    @bag_items = BagItem.where(user_id: current_user, purchased: false)
     add_to_popularity(@bag_items)
+    @bag_items.update_all(purchased: true)
+    
+    
     current_user.increment!(:checkouts)
-    @bag_items.destroy_all
 
     if current_user.checkouts == 1
       respond_to do |format|
         format.js { render 'bag_items/first_checkout_modal.js.erb' }
       end
     else
-      redirect_to bag_items_path
+      redirect_to root_path
     end
   end
   

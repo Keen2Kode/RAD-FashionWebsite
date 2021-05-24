@@ -2,11 +2,13 @@
 
 one:
   quantity: 11
+  purchased: true
   item_variant: one
   user: bill
 
 two:
   quantity: 1
+  purchased: true
   item_variant: two_a
   user: mary
 

@@ -1,6 +1,6 @@
 # no "Sessions controller", it's logic is placed here
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update subscription] 
+  before_action :set_user, only: %i[show edit update subscription ratings] 
   before_action :redirect_to_correct_user, only: %i[show edit]
   before_action :redirect_if_logged, only: %i[login signup prompt forgot_password]
 
@@ -100,6 +100,11 @@ class UsersController < ApplicationController
   end
   
   
+  def ratings
+    Rating.create(user: @user, value: params[:user][:ratings])
+    redirect_to root_path
+  end
+
   
   
   

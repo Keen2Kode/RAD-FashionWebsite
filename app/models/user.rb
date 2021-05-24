@@ -2,9 +2,8 @@ class User < ApplicationRecord
     has_many :bag_items
     has_many :saved_items
     
-    # scope :by_uid, ->(uid) { where("BINARY uid = ?", uid) }
-    
-    attribute :checkouts, default: 0
+    attribute :admin,       default: false
+    attribute :checkouts,   default: 0
     validates :name,        presence: true,
                             uniqueness: true
     validates :password,    presence: true, 

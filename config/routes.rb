@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/items/:id/get_sizes' => 'items#get_sizes'
   
   resources :bag_items do
-    delete :destroy_all, on: :collection
+    post :checkout, on: :collection
     get :rating, on: :collection
   end
   resources :collections, only: [:show, :index] do 
@@ -34,8 +34,10 @@ Rails.application.routes.draw do
   patch '/reset_password'         => 'users#reset_password_create'
   resources :users, only: [:show, :edit, :update] do
     post :subscription, on: :member
+    post :ratings, on: :member
   end
   
+  get 'admin'       => 'home#admin'
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   get 'popular'     => 'home#popular'

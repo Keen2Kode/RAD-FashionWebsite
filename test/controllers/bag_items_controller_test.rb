@@ -82,16 +82,9 @@ class BagItemsControllerTest < ActionDispatch::IntegrationTest
     assert_difference "BagItem.count", 1 do
       post bag_items_url, params: @bag_params
     end
+    
   end
   
-  test "same variant and user should not create bag item" do
-    log_in_as @user, @user_password
-    @bag_params[:bag_item][:quantity] = 100
-    
-    assert_no_difference "BagItem.count" do
-      post bag_items_url, params: @bag_params
-    end
-  end
   
   
   
@@ -102,12 +95,11 @@ class BagItemsControllerTest < ActionDispatch::IntegrationTest
   
   
   
-  test "should destroy all user's bag items if logged in" do
+  test "should checkout user's bag items if logged in" do
     log_in_as @user, @user_password
     
-    # only destroy the logged user's bag items
-    assert_difference "BagItem.count", -@user.bag_items.count do
-      delete destroy_all_bag_items_url, xhr: true
+    assert_no_difference "BagItem.count" do
+      post checkout_bag_items_url, xhr: true
     end
   end  
 end
