@@ -6,6 +6,28 @@
       </div>
       <div class="modal-body">
 
+      <%# here is the form %>
+      <%= form_with(model: current_user, url: ratings_user_path(id: current_user.id), local: true, method: :post) do |form| %>
+
+        <%= form.label :ratings %>
+        <%= form.radio_button :ratings, "1", class: "btn btn-danger" %>
+        <%= form.label :ratings_1, "1" %>
+        <%= form.radio_button :ratings, "2", class: "btn btn-warning" %>
+        <%= form.label :ratings_2, "2" %>
+        <%= form.radio_button :ratings, "3", class: "btn btn-info", checked: true%>
+        <%= form.label :ratings_3, "3" %>
+        <%= form.radio_button :ratings, "4", class: "btn btn-primary" %>
+        <%= form.label :ratings_4, "4" %>
+        <%= form.radio_button :ratings, "5", class: "btn btn-success" %>
+        <%= form.label :ratings_5, "5" %>
+        
+        <br>
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+
+        <%= form.submit params[:action].capitalize, class: "btn btn-primary btn-block" %>
+      <% end %>
+
+
         <h3>Rate your experience with this app..</h3>
         <br>
 
@@ -27,6 +49,7 @@
 
       </div>
       <div class="modal-footer">
+      
         <%= link_to bag_items_path do %>
         <button type="button" class="btn btn-primary">Submit</button>
         <% end %>

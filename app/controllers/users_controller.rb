@@ -100,6 +100,10 @@ class UsersController < ApplicationController
   end
   
   
+  def ratings
+    puts "RATINGS"
+  end
+
   
   
   

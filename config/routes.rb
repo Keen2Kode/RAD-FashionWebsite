@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   patch '/reset_password'         => 'users#reset_password_create'
   resources :users, only: [:show, :edit, :update] do
     post :subscription, on: :member
+    post :ratings, on: :member
   end
   
   get 'search'      => 'home#search'
