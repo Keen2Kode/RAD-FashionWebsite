@@ -4,7 +4,7 @@
 
 **Contribution:** 50/50
 
-**Level Attempted:** 90+ (Multiple Browser feature only)
+**Level Attempted:** 90+ (Multiple Browser feature, admin feature)
 
 **Time Sheet:** [Summary](../master/Toggl_Track_summary_report_2021-04-04_2021-05-31.pdf) and [Detailed time entries](../master/Toggl_time_entries_2021-04-04_to_2021-05-31.pdf) (access via the repo)
 
