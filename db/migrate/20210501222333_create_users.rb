@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :secret
       t.string :profile_image
       t.integer :checkouts
+      t.boolean :admin
 
       t.timestamps
     end

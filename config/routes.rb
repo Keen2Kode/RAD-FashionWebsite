@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   
   resources :bag_items do
-    delete :destroy_all, on: :collection
+    post :checkout, on: :collection
     get :rating, on: :collection
   end
   resources :collections, only: [:show, :index] do 
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     post :subscription, on: :member
   end
   
+  get 'admin'       => 'home#admin'
   get 'search'      => 'home#search'
   post 'newsletter' => 'home#newsletter'
   get 'popular'     => 'home#popular'

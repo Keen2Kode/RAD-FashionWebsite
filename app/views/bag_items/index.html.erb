@@ -47,7 +47,7 @@
 </h3>
 
 <br>
-<%= form_with url: destroy_all_bag_items_path, method: "delete" do |form| %>
+<%= form_with url: checkout_bag_items_path do |form| %>
 <%= form.submit "Checkout", class: "btn btn-primary btn-block" %>
 <% end %>
 <% end %>

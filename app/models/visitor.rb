@@ -6,4 +6,10 @@ class Visitor < ApplicationRecord
     before_save { email.downcase! }
     
 
+    def user
+        User.find_by(email: email.downcase)
+    end
+    
+    
+
 end

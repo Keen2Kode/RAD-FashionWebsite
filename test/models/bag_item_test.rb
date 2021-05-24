@@ -22,9 +22,6 @@ class BagItemTest < ActiveSupport::TestCase
   
   
   
-  
-  
-
   test "quantity should be present" do
     @bag_item.quantity = nil
     assert_not @bag_item.valid?

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_152009) do
 
   create_table "bag_items", force: :cascade do |t|
     t.integer "quantity"
+    t.boolean "purchased"
     t.bigint "item_variant_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_152009) do
     t.string "secret"
     t.string "profile_image"
     t.integer "checkouts"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

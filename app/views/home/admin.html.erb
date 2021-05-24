@@ -1,0 +1,64 @@
+<h2 class="sub-header">Saved Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @saved_items.each do |s| %>
+      <tr>
+        <td><%= s.item.name %></td>
+        <td><%= s.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="sub-header">Purchased Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>User</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchased_items.each do |pi| %>
+      <tr>
+        <td><%= pi.item.name %></td>
+        <td><%= pi.user.name %></td>
+        <td><%= pi.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h2 class="sub-header">Rating</h2>
+
+<h2 class="sub-header">Newsletter subscriptions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Subscribed User</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visitors.each do |v| %>
+      <tr>
+        <td><%= v.user.name if v.user %></td>
+        <td><%= v.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
