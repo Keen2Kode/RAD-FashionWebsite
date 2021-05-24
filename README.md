@@ -23,6 +23,9 @@ You can see the database here
 
 
 
+
+# For student purposes only
+
 ## Assignment commands
 ```
 rails g scaffold Item name:string description:text image_link:text price:float arrival_date:date
@@ -122,51 +125,4 @@ git push heroku +HEAD:master
 
 ```
 
-```
-# don't try below... just use for reference
-heroku create
-heroku buildpacks:add heroku/ruby
-git remote -v
-git push heroku master
-heroku run rake db:migrate
 
-# if you want to connect to an existing heroku app
-heroku git:remote -a yourappnamegoeshere
-
-# see logs
-heroku logs --tail
-# to run console activerecord commands
-heroku run rails c
-# restart
-heroku restart
-
-# log into heroku from console
-heroku login -i
-```
-
-
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
