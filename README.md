@@ -36,7 +36,10 @@ rails g model bag_item quantity:integer purchased:boolean item_variant:reference
 rails g model saved_item item:references user:references
 ```
 
-Can reset/drop tables now, with `rails db:drop db:create db:migrate` or `rails db:migrate:reset`. It also does the job of seeding data, and means migration files can be edited directly
+Can undo all migrations with `rails db:migrate VERSION=0`. 
+Then call `rails db:migrate`
+Then `rails db:reset`
+It also does the job of seeding data, and means migration files can be edited directly
 
 ## Commands to run
 ```

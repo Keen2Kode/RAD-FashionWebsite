@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get :filter, on: :member
   end
   
+  get '/items/:id/get_colours' => 'items#get_colours'
+  get '/items/:id/get_sizes' => 'items#get_sizes'
+  
   resources :bag_items do
     post :checkout, on: :collection
     get :rating, on: :collection
@@ -31,6 +34,7 @@ Rails.application.routes.draw do
   patch '/reset_password'         => 'users#reset_password_create'
   resources :users, only: [:show, :edit, :update] do
     post :subscription, on: :member
+    post :ratings, on: :member
   end
   
   get 'admin'       => 'home#admin'
