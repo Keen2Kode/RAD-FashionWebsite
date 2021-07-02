@@ -4,7 +4,7 @@ Click [here](https://tranquil-crag-04131.herokuapp.com) to view the completed ap
 
 As a 2-person assignment, we were given 2 months to have a full-stack application ready and deployed. We learnt a ton of stuff working on the full stack including MVC, HTML, bootstrap, database relations, login, persistence and more!
 
-**Features: ** Assignment [specification](RAD-Assignment-2021-PDF.pdf) with features
+**Features:** Assignment [specification](RAD-Assignment-2021-PDF.pdf)
 
 **Group members:** Reuben Abraham, Jeff Madrid
 
