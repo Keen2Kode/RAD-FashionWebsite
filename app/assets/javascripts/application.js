@@ -19,8 +19,9 @@
 //= require bootstrap-sprockets
 
 
-$(document).ready(function () {
-    $('[data-toggle=offcanvas]').click(function () {
+// Ensure handlers run on every Turbolinks visit
+$(document).on('turbolinks:load', function () {
+    $('[data-toggle=offcanvas]').off('click').on('click', function () {
         $('.row-offcanvas').toggleClass('active');
     });
 });
@@ -64,8 +65,9 @@ function hasScrolled() {
     lastScrollTop = st;
 }
 
-$(document).ready(function () {
-    $("select#bag_item_size").change(function(){
+// Rebind change handlers on Turbolinks load and avoid duplicates
+$(document).on('turbolinks:load', function () {
+    $(document).off('change', 'select#bag_item_size').on('change', 'select#bag_item_size', function(){
         var selected_size = $(this).val();
         var selected_colour = $("select#bag_item_colour").val();
         var item_id = $("#bag_item_item_id").val()
@@ -91,8 +93,8 @@ $(document).ready(function () {
             }
         });
     });
-    
-    $("select#bag_item_colour").change(function(){
+
+    $(document).off('change', 'select#bag_item_colour').on('change', 'select#bag_item_colour', function(){
         var selected_colour = $(this).val();
         var selected_size = $("select#bag_item_size").val();
         var item_id = $("#bag_item_item_id").val()
@@ -119,5 +121,4 @@ $(document).ready(function () {
         });
     });
 
-    
 });
