@@ -5,7 +5,8 @@ set -e
 rm -f /myapp/tmp/pids/server.pid
 
 # this is normally run as a post deploy ssh shell command, but render doesn't support that, so we put it here.
-bundle exec rails db:migrate
+# f
+bundle exec rails db:migrate 2>/dev/null || bundle exec rails db:setup
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"
