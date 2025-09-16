@@ -28,7 +28,9 @@ services:
       - .:/myapp:delegated
       - bundle:/usr/local/bundle
       - cache:/myapp/tmp/cache
+      - node_modules:/myapp/node_modules
 volumes:
   postgres:
   cache:
   bundle:
+  node_modules:
