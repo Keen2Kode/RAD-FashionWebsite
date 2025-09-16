@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '~> 2.7'
 
 gem 'sendgrid-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -47,6 +47,7 @@ gem 'bcrypt', '~> 3.1.12'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'dotenv-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

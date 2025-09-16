@@ -1,13 +1,14 @@
-version: '3'
+
 services:
   db:
     image: postgres
     environment: 
       POSTGRES_USER: 'admin'
       POSTGRES_PASSWORD: 'password'
-    # Exposing DB to port `5432` of host machine
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: RAD2021_s3707189_s3717497_development
+    # the post only exposed to web service internally
+    # ports:
+    #   - "5432:5432"
     volumes:
       - postgres:/data/postgres
   web:
@@ -19,7 +20,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_HOST: "host.docker.internal"
+      DATABASE_HOST: db
       DATABASE_USERNAME: "admin"
       DATABASE_PASSWORD: "password"
       DATABASE_PORT: 5432

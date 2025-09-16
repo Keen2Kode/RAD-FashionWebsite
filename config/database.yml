@@ -21,7 +21,15 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-  # Only jeff needs this for docker, comment this out
+  # Make connection settings configurable via environment variables with sensible defaults.
+  # This allows running against Docker (DATABASE_*), libpq defaults (PG*), or local installs
+  # without editing this file.
+  host: <%= ENV['DATABASE_HOST'] || ENV['PGHOST'] || 'localhost' %>
+  port: <%= (ENV['DATABASE_PORT'] || ENV['PGPORT'] || 5432).to_i %>
+  username: <%= ENV['DATABASE_USERNAME'] || ENV['PGUSER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] || ENV['PGPASSWORD'] %>
+
+  # Legacy docker hints (kept for reference):
   # host: db
   # username: admin
   # password: password

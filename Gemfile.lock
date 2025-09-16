@@ -79,6 +79,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
     ffi (1.15.0)
@@ -232,6 +236,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dotenv-rails
   jbuilder (~> 2.5)
   jquery-rails (~> 4.4.0)
   listen (>= 3.0.5, < 3.2)
@@ -254,4 +259,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.16
+   2.4.22
