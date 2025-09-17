@@ -1,23 +1,57 @@
-# Rapid Application Development: Fashion Website with RoR 5
+# Rapid Application Development: Fashion Website
 
-Click [here](https://tranquil-crag-04131.herokuapp.com) to view the completed app, deployed on Heroku!
+(Pre-LLM era) A full-stack Ruby on Rails e-commerce website, built as a rapid two-month project for university. The app demonstrates end-to-end web development with authentication, mailing, and containerized deployment support.
 
-As a 2-person assignment, we were given 2 months to have a full-stack application ready and deployed. We learnt a ton of stuff working on the full stack including MVC, HTML, bootstrap, database relations, login, persistence and more!
+Click [here](https://rad-fashion.up.railway.app/) to view the deployed app.
 
-**Features:** Assignment [specification](RAD-Assignment-2021-PDF.pdf)
+---
 
-**Group members:** Reuben Abraham, Jeff Madrid
+## Quick Start (Run Locally)
 
-**Contribution:** 50/50
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/yourusername/your-repo.git
+   cd your-repo
+   ```
+2. Build and start the containers  
+   ```bash
+   docker-compose up --build
+   ```
+3. Visit the app at  
+   [http://localhost:3000](http://localhost:3000)
 
-**Level Attempted:** 90+ (Multiple Browser feature, admin feature)
+---
 
-**Time Sheet:** [Summary](../master/Toggl_Track_summary_report_2021-04-04_2021-05-31.pdf) and [Detailed time entries](../master/Toggl_time_entries_2021-04-04_to_2021-05-31.pdf) (access via the repo) over 200 hours!
+## The Full-Stack
 
-## ER Diagram
+### Backend
+* **Ruby on Rails** (Ruby 2.7, Rails 5.2)
+* **PostgreSQL** database with ActiveRecord ORM
+* Auth via **bcrypt + OmniAuth-Twitter**
+* Mail via **SendGrid** (Action Mailer)
 
-![Database](../master/RAD%20Assignment.png)
+### Frontend
+* **Bootstrap-based UI** with ERB templates, SCSS, jQuery, Turbolinks
 
-**Last Heroku log:**  jefferson.imadrid@gmail.com: Deployed 5de12b21  Today at 1:35 PM · v30
+### Testing
+- **Minitest** — Unit & Integration Testing
+- **Capybara + Selenium/Chromedriver** — System Testing
 
-**Notes:** Due to Turbolinks, some javascript features may not seem to work. For these, refresh the page to get it working. Eg: Sidebar feature, items "Add to Bag" button
+### Deployment
+* **Docker** containerization
+* **Railway** hosting (Heroku-compatible)
+
+---
+
+**Features:** [Full specifications](RAD-Assignment-2021-PDF.pdf)
+
+**Level Scored:** 90+ (Multiple Browser feature, admin feature)
+
+---
+
+**Notes:** 
+* This is no longer actively maintained, so some features may not work as intended.
+* During our project duration (2020), no code generators were used.
+
+
+
