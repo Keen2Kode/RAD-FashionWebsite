@@ -19,7 +19,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
 
   # Make connection settings configurable via environment variables with sensible defaults.
   # This allows running against Docker (DATABASE_*), libpq defaults (PG*), or local installs
@@ -92,7 +92,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: RAD2021_s3707189_s3717497_production
-  username: RAD2021_s3707189_s3717497
-  password: <%= ENV['RAD2021_s3707189_s3717497_DATABASE_PASSWORD'] %>
+# let Railway inject host, username, password, port via its own env vars
+  # <<: *default
+  # database: RAD2021_s3707189_s3717497_production
+  # username: RAD2021_s3707189_s3717497
+  # password: <%= ENV['RAD2021_s3707189_s3717497_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+
