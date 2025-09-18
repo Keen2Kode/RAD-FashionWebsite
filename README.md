@@ -84,10 +84,6 @@ Click [here](https://rad-fashion.up.railway.app/) to view the deployed app. ([Ap
 ## Quick Start (Run Locally)
 
 1. Clone the repo  
-   ```bash
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo
-   ```
 2. Build and start the containers  
    ```bash
    docker-compose up --build
